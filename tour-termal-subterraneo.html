@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour Termal Subterráneo | Piedra de Agua Fuente Termal & Spa</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Viva el místico Tour Termal Subterráneo de Piedra de Agua. Baños termales, lodo volcánico y exfoliaciones de café bajo la luz de las velas.">
+  
+  <!-- Libraries (CDNs) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="index.css">
+  
+  <style>
+    /* Hero Cover Style */
+    .hero-experience {
+      position: relative;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero-experience .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.4) saturate(0.9);
+    }
+
+    .hero-experience::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(to top, var(--bg-base) 0%, transparent 100%);
+      z-index: 0;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3.5rem;
+      margin-top: 4rem;
+    }
+
+    .experience-detail-card {
+      padding: 3rem;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+
+    .features-list li {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .features-list li i {
+      color: var(--primary-gold);
+      margin-top: 0.25rem;
+    }
+
+    .tour-pack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .tour-pack-card {
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      text-align: center;
+    }
+
+    .tour-pack-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+      font-family: var(--font-sans);
+      font-weight: 600;
+    }
+
+    .tour-pack-card .pack-sub {
+      font-size: 0.75rem;
+      color: var(--primary-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .tour-pack-card .price-val {
+      font-size: 2.25rem;
+      font-family: var(--font-serif);
+      color: var(--primary-gold);
+      margin: 1rem 0 1.5rem 0;
+    }
+
+    @media (max-width: 1200px) {
+      .tour-pack-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .experience-grid, .tour-pack-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGPU Canvas -->
+  <div class="background-canvas-container"></div>
+  <div class="volcanic-noise"></div>
+
+  <!-- FIXED LUXURY HEADER -->
+  <header class="header-nav">
+    <a href="index.html" class="nav-logo" aria-label="Piedra de Agua Logo">
+      <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo">
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="sobre-nosotros.html" class="nav-item">Nosotros</a>
+      
+      <!-- Experiences Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#" class="nav-item active flex-center" style="gap: 0.25rem;">
+          Experiencias <i class="ph-bold ph-caret-down" style="font-size: 0.75rem;"></i>
+        </a>
+        <div class="nav-dropdown-content">
+          <a href="circuito-de-spa.html">Circuito de Spa</a>
+          <a href="roca-dorada.html">Roca Dorada</a>
+          <a href="tour-termal-subterraneo.html">Tour Subterráneo</a>
+          <a href="terapias-especiales.html">Terapias Especiales</a>
+          <a href="masajes-de-relajacion.html">Masajes de Relajación</a>
+          <a href="piscina-termal.html">Piscina Termal</a>
+          <a href="libelula-restaurante.html">Libélula Restaurante</a>
+        </div>
+      </div>
+      
+      <a href="tienda.html" class="nav-item">Tienda</a>
+      <a href="contactos.html" class="nav-item">Contactos</a>
+    </nav>
+
+    <!-- Header Actions (Search, Dark/Light Toggle, Cart) -->
+    <div class="header-utils">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
+        <i class="ph-bold ph-sun"></i>
+      </button>
+
+      <!-- Cart Drawer Trigger -->
+      <a href="tienda.html?cart=open" class="icon-btn" aria-label="Ver carrito">
+        <i class="ph-bold ph-shopping-bag-open"></i>
+        <span class="cart-badge">0</span>
+      </a>
+
+      <!-- Mobile Menu Trigger -->
+      <button class="menu-toggle icon-btn" aria-label="Abrir menú">
+        <i class="ph-bold ph-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main>
+    
+    <!-- EXPERIENCE HERO COVER -->
+    <section class="hero-experience">
+      <img class="hero-bg" src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_47_Banner-2-Tour-Termal-Subterraneo-1920x920-1.jpg" alt="Tour Subterráneo Caverna">
+      <div class="container-lux" style="z-index: 1;">
+        <span class="accent-title" style="color: #fff;">Ritual Ancestral</span>
+        <h1 style="color: #fff; text-shadow: 0 4px 12px rgba(0,0,0,0.5); font-size: clamp(2rem, 5vw, 4rem);">Tour Subterráneo</h1>
+        <p style="color: rgba(255,255,255,0.85); max-width: 600px; margin: 1.5rem auto 0 auto;">
+          Una experiencia mágica e inolvidable desarrollada en una cueva natural subterránea templada, ambientada exclusivamente con velas y esencias.
+        </p>
+      </div>
+    </section>
+
+    <!-- MAIN CORE INFO -->
+    <section class="section-lux" style="padding-top: 4rem;">
+      <div class="container-lux">
+        <div class="grid-2">
+          <div style="display: flex; flex-direction: column; justify-content: center;">
+            <span class="accent-title">Misticismo & Piedra</span>
+            <h2>El Poder del Fuego Interno</h2>
+            <p style="margin: 1.5rem 0;">
+              El Tour Termal Subterráneo es una travesía inolvidable que lo transporta al interior de la tierra. A lo largo de galerías excavadas de forma natural en la roca volcánica, la luz titilante de las velas y los aromas purificantes de aceites esenciales crean un entorno mágico que aquieta la mente de inmediato.
+            </p>
+            <p>
+              Guiado por el calor natural de las fuentes geotermales, este recorrido combina lodoterapia corporal, piscinas de contraste térmico, baños de vapor y una envoltura exfoliante de café andino para nutrir la dermis y eliminar toxinas.
+            </p>
+          </div>
+          <div class="split-image-panel" style="height: 420px;">
+            <img src="./Referencias/Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa%20_%20Cuenca%20-%20Ecuador/imgi_33_Home-TourTermal.webp" alt="Tour Subterráneo Cueva">
+          </div>
+        </div>
+
+        <!-- DETAILS OF THE EXPERIENCES -->
+        <div class="experience-grid">
+          
+          <!-- Card 1 -->
+          <div class="glass-card experience-detail-card">
+            <span class="accent-title">Lodoterapia Volcánica</span>
+            <h3 style="font-size: 1.65rem; margin-bottom: 1rem;">Lodos Rojo & Azul</h3>
+            <p>
+              Aplicación de capas densas de lodo rojo volcánico en el tronco (para limpiar profundamente, activar la microcirculación y reafirmar) y lodo azul purificado en el rostro y cuello (para hidratar intensamente y contrarrestar líneas de expresión), logrando un pulido cutáneo integral.
+            </p>
+            <ul class="features-list">
+              <li><i class="ph-bold ph-check-circle"></i> Lodo Rojo para tonificación corporal</li>
+              <li><i class="ph-bold ph-check-circle"></i> Lodo Azul nutritivo e hidratante facial</li>
+              <li><i class="ph-bold ph-check-circle"></i> Secado natural al calor de la caverna</li>
+            </ul>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card experience-detail-card">
+            <span class="accent-title">Contraste Geotermal</span>
+            <h3 style="font-size: 1.65rem; margin-bottom: 1rem;">Termas de Contraste Subterráneo</h3>
+            <p>
+              Inmersión alterna en pozas de roca natural: primero en una terma caliente alimentada por la vertiente de agua volcánica a 38°C, y luego una inmersión breve en una tina de agua helada mineralizada a 15°C. Un ejercicio vascular estimulante que relaja el músculo al instante.
+            </p>
+            <ul class="features-list">
+              <li><i class="ph-bold ph-check-circle"></i> Agua Volcánica Caliente a 38°C</li>
+              <li><i class="ph-bold ph-check-circle"></i> Poza de Choque Frío a 15°C</li>
+              <li><i class="ph-bold ph-check-circle"></i> Estimulación del retorno sanguíneo</li>
+            </ul>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card experience-detail-card">
+            <span class="accent-title">Desintoxicación de Vapor</span>
+            <h3 style="font-size: 1.65rem; margin-bottom: 1rem;">Baños de Cajón Subterráneos</h3>
+            <p>
+              Disfrute de nuestros baños de cajón en madera dentro de la atmósfera húmeda de la cueva. El calor del vapor natural abre los poros, estimulando la sudoración para expulsar impurezas metabólicas y limpiar las vías respiratorias.
+            </p>
+            <ul class="features-list">
+              <li><i class="ph-bold ph-check-circle"></i> Vapor termal canalizado directo de la vertiente</li>
+              <li><i class="ph-bold ph-check-circle"></i> Purificación y apertura de vías respiratorias</li>
+              <li><i class="ph-bold ph-check-circle"></i> Desintoxicación celular profunda</li>
+            </ul>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="glass-card experience-detail-card">
+            <span class="accent-title">Energía y Aroma</span>
+            <h3 style="font-size: 1.65rem; margin-bottom: 1rem;">Exfoliación de Café & Sales</h3>
+            <p>
+              Ritual de cierre del tour subterráneo. Un suave masaje exfoliante a base de granos finos de café andino molido mezclado con sales minerales y aceites hidratantes. La cafeína activa la lipólisis cutánea, reduce la retención de líquidos y deja la piel suave y perfumada.
+            </p>
+            <ul class="features-list">
+              <li><i class="ph-bold ph-check-circle"></i> Exfoliante natural de grano de café andino</li>
+              <li><i class="ph-bold ph-check-circle"></i> Eliminación de células y estimulación dérmica</li>
+              <li><i class="ph-bold ph-check-circle"></i> Aromaterapia vigorizante de café y vainilla</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING & BOOKING CARDS -->
+    <section class="section-lux" style="background: rgba(var(--bg-base-rgb), 0.35);">
+      <div class="container-lux">
+        <div class="text-center" style="margin-bottom: 4.5rem;">
+          <span class="accent-title">Packs Subterráneos</span>
+          <h2>Tarifas del Tour Termal</h2>
+          <p style="max-width: 550px; margin: 1rem auto 0 auto;">
+            Elija el paquete que mejor se adapte a sus planes de relajación individual o en pareja.
+          </p>
+        </div>
+
+        <div class="tour-pack-grid">
+          <!-- Pack 1 -->
+          <div class="glass-card tour-pack-card">
+            <h3>Pack Purificación</h3>
+            <div class="pack-sub">1 Persona</div>
+            <div class="price-val">$85.00</div>
+            <p style="flex-grow: 1; font-size: 0.9rem; margin-bottom: 2rem;">
+              Incluye el recorrido guiado Tour Termal de la Cueva de Velas, lodoterapia roja y azul, termas de contraste subterráneo, baños de cajón, exfoliación de café andino y acceso a piscinas exteriores.
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=tour-purificacion-1p" target="_blank" class="btn-lux" style="font-size: 0.75rem; padding: 0.75rem 1.25rem;">Reservar Pack</a>
+          </div>
+
+          <!-- Pack 2 -->
+          <div class="glass-card tour-pack-card" style="border: 1px solid var(--primary-gold);">
+            <h3>Pack Resplandor</h3>
+            <div class="pack-sub">2 Personas</div>
+            <div class="price-val">$160.00</div>
+            <p style="flex-grow: 1; font-size: 0.9rem; margin-bottom: 2rem;">
+              La experiencia purificante del Tour Termal Subterráneo completo de la Cueva de Velas diseñado en un itinerario especial para compartir en pareja.
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=tour-resplandor-2p" target="_blank" class="btn-lux" style="font-size: 0.75rem; padding: 0.75rem 1.25rem;">Reservar Pack</a>
+          </div>
+
+          <!-- Pack 3 -->
+          <div class="glass-card tour-pack-card">
+            <h3>Pack Relax</h3>
+            <div class="pack-sub">2 Personas + Masaje</div>
+            <div class="price-val">$210.00</div>
+            <p style="flex-grow: 1; font-size: 0.9rem; margin-bottom: 2rem;">
+              Tour Subterráneo de la Cueva de Velas para dos personas, sumado a un relajante masaje focalizado de 25 minutos con aceites esenciales calientes dentro de la cueva.
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=tour-relax-2p" target="_blank" class="btn-lux" style="font-size: 0.75rem; padding: 0.75rem 1.25rem;">Reservar Pack</a>
+          </div>
+
+          <!-- Pack 4 -->
+          <div class="glass-card tour-pack-card">
+            <h3>Pack Purificación</h3>
+            <div class="pack-sub">2 Personas + Skincare</div>
+            <div class="price-val">$250.00</div>
+            <p style="flex-grow: 1; font-size: 0.9rem; margin-bottom: 2rem;">
+              Itinerario completo para dos personas con masaje premium de 50 minutos con aceites esenciales, mascarilla de cuarzo y copa de vino espumoso de cortesía.
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=tour-purificacion-2p" target="_blank" class="btn-lux" style="font-size: 0.75rem; padding: 0.75rem 1.25rem;">Reservar Pack</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="footer-lux">
+    <div class="container-lux footer-grid">
+      <div class="footer-col">
+        <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo" style="height: 55px; margin-bottom: 1.5rem;">
+        <p style="max-width: 320px;">
+          Piedra de Agua reúne y concentra servicios basados en agua, vapor y lodo termal de origen volcánico en un ambiente de relajación inigualable.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="tienda.html">Tienda de Spa</a></li>
+          <li><a href="contactos.html">Contactos & Reservas</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="circuito-de-spa.html">Circuito de Spa</a></li>
+          <li><a href="roca-dorada.html">Roca Dorada</a></li>
+          <li><a href="tour-termal-subterraneo.html">Tour Subterráneo</a></li>
+          <li><a href="libelula-restaurante.html">Libélula Restaurante</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Atendemos los 365 días del año (incluido feriados).</p>
+        <p style="font-weight: 500; color: var(--primary-gold); margin-bottom: 0.5rem;">
+          Lunes a Sábado: 07:00 - 22:00
+        </p>
+        <p style="font-weight: 500; color: var(--primary-gold);">
+          Domingos: 07:00 - 21:00
+        </p>
+      </div>
+    </div>
+    
+    <div class="container-lux footer-bottom">
+      <p>&copy; 2026 Piedra de Agua Fuente Termal & Spa. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="ph-bold ph-tiktok-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://piedradeagua.com.ec/whatsappreservas" target="_blank" aria-label="WhatsApp"><i class="ph-bold ph-whatsapp-logo" style="font-size: 1.25rem;"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Utilities -->
+  <script src="main.js"></script>
+</body>
+</html>

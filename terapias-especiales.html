@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terapias Especiales | Piedra de Agua Fuente Termal & Spa</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore las Terapias Especiales de Piedra de Agua. Flotarium, vinoterapia, baños de flores, hierbas andinas y crioterapia en Cuenca.">
+  
+  <!-- Libraries (CDNs) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="index.css">
+  
+  <style>
+    /* Therapy card layout */
+    .therapy-list-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .therapy-item-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .therapy-img-wrap {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .therapy-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-smooth);
+    }
+
+    .therapy-item-card:hover .therapy-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .therapy-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.65rem;
+      background: var(--bg-elevated-solid);
+      border: 1px solid var(--border-glass-simple);
+      border-radius: 4px;
+      color: var(--primary-gold);
+    }
+
+    .therapy-item-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-sans);
+      font-weight: 500;
+    }
+
+    .therapy-price-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    [data-theme="light"] .therapy-price-line {
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .therapy-price-val {
+      font-size: 1.5rem;
+      font-family: var(--font-serif);
+      color: var(--primary-gold);
+      font-weight: 700;
+    }
+
+    @media (max-width: 992px) {
+      .therapy-list-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .therapy-list-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGPU Canvas -->
+  <div class="background-canvas-container"></div>
+  <div class="volcanic-noise"></div>
+
+  <!-- FIXED LUXURY HEADER -->
+  <header class="header-nav">
+    <a href="index.html" class="nav-logo" aria-label="Piedra de Agua Logo">
+      <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo">
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="sobre-nosotros.html" class="nav-item">Nosotros</a>
+      
+      <!-- Experiences Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#" class="nav-item active flex-center" style="gap: 0.25rem;">
+          Experiencias <i class="ph-bold ph-caret-down" style="font-size: 0.75rem;"></i>
+        </a>
+        <div class="nav-dropdown-content">
+          <a href="circuito-de-spa.html">Circuito de Spa</a>
+          <a href="roca-dorada.html">Roca Dorada</a>
+          <a href="tour-termal-subterraneo.html">Tour Subterráneo</a>
+          <a href="terapias-especiales.html">Terapias Especiales</a>
+          <a href="masajes-de-relajacion.html">Masajes de Relajación</a>
+          <a href="piscina-termal.html">Piscina Termal</a>
+          <a href="libelula-restaurante.html">Libélula Restaurante</a>
+        </div>
+      </div>
+      
+      <a href="tienda.html" class="nav-item">Tienda</a>
+      <a href="contactos.html" class="nav-item">Contactos</a>
+    </nav>
+
+    <!-- Header Actions (Search, Dark/Light Toggle, Cart) -->
+    <div class="header-utils">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
+        <i class="ph-bold ph-sun"></i>
+      </button>
+
+      <!-- Cart Drawer Trigger -->
+      <a href="tienda.html?cart=open" class="icon-btn" aria-label="Ver carrito">
+        <i class="ph-bold ph-shopping-bag-open"></i>
+        <span class="cart-badge">0</span>
+      </a>
+
+      <!-- Mobile Menu Trigger -->
+      <button class="menu-toggle icon-btn" aria-label="Abrir menú">
+        <i class="ph-bold ph-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main style="padding-top: 120px;">
+    
+    <!-- HERO SECTION -->
+    <section class="section-lux" style="padding-bottom: 1rem;">
+      <div class="container-lux text-center">
+        <span class="accent-title">Experiencias Exclusivas</span>
+        <h1>Terapias Especiales</h1>
+        <p style="max-width: 700px; margin: 1.5rem auto 0 auto;">
+          Rituales y tratamientos diseñados para brindarle beneficios específicos de salud, desintoxicación, estimulación física y desconexión absoluta.
+        </p>
+      </div>
+    </section>
+
+    <!-- THERAPY CATALOG GRID -->
+    <section class="section-lux" style="padding-top: 2rem;">
+      <div class="container-lux">
+        <div class="therapy-list-grid">
+          
+          <!-- Therapy 1: Flotarium -->
+          <div class="glass-card therapy-item-card">
+            <div class="therapy-img-wrap">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_26_TE-FLOT1-P-400x533.webp" alt="Terapia Flotarium">
+              <span class="therapy-tag">Gravedad Cero</span>
+            </div>
+            <h3>Flotarium</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 2rem;">
+              Flote sin esfuerzo en una tina de alta densidad saturada con sales de Epsom. Recrea un entorno de aislamiento sensorial que promueve una relajación muscular total, disminuye el estrés mental e induce estados meditativos profundos.
+            </p>
+            <div class="therapy-price-line">
+              <span class="therapy-price-val">$50.00</span>
+              <a href="https://piedradeagua.com.ec/whatsappreservas?service=flotarium" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem 1.25rem;">Reservar</a>
+            </div>
+          </div>
+
+          <!-- Therapy 2: Flores -->
+          <div class="glass-card therapy-item-card">
+            <div class="therapy-img-wrap">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_29_TE-FLO1-P-400x533.webp" alt="Terapia de Flores">
+              <span class="therapy-tag">Aromaterapia</span>
+            </div>
+            <h3>Terapia de Flores</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 2rem;">
+              Tina de hidromasaje termal colmada de pétalos frescos de flores locales y aceites esenciales florales aromatizados. Un ritual aromático dulce y armonizante que suaviza la piel, estimula los sentidos y reduce la ansiedad corporal.
+            </p>
+            <div class="therapy-price-line">
+              <span class="therapy-price-val">$45.00</span>
+              <a href="https://piedradeagua.com.ec/whatsappreservas?service=terapia-flores" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem 1.25rem;">Reservar</a>
+            </div>
+          </div>
+
+          <!-- Therapy 3: Hierbas Medicinales -->
+          <div class="glass-card therapy-item-card">
+            <div class="therapy-img-wrap">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_31_TE-HMED1-P-400x533.webp" alt="Hierbas Medicinales">
+              <span class="therapy-tag">Ancestral Andina</span>
+            </div>
+            <h3>Hierbas Medicinales</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 2rem;">
+              Baño termal tradicional andino con una infusión artesanal concentrada de manzanilla, eucalipto, menta y hierbas nativas. Diseñado para calmar dolores musculares, limpiar vías respiratorias e infundir energía natural.
+            </p>
+            <div class="therapy-price-line">
+              <span class="therapy-price-val">$45.00</span>
+              <a href="https://piedradeagua.com.ec/whatsappreservas?service=terapia-hierbas" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem 1.25rem;">Reservar</a>
+            </div>
+          </div>
+
+          <!-- Therapy 4: Vinoterapia -->
+          <div class="glass-card therapy-item-card">
+            <div class="therapy-img-wrap">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_33_TE-VIN1-P-400x533.webp" alt="Vinoterapia">
+              <span class="therapy-tag">Antioxidante</span>
+            </div>
+            <h3>Vinoterapia</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 2rem;">
+              Baño termal enriquecido con polifenoles de extracto de uva y vino tinto. Ayuda a neutralizar radicales libres, estimula la síntesis de colágeno y elastina y previene el envejecimiento celular prematuro de la piel.
+            </p>
+            <div class="therapy-price-line">
+              <span class="therapy-price-val">$55.00</span>
+              <a href="https://piedradeagua.com.ec/whatsappreservas?service=vinoterapia" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem 1.25rem;">Reservar</a>
+            </div>
+          </div>
+
+          <!-- Therapy 5: Terapia de Hielo -->
+          <div class="glass-card therapy-item-card">
+            <div class="therapy-img-wrap">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_25_TE-HIE1-P-400x533.webp" alt="Terapia de Hielo">
+              <span class="therapy-tag">Recuperación Física</span>
+            </div>
+            <h3>Terapia de Hielo</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 2rem;">
+              Tina de contraste con agua a temperaturas de congelación (crioinmersión). Ideal para atletas y deportistas de alto rendimiento. Reduce la inflamación muscular, acelera la recuperación post-esfuerzo y revitaliza el tono cardiovascular.
+            </p>
+            <div class="therapy-price-line">
+              <span class="therapy-price-val">$35.00</span>
+              <a href="https://piedradeagua.com.ec/whatsappreservas?service=terapia-hielo" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem 1.25rem;">Reservar</a>
+            </div>
+          </div>
+
+          <!-- Therapy 6: Lodoterapia Extra -->
+          <div class="glass-card therapy-item-card">
+            <div class="therapy-img-wrap">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_27_TE-LOD1-P-400x533.webp" alt="Lodoterapia Corporal Completa">
+              <span class="therapy-tag">Mineralizante</span>
+            </div>
+            <h3>Terapia de Lodo Extra</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 2rem;">
+              Una sesión intensiva de lodoterapia corporal en cabinas térmicas de roca, enfocada en la absorción mineral cutánea mediante la aplicación de capas densas de arcilla volcánica roja o azul caliente y reposo remineralizante.
+            </p>
+            <div class="therapy-price-line">
+              <span class="therapy-price-val">$40.00</span>
+              <a href="https://piedradeagua.com.ec/whatsappreservas?service=lodoterapia-extra" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem 1.25rem;">Reservar</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="footer-lux">
+    <div class="container-lux footer-grid">
+      <div class="footer-col">
+        <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo" style="height: 55px; margin-bottom: 1.5rem;">
+        <p style="max-width: 320px;">
+          Piedra de Agua reúne y concentra servicios basados en agua, vapor y lodo termal de origen volcánico en un ambiente de relajación inigualable.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="tienda.html">Tienda de Spa</a></li>
+          <li><a href="contactos.html">Contactos & Reservas</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="circuito-de-spa.html">Circuito de Spa</a></li>
+          <li><a href="roca-dorada.html">Roca Dorada</a></li>
+          <li><a href="tour-termal-subterraneo.html">Tour Subterráneo</a></li>
+          <li><a href="libelula-restaurante.html">Libélula Restaurante</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Atendemos los 365 días del año (incluido feriados).</p>
+        <p style="font-weight: 500; color: var(--primary-gold); margin-bottom: 0.5rem;">
+          Lunes a Sábado: 07:00 - 22:00
+        </p>
+        <p style="font-weight: 500; color: var(--primary-gold);">
+          Domingos: 07:00 - 21:00
+        </p>
+      </div>
+    </div>
+    
+    <div class="container-lux footer-bottom">
+      <p>&copy; 2026 Piedra de Agua Fuente Termal & Spa. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="ph-bold ph-tiktok-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://piedradeagua.com.ec/whatsappreservas" target="_blank" aria-label="WhatsApp"><i class="ph-bold ph-whatsapp-logo" style="font-size: 1.25rem;"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Utilities -->
+  <script src="main.js"></script>
+</body>
+</html>

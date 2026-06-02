@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piscina Termal | Piedra de Agua Fuente Termal & Spa</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Disfrute de las Piscinas Termales de Piedra de Agua. Piscinas familiares, piscina japonesa de adultos, tinas de contraste y vapor de eucalipto en Cuenca.">
+  
+  <!-- Libraries (CDNs) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="index.css">
+  
+  <style>
+    /* Pool detail block */
+    .pool-features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3.5rem;
+      margin-top: 4rem;
+    }
+
+    .pool-feature-item {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .pool-feature-item i {
+      font-size: 2.5rem;
+      color: var(--primary-gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .pool-feature-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-family: var(--font-sans);
+      font-weight: 500;
+    }
+
+    @media (max-width: 992px) {
+      .pool-features-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGPU Canvas -->
+  <div class="background-canvas-container"></div>
+  <div class="volcanic-noise"></div>
+
+  <!-- FIXED LUXURY HEADER -->
+  <header class="header-nav">
+    <a href="index.html" class="nav-logo" aria-label="Piedra de Agua Logo">
+      <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo">
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="sobre-nosotros.html" class="nav-item">Nosotros</a>
+      
+      <!-- Experiences Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#" class="nav-item active flex-center" style="gap: 0.25rem;">
+          Experiencias <i class="ph-bold ph-caret-down" style="font-size: 0.75rem;"></i>
+        </a>
+        <div class="nav-dropdown-content">
+          <a href="circuito-de-spa.html">Circuito de Spa</a>
+          <a href="roca-dorada.html">Roca Dorada</a>
+          <a href="tour-termal-subterraneo.html">Tour Subterráneo</a>
+          <a href="terapias-especiales.html">Terapias Especiales</a>
+          <a href="masajes-de-relajacion.html">Masajes de Relajación</a>
+          <a href="piscina-termal.html">Piscina Termal</a>
+          <a href="libelula-restaurante.html">Libélula Restaurante</a>
+        </div>
+      </div>
+      
+      <a href="tienda.html" class="nav-item">Tienda</a>
+      <a href="contactos.html" class="nav-item">Contactos</a>
+    </nav>
+
+    <!-- Header Actions (Search, Dark/Light Toggle, Cart) -->
+    <div class="header-utils">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
+        <i class="ph-bold ph-sun"></i>
+      </button>
+
+      <!-- Cart Drawer Trigger -->
+      <a href="tienda.html?cart=open" class="icon-btn" aria-label="Ver carrito">
+        <i class="ph-bold ph-shopping-bag-open"></i>
+        <span class="cart-badge">0</span>
+      </a>
+
+      <!-- Mobile Menu Trigger -->
+      <button class="menu-toggle icon-btn" aria-label="Abrir menú">
+        <i class="ph-bold ph-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main style="padding-top: 120px;">
+    
+    <!-- HERO SECTION -->
+    <section class="section-lux" style="padding-bottom: 2rem;">
+      <div class="container-lux text-center">
+        <span class="accent-title">Aguas Volcánicas Curativas</span>
+        <h1>Conjunto de Experiencias Termales</h1>
+        <p style="max-width: 700px; margin: 1.5rem auto 0 auto;">
+          Benefíciese de las propiedades medicinales de nuestras fuentes de agua caliente natural, en un ambiente al aire libre idóneo para el descanso y bienestar.
+        </p>
+      </div>
+    </section>
+
+    <!-- MAIN CORE INFO -->
+    <section class="section-lux" style="padding-top: 2rem;">
+      <div class="container-lux">
+        <div class="grid-2">
+          <div class="split-image-panel" style="height: 400px;">
+            <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_94_TiendaPiscinasHome.webp" alt="Piscina Termal Aire Libre">
+          </div>
+          <div style="display: flex; flex-direction: column; justify-content: center;">
+            <span class="accent-title">Turismo de Salud</span>
+            <h2>Aguas Termales de Origen Volcánico</h2>
+            <p style="margin: 1.5rem 0;">
+              Nuestras aguas emergen directamente desde fracturas geológicas subterráneas profundas de origen volcánico. Ricas en minerales esenciales como azufre, calcio, magnesio y bicarbonato, son reconocidas por su capacidad de calmar dolores musculares y óseos, oxigenar el organismo y suavizar la piel.
+            </p>
+            <p>
+              Ofrecemos un circuito abierto de piscinas con diversas temperaturas y características, permitiéndole armar su propia rutina de relajación de acuerdo a sus necesidades.
+            </p>
+          </div>
+        </div>
+
+        <!-- DETAILS OF THE EXPERIENCES -->
+        <div class="pool-features-grid">
+          
+          <!-- Pool 1: Piscina Principal -->
+          <div class="glass-card pool-feature-item">
+            <i class="ph-bold ph-waves"></i>
+            <h3>Piscina Principal</h3>
+            <p>
+              Nuestra piscina termal más grande a cielo abierto, rodeada de abundante vegetación andina. Mantenida a una temperatura constante de 36°C, es perfecta para flotar calmadamente y estirar los músculos de forma libre y relajante.
+            </p>
+          </div>
+
+          <!-- Pool 2: Piscina Japonesa -->
+          <div class="glass-card pool-feature-item">
+            <i class="ph-bold ph-tree-evergreen"></i>
+            <h3>Piscina Japonesa (Solo Adultos)</h3>
+            <p>
+              Zona exclusiva de silencio para adultos inspirada en los tradicionales baños Onsen de Japón. Un espacio de meditación silenciosa con aguas a mayor temperatura (39°C) ideal para aliviar tensiones mentales extremas.
+            </p>
+          </div>
+
+          <!-- Pool 3: Piscina Oval -->
+          <div class="glass-card pool-feature-item">
+            <i class="ph-bold ph-users-three"></i>
+            <h3>Piscina Oval (Familiar)</h3>
+            <p>
+              Un espacio circular diseñado para la integración familiar. Permite a adultos y niños disfrutar de los beneficios saludables del agua termal volcánica en un ambiente seguro y social.
+            </p>
+          </div>
+
+          <!-- Pool 4: Tinas de Contraste -->
+          <div class="glass-card pool-feature-item">
+            <i class="ph-bold ph-thermometer-cold"></i>
+            <h3>Termas de Contraste Exterior</h3>
+            <p>
+              Tinas exteriores de choque térmico caliente-frío alternado. Estimula el sistema circulatorio, reduce la fatiga de ligamentos, fortalece las paredes venosas y ayuda a desinflamar después de actividades físicas intensas.
+            </p>
+          </div>
+
+          <!-- Pool 5: Vapor Eucalipto -->
+          <div class="glass-card pool-feature-item" style="grid-column: 1 / -1;">
+            <i class="ph-bold ph-wind" style="margin-bottom: 0.75rem;"></i>
+            <h3>Baños de Vapor con Eucalipto</h3>
+            <p>
+              Cabinas exteriores de vapor termal impregnadas con ramas frescas de eucalipto orgánico local. Ayuda a dilatar las vías respiratorias, actúa como un potente descongestionante natural y estimula la expulsión de toxinas dérmicas mediante la sudoración.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING & BOOKING CARDS -->
+    <section class="section-lux" style="background: rgba(var(--bg-base-rgb), 0.35);">
+      <div class="container-lux">
+        <div class="text-center" style="margin-bottom: 4.5rem;">
+          <span class="accent-title">Entradas de Día</span>
+          <h2>Tarifas de Acceso a Piscinas</h2>
+          <p style="max-width: 550px; margin: 1rem auto 0 auto;">
+            Adquiera su entrada de día para disfrutar de todas nuestras áreas de piscinas exteriores y baños de vapor de eucalipto.
+          </p>
+        </div>
+
+        <div class="grid-2" style="max-width: 800px; margin: 0 auto;">
+          <!-- Option 1: Adulto -->
+          <div class="glass-card" style="padding: 3rem 2.5rem; text-align: center; display: flex; flex-direction: column;">
+            <h3>Experiencia Termal – Adulto</h3>
+            <div class="price-value">
+              $20.00
+              <span>Precio por Persona</span>
+            </div>
+            <p style="flex-grow: 1; font-size: 0.95rem; margin-bottom: 2.5rem;">
+              Incluye acceso de día completo a la piscina termal principal, piscina oval familiar, piscina japonesa (solo adultos), termas de contraste exteriores y baños de vapor de eucalipto.
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=piscina-adulto" target="_blank" class="btn-lux" data-cursor-text="Comprar">Comprar Entrada</a>
+          </div>
+
+          <!-- Option 2: Niño -->
+          <div class="glass-card" style="padding: 3rem 2.5rem; text-align: center; display: flex; flex-direction: column;">
+            <h3>Experiencia Termal – Niño</h3>
+            <div class="price-value">
+              $10.00
+              <span>Para Niños de 3 a 12 años</span>
+            </div>
+            <p style="flex-grow: 1; font-size: 0.95rem; margin-bottom: 2.5rem;">
+              Incluye acceso a las piscinas exteriores y piscina oval familiar bajo la supervisión de un adulto. Una forma divertida y saludable de disfrutar en familia de las aguas termales.
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=piscina-nino" target="_blank" class="btn-lux" data-cursor-text="Comprar">Comprar Entrada</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="footer-lux">
+    <div class="container-lux footer-grid">
+      <div class="footer-col">
+        <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo" style="height: 55px; margin-bottom: 1.5rem;">
+        <p style="max-width: 320px;">
+          Piedra de Agua reúne y concentra servicios basados en agua, vapor y lodo termal de origen volcánico en un ambiente de relajación inigualable.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="tienda.html">Tienda de Spa</a></li>
+          <li><a href="contactos.html">Contactos & Reservas</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="circuito-de-spa.html">Circuito de Spa</a></li>
+          <li><a href="roca-dorada.html">Roca Dorada</a></li>
+          <li><a href="tour-termal-subterraneo.html">Tour Subterráneo</a></li>
+          <li><a href="libelula-restaurante.html">Libélula Restaurante</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Atendemos los 365 días del año (incluido feriados).</p>
+        <p style="font-weight: 500; color: var(--primary-gold); margin-bottom: 0.5rem;">
+          Lunes a Sábado: 07:00 - 22:00
+        </p>
+        <p style="font-weight: 500; color: var(--primary-gold);">
+          Domingos: 07:00 - 21:00
+        </p>
+      </div>
+    </div>
+    
+    <div class="container-lux footer-bottom">
+      <p>&copy; 2026 Piedra de Agua Fuente Termal & Spa. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="ph-bold ph-tiktok-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://piedradeagua.com.ec/whatsappreservas" target="_blank" aria-label="WhatsApp"><i class="ph-bold ph-whatsapp-logo" style="font-size: 1.25rem;"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Utilities -->
+  <script src="main.js"></script>
+</body>
+</html>

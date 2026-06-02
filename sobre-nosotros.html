@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros | Piedra de Agua Fuente Termal & Spa</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Descubra la historia, valores y prestigiosos premios mundiales de Piedra de Agua, el Spa Termal volcánico pionero en Cuenca, Ecuador.">
+  
+  <!-- Libraries (CDNs) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="index.css">
+  
+  <style>
+    /* Award Item Styles */
+    .award-card {
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      transition: var(--transition-smooth);
+    }
+    
+    .award-card img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      transition: var(--transition-smooth);
+    }
+    
+    .award-card:hover img {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .award-card h3 {
+      font-size: 1.35rem;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .award-card span.year {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      background: var(--primary-gold);
+      color: var(--bg-base);
+      font-weight: 700;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    [data-theme="light"] .award-card span.year {
+      color: #fff;
+    }
+
+    /* Collage style grid for heritage gallery */
+    .collage-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(12, 1fr);
+      gap: 1rem;
+      height: 600px;
+    }
+    
+    .collage-item {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lux);
+    }
+    
+    .collage-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .item-1 { grid-column: 1 / 8; grid-row: 1 / 8; }
+    .item-2 { grid-column: 8 / 13; grid-row: 1 / 6; }
+    .item-3 { grid-column: 1 / 6; grid-row: 8 / 13; }
+    .item-4 { grid-column: 6 / 13; grid-row: 6 / 13; }
+
+    @media (max-width: 768px) {
+      .collage-grid {
+        height: 350px;
+        gap: 0.5rem;
+      }
+      .award-card {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGPU Canvas -->
+  <div class="background-canvas-container"></div>
+  <div class="volcanic-noise"></div>
+
+  <!-- FIXED LUXURY HEADER -->
+  <header class="header-nav">
+    <a href="index.html" class="nav-logo" aria-label="Piedra de Agua Logo">
+      <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo">
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="sobre-nosotros.html" class="nav-item active">Nosotros</a>
+      
+      <!-- Experiences Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#" class="nav-item flex-center" style="gap: 0.25rem;">
+          Experiencias <i class="ph-bold ph-caret-down" style="font-size: 0.75rem;"></i>
+        </a>
+        <div class="nav-dropdown-content">
+          <a href="circuito-de-spa.html">Circuito de Spa</a>
+          <a href="roca-dorada.html">Roca Dorada</a>
+          <a href="tour-termal-subterraneo.html">Tour Subterráneo</a>
+          <a href="terapias-especiales.html">Terapias Especiales</a>
+          <a href="masajes-de-relajacion.html">Masajes de Relajación</a>
+          <a href="piscina-termal.html">Piscina Termal</a>
+          <a href="libelula-restaurante.html">Libélula Restaurante</a>
+        </div>
+      </div>
+      
+      <a href="tienda.html" class="nav-item">Tienda</a>
+      <a href="contactos.html" class="nav-item">Contactos</a>
+    </nav>
+
+    <!-- Header Actions (Search, Dark/Light Toggle, Cart) -->
+    <div class="header-utils">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
+        <i class="ph-bold ph-sun"></i>
+      </button>
+
+      <!-- Cart Drawer Trigger -->
+      <a href="tienda.html?cart=open" class="icon-btn" aria-label="Ver carrito">
+        <i class="ph-bold ph-shopping-bag-open"></i>
+        <span class="cart-badge">0</span>
+      </a>
+
+      <!-- Mobile Menu Trigger -->
+      <button class="menu-toggle icon-btn" aria-label="Abrir menú">
+        <i class="ph-bold ph-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main style="padding-top: 120px;">
+    
+    <!-- HERO SECTION -->
+    <section class="section-lux" style="padding-bottom: 2rem;">
+      <div class="container-lux text-center">
+        <span class="accent-title">Un santuario volcánico</span>
+        <h1>Nuestra Historia</h1>
+        <p style="max-width: 700px; margin: 1.5rem auto 0 auto;">
+          Conozca la historia detrás del único spa subterráneo tallado en roca volcánica activa de Cuenca, galardonado a nivel internacional.
+        </p>
+      </div>
+    </section>
+
+    <!-- COMPANY PROFILE & COLLAGE -->
+    <section class="section-lux" style="padding-top: 2rem; padding-bottom: 6rem;">
+      <div class="container-lux grid-2">
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <span class="accent-title">Establecido en 2008</span>
+          <h2>Un regalo para el cuerpo y los sentidos</h2>
+          <p style="margin: 1.5rem 0;">
+            Piedra de Agua, Fuente Termal & Spa, es una empresa ecuatoriana que desde el año 2008 se especializa en ofrecer tratamientos de salud, bienestar y descanso utilizando agua, lodos y vapores termales obtenidos de sus propias fuentes naturales ricas en minerales, brindando innumerables beneficios para el cuerpo, la mente y el espíritu.
+          </p>
+          <p style="margin-bottom: 2rem;">
+            Nuestro Spa Termal está desarrollado directamente sobre una vertiente termal subterránea y espectaculares minas de lodos de origen volcánico y cuarzos, localizado en la parroquia Baños, en la histórica ciudad de Cuenca, Ecuador.
+          </p>
+          <div class="glass-panel" style="border-radius: 16px; padding: 1.5rem; border-left: 4px solid var(--primary-gold);">
+            <p style="font-style: italic; font-size: 1.05rem; color: var(--text-main);">
+              "Nuestra misión es fusionar la ciencia de la hidroterapia moderna con la mística y los beneficios de los lodos y minerales de la Cordillera de los Andes."
+            </p>
+          </div>
+        </div>
+        
+        <div class="collage-grid">
+          <div class="collage-item item-1">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_48_Banner-0-Panoramica-Tablet-992x920-HomePage.jpg" alt="Piedra de Agua Exterior">
+          </div>
+          <div class="collage-item item-2">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_52_Banner-1-Roca-Dorada-1200x920-1.jpg" alt="Roca Dorada Hammam">
+          </div>
+          <div class="collage-item item-3">
+            <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_89_TiendaTourHome.webp" alt="Tour Subterráneo">
+          </div>
+          <div class="collage-item item-4">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_47_Banner-2-Tour-Termal-Subterraneo-1920x920-1.jpg" alt="Cuevas Termales">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS SECTION -->
+    <section class="section-lux" style="background: rgba(var(--bg-base-rgb), 0.35);">
+      <div class="container-lux">
+        <div class="text-center" style="margin-bottom: 5rem;">
+          <span class="accent-title">Premios Mundiales</span>
+          <h2>Reconocimientos y Excelencia Turística</h2>
+          <p style="max-width: 600px; margin: 1rem auto 0 auto;">
+            Nuestra constancia en brindar servicios de relajación premium nos ha hecho merecedores de múltiples galardones mundiales y locales.
+          </p>
+        </div>
+
+        <div class="grid-2" style="row-gap: 2.5rem; column-gap: 3rem;">
+          <!-- Award 1 -->
+          <div class="glass-card award-card">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_5_WSW-Awards.png" alt="WSW Award">
+            <div>
+              <span class="year">2022</span>
+              <h3>Winner Spa of the Year: North & South America</h3>
+              <p>Otorgado por los prestigiosos World Spa & Wellness Awards en Londres, considerados los premios Óscar de la industria de bienestar mundial.</p>
+            </div>
+          </div>
+
+          <!-- Award 2 -->
+          <div class="glass-card award-card">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_6_winner-badge-2.png" alt="Beauty Award">
+            <div>
+              <span class="year">2022</span>
+              <h3>International Spa & Beauty Awards</h3>
+              <p>Reconocimiento global centrado en premiar a los mejores proveedores de servicios estéticos y de spa según la votación del público general.</p>
+            </div>
+          </div>
+
+          <!-- Award 3 -->
+          <div class="glass-card award-card">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_7_TA2014.png" alt="TripAdvisor 2014">
+            <div>
+              <span class="year">2014</span>
+              <h3>Certificado de Excelencia TripAdvisor</h3>
+              <p>Insignia oficial codiciada que galardona de forma continua la calidad y las opiniones positivas sobresalientes de los huéspedes turísticos.</p>
+            </div>
+          </div>
+
+          <!-- Award 4 -->
+          <div class="glass-card award-card">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_8_GP2014-2.png" alt="GringoPost Award">
+            <div>
+              <span class="year">2014</span>
+              <h3>Best Swimming Pool in Cuenca</h3>
+              <p>Galardón otorgado por GringoPost tras votaciones masivas de la activa Comunidad de Expatriados extranjeros en la ciudad de Cuenca.</p>
+            </div>
+          </div>
+
+          <!-- Award 5 -->
+          <div class="glass-card award-card">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_9_TA2013.png" alt="TripAdvisor 2013">
+            <div>
+              <span class="year">2013</span>
+              <h3>Certificado de Excelencia TripAdvisor</h3>
+              <p>Reconocimiento otorgado consecutivamente a los mejores atractivos mundiales calificados con puntuaciones de 5/5 por viajeros.</p>
+            </div>
+          </div>
+
+          <!-- Award 6 -->
+          <div class="glass-card award-card">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_10_MT.png" alt="Mérito Turístico">
+            <div>
+              <span class="year">2011 / 2012</span>
+              <h3>Mérito Turístico Cantonal</h3>
+              <p>Otorgado por el Ilustre Municipio de Cuenca a Piedra de Agua por su valioso aporte innovador y emprendimiento en el desarrollo turístico local.</p>
+            </div>
+          </div>
+
+          <!-- Award 7 -->
+          <div class="glass-card award-card">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_11_C.png" alt="Cantón Cuenca">
+            <div>
+              <span class="year">2011</span>
+              <h3>Mérito Turístico del Cantón Cuenca</h3>
+              <p>Distinción por ser el primer y principal pionero en impulsar el turismo internacional de salud termal en la provincia del Azuay.</p>
+            </div>
+          </div>
+
+          <!-- Award 8 -->
+          <div class="glass-card award-card">
+            <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_12_IA.png" alt="Innovación">
+            <div>
+              <span class="year">2011</span>
+              <h3>Reconocimiento de Innovación Turística</h3>
+              <p>Premio especial de la industria por el óptimo aprovechamiento termal, tecnológico y ecológico de recursos volcánicos nativos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION BANNER -->
+    <section class="section-lux">
+      <div class="container-lux">
+        <div class="glass-card text-center" style="padding: 5rem 2rem; border: 1px solid var(--primary-gold);">
+          <span class="accent-title">Viva la experiencia</span>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 3rem); max-width: 750px; margin: 0 auto 1.5rem auto;">
+            Un lugar mágico espera por usted...
+          </h2>
+          <p style="max-width: 600px; margin: 0 auto 3rem auto; font-size: 1.1rem;">
+            Lo invitamos a disfrutar de una experiencia única e inolvidable. Reserve su cita hoy y deje que nosotros nos encarguemos del resto. ¡Le garantizamos que se sentirá renovado!
+          </p>
+          <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="contactos.html" class="btn-lux" data-cursor-text="Reservar">Agendar Reserva</a>
+            <a href="tienda.html" class="btn-lux btn-lux-secondary" data-cursor-text="Comprar">Comprar un Pase</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="footer-lux">
+    <div class="container-lux footer-grid">
+      <div class="footer-col">
+        <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo" style="height: 55px; margin-bottom: 1.5rem;">
+        <p style="max-width: 320px;">
+          Piedra de Agua reúne y concentra servicios basados en agua, vapor y lodo termal de origen volcánico en un ambiente de relajación inigualable.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="tienda.html">Tienda de Spa</a></li>
+          <li><a href="contactos.html">Contactos & Reservas</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="circuito-de-spa.html">Circuito de Spa</a></li>
+          <li><a href="roca-dorada.html">Roca Dorada</a></li>
+          <li><a href="tour-termal-subterraneo.html">Tour Subterráneo</a></li>
+          <li><a href="libelula-restaurante.html">Libélula Restaurante</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Atendemos los 365 días del año (incluido feriados).</p>
+        <p style="font-weight: 500; color: var(--primary-gold); margin-bottom: 0.5rem;">
+          Lunes a Sábado: 07:00 - 22:00
+        </p>
+        <p style="font-weight: 500; color: var(--primary-gold);">
+          Domingos: 07:00 - 21:00
+        </p>
+      </div>
+    </div>
+    
+    <div class="container-lux footer-bottom">
+      <p>&copy; 2026 Piedra de Agua Fuente Termal & Spa. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="ph-bold ph-tiktok-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://piedradeagua.com.ec/whatsappreservas" target="_blank" aria-label="WhatsApp"><i class="ph-bold ph-whatsapp-logo" style="font-size: 1.25rem;"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Utilities -->
+  <script src="main.js"></script>
+</body>
+</html>

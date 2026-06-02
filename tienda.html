@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Online | Piedra de Agua Fuente Termal & Spa</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Compre pases de spa, membresías, tarjetas de regalo y cosméticos de arcilla volcánica en la tienda online oficial de Piedra de Agua.">
+  
+  <!-- Libraries (CDNs) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="index.css">
+  
+  <style>
+    /* Catalog Layout */
+    .tienda-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    /* Sidebar Filters */
+    .sidebar-filters {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+
+    .filter-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    [data-theme="light"] .filter-btn {
+      border-color: rgba(0,0,0,0.04);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--primary-gold);
+      color: var(--primary-gold);
+      background: rgba(var(--primary-gold-rgb), 0.05);
+      padding-left: 1.5rem;
+    }
+
+    /* Search bar */
+    .search-bar-wrap {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+
+    .search-input-box {
+      flex-grow: 1;
+      border-radius: 14px;
+      padding: 1rem 1.5rem 1rem 3rem;
+      border: 1px solid var(--border-glass-simple);
+      background: var(--bg-elevated);
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      outline: none;
+      font-size: 0.95rem;
+      transition: var(--transition-fast);
+    }
+
+    .search-input-box:focus {
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 15px rgba(var(--primary-gold-rgb), 0.15);
+    }
+
+    /* Shop Grid */
+    .shop-products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .product-shop-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 1.25rem;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .prod-img-wrap {
+      width: 100%;
+      height: 250px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      background: rgba(0,0,0,0.1);
+    }
+
+    .prod-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-smooth);
+    }
+
+    .product-shop-card:hover .prod-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .prod-meta {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    [data-theme="light"] .prod-meta {
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .prod-price {
+      font-size: 1.35rem;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      color: var(--primary-gold);
+    }
+
+    /* CART DRAWER SLIDER */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 420px;
+      height: 100%;
+      background: var(--bg-elevated-solid);
+      border-left: 1px solid var(--border-glass-simple);
+      z-index: 1000;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.4);
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+    }
+
+    .cart-drawer.active {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-bottom: 1rem;
+    }
+
+    [data-theme="light"] .cart-header {
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .cart-items-container {
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .cart-item-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .cart-item-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .cart-item-info {
+      flex-grow: 1;
+    }
+
+    .cart-item-info h4 {
+      font-size: 0.95rem;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .cart-item-info span {
+      font-size: 0.85rem;
+      color: var(--primary-gold);
+      font-weight: 600;
+    }
+
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.05);
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    [data-theme="light"] .cart-item-qty {
+      background: rgba(0,0,0,0.04);
+    }
+
+    .qty-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .cart-total-section {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Backdrop backdrop blurring filter */
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* DETAILS MODAL POPUP */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      padding: 2rem;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 780px;
+      border-radius: 24px;
+      padding: 3rem;
+      position: relative;
+      transform: translateY(30px);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    @media (max-width: 1024px) {
+      .tienda-container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar-filters {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        position: static;
+      }
+      .filter-btn {
+        width: auto;
+        white-space: nowrap;
+      }
+      .shop-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .shop-products-grid {
+        grid-template-columns: 1fr;
+      }
+      .cart-drawer {
+        width: 100%;
+      }
+      .modal-box {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGPU Canvas -->
+  <div class="background-canvas-container"></div>
+  <div class="volcanic-noise"></div>
+
+  <!-- FIXED LUXURY HEADER -->
+  <header class="header-nav">
+    <a href="index.html" class="nav-logo" aria-label="Piedra de Agua Logo">
+      <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo">
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="sobre-nosotros.html" class="nav-item">Nosotros</a>
+      
+      <!-- Experiences Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#" class="nav-item flex-center" style="gap: 0.25rem;">
+          Experiencias <i class="ph-bold ph-caret-down" style="font-size: 0.75rem;"></i>
+        </a>
+        <div class="nav-dropdown-content">
+          <a href="circuito-de-spa.html">Circuito de Spa</a>
+          <a href="roca-dorada.html">Roca Dorada</a>
+          <a href="tour-termal-subterraneo.html">Tour Subterráneo</a>
+          <a href="terapias-especiales.html">Terapias Especiales</a>
+          <a href="masajes-de-relajacion.html">Masajes de Relajación</a>
+          <a href="piscina-termal.html">Piscina Termal</a>
+          <a href="libelula-restaurante.html">Libélula Restaurante</a>
+        </div>
+      </div>
+      
+      <a href="tienda.html" class="nav-item active">Tienda</a>
+      <a href="contactos.html" class="nav-item">Contactos</a>
+    </nav>
+
+    <!-- Header Actions (Search, Toggle Theme, Cart) -->
+    <div class="header-utils">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
+        <i class="ph-bold ph-sun"></i>
+      </button>
+
+      <!-- Cart Drawer Trigger -->
+      <button class="icon-btn" onclick="toggleCart(true)" aria-label="Ver carrito">
+        <i class="ph-bold ph-shopping-bag-open"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </button>
+
+      <!-- Mobile Menu Trigger -->
+      <button class="menu-toggle icon-btn" aria-label="Abrir menú">
+        <i class="ph-bold ph-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CATALOG CONTENT -->
+  <main style="padding-top: 120px;">
+    
+    <section class="section-lux" style="padding-bottom: 8rem;">
+      <div class="container-lux">
+        
+        <!-- Header title -->
+        <div class="text-center" style="margin-bottom: 3rem;">
+          <span class="accent-title">Tienda Oficial de Bienestar</span>
+          <h1>Tienda de Spa & Productos</h1>
+        </div>
+
+        <div class="tienda-container">
+          
+          <!-- SIDEBAR FILTERS -->
+          <div class="sidebar-filters">
+            <button class="filter-btn active" onclick="filterShop('all', this)">Todos los servicios</button>
+            <button class="filter-btn" onclick="filterShop('circuito', this)">Circuito de Spa</button>
+            <button class="filter-btn" onclick="filterShop('tour', this)">Tour Subterráneo</button>
+            <button class="filter-btn" onclick="filterShop('roca', this)">Roca Dorada</button>
+            <button class="filter-btn" onclick="filterShop('terapias', this)">Terapias Especiales</button>
+            <button class="filter-btn" onclick="filterShop('masajes', this)">Masajes Relajantes</button>
+            <button class="filter-btn" onclick="filterShop('piscinas', this)">Experiencia Termal</button>
+            <button class="filter-btn" onclick="filterShop('giftcard', this)">Gift Cards</button>
+            <button class="filter-btn" onclick="filterShop('membresias', this)">Membresías</button>
+            <button class="filter-btn" onclick="filterShop('skincare', this)">Skincare Volcánico</button>
+          </div>
+
+          <!-- PRODUCTS DISPLAY AREA -->
+          <div>
+            <!-- Search & Count row -->
+            <div class="search-bar-wrap">
+              <div style="position: relative; flex-grow: 1; display: flex; align-items: center;">
+                <i class="ph-bold ph-magnifying-glass" style="position: absolute; left: 18px; color: var(--text-muted); font-size: 1.2rem;"></i>
+                <input type="text" id="shop-search" class="search-input-box" placeholder="Buscar tratamientos, masajes o productos..." oninput="handleSearch(this.value)">
+              </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="shop-products-grid" id="products-grid">
+              <!-- Dynamically populated by JavaScript -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CART SIDE OVERLAY -->
+  <div class="cart-overlay" onclick="toggleCart(false)"></div>
+
+  <!-- CART SLIDING DRAWER -->
+  <div class="cart-drawer" id="cart-drawer-panel">
+    <div class="cart-header">
+      <h3 style="font-family: var(--font-sans); font-weight: 600; font-size: 1.35rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="ph-bold ph-shopping-bag"></i> Su Pedido
+      </h3>
+      <button class="icon-btn" onclick="toggleCart(false)" aria-label="Cerrar carrito">
+        <i class="ph-bold ph-x" style="font-size: 1.25rem;"></i>
+      </button>
+    </div>
+
+    <!-- Items container -->
+    <div class="cart-items-container" id="cart-items-list">
+      <!-- Empty message by default -->
+      <div style="text-align: center; margin-top: 4rem; color: var(--text-muted);" id="cart-empty-msg">
+        <i class="ph-bold ph-shopping-bag" style="font-size: 3rem; opacity: 0.3; margin-bottom: 1rem; display: block;"></i>
+        Su carrito está vacío.
+      </div>
+    </div>
+
+    <!-- Total section -->
+    <div class="cart-total-section">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <span id="cart-total-value">$0.00</span>
+      </div>
+      <button class="btn-lux" style="width: 100%; padding: 1.15rem;" onclick="checkoutWhatsApp()">
+        Confirmar Cita vía WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL POPUP MODAL -->
+  <div class="modal-overlay" id="product-detail-modal" onclick="closeModal(event)">
+    <div class="modal-box glass-panel" id="modal-box-content">
+      <button class="modal-close-btn" onclick="toggleModal(false)">
+        <i class="ph-bold ph-x"></i>
+      </button>
+      
+      <!-- Modal Contents populated dynamically -->
+      <div id="modal-body" class="grid-2" style="align-items: flex-start; gap: 2rem;">
+        <!-- Javascript fills this -->
+      </div>
+    </div>
+  </div>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="footer-lux">
+    <div class="container-lux footer-grid">
+      <div class="footer-col">
+        <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo" style="height: 55px; margin-bottom: 1.5rem;">
+        <p style="max-width: 320px;">
+          Piedra de Agua reúne y concentra servicios basados en agua, vapor y lodo termal de origen volcánico en un ambiente de relajación inigualable.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="tienda.html">Tienda de Spa</a></li>
+          <li><a href="contactos.html">Contactos & Reservas</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="circuito-de-spa.html">Circuito de Spa</a></li>
+          <li><a href="roca-dorada.html">Roca Dorada</a></li>
+          <li><a href="tour-termal-subterraneo.html">Tour Subterráneo</a></li>
+          <li><a href="libelula-restaurante.html">Libélula Restaurante</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Atendemos los 365 días del año (incluido feriados).</p>
+        <p style="font-weight: 500; color: var(--primary-gold); margin-bottom: 0.5rem;">
+          Lunes a Sábado: 07:00 - 22:00
+        </p>
+        <p style="font-weight: 500; color: var(--primary-gold);">
+          Domingos: 07:00 - 21:00
+        </p>
+      </div>
+    </div>
+    
+    <div class="container-lux footer-bottom">
+      <p>&copy; 2026 Piedra de Agua Fuente Termal & Spa. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="ph-bold ph-tiktok-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://piedradeagua.com.ec/whatsappreservas" target="_blank" aria-label="WhatsApp"><i class="ph-bold ph-whatsapp-logo" style="font-size: 1.25rem;"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Utilities -->
+  <script src="main.js"></script>
+
+  <!-- STORE AND CART ENGINE SCRIPT -->
+  <script>
+    // COMPLETE PRODUCTS DATABASE
+    const PRODUCTS = [
+      /* Circuito de Spa */
+      { id: 'spa-basico', category: 'circuito', title: 'Circuito de Spa', price: 50.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_88_TiendaSpa-2.webp', desc: 'Circuito completo termal volcánico de 6 estaciones: piscina termal interior, lodoterapia de arcilla roja y azul, baños de cajón en madera, vaporera de cristal, micro lluvia y acceso libre a termas exteriores.' },
+      { id: 'spa-bienestar-1', category: 'circuito', title: 'Pack Bienestar (1p)', price: 85.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_14_SPA-BIE1-P-400x533.webp', desc: 'Acceso completo al circuito termal volcánico de 6 estaciones más un masaje relajante focalizado de 25 minutos con aceites esenciales templados.' },
+      { id: 'spa-descanso-1', category: 'circuito', title: 'Pack Descanso (1p)', price: 110.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_15_SPA-DES1-P-400x533.webp', desc: 'Circuito termal volcánico de 6 estaciones sumado a un masaje relajante integral de cuerpo completo de 50 minutos con aceites esenciales.' },
+      { id: 'spa-armonia-1', category: 'circuito', title: 'Pack Armonía (1p)', price: 130.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_12_SPA-ARM2-P-400x533.webp', desc: 'El circuito termal volcánico completo de 6 estaciones, combinado con un masaje premium de 50 minutos con aceites hidratantes y mascarilla facial purificante de arcilla termal.' },
+      { id: 'spa-bienestar-2', category: 'circuito', title: 'Pack Bienestar (2p)', price: 160.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_10_SPA-BIE2-P-400x533.webp', desc: 'Plan especial para compartir en pareja. Incluye dos accesos al circuito de spa termal volcánico de 6 estaciones y dos masajes de relajación de 25 minutos.' },
+      { id: 'spa-descanso-2', category: 'circuito', title: 'Pack Descanso (2p)', price: 210.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_11_SPA-DES2-P-400x533.webp', desc: 'Especial parejas. Circuito termal volcánico de 6 estaciones completo para dos personas con dos masajes de relajación profunda de cuerpo completo de 50 minutos.' },
+      { id: 'spa-armonia-2', category: 'circuito', title: 'Pack Armonía (2p)', price: 250.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_9_SPA-ARM1-P-400x533.webp', desc: 'Máxima exclusividad en pareja. Dos accesos al circuito termal de 6 estaciones, dos masajes premium de 50 minutos, dos mascarillas faciales de lodo y copa de cortesía.' },
+
+      /* Tour Subterráneo */
+      { id: 'tour-purificacion-1', category: 'tour', title: 'Tour Purificación (1p)', price: 85.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_16_TTS-PUR1-P-400x533.webp', desc: 'Tour guiado por las místicas galerías de la Cueva de Velas, lodoterapia corporal roja y azul, termas de contraste subterráneo, baños de cajón y exfoliación energizante de café andino.' },
+      { id: 'tour-resplandor-2', category: 'tour', title: 'Tour Resplandor (2p)', price: 160.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_17_TTS-RES2-P-400x533.webp', desc: 'La mística travesía del Tour Termal Subterráneo en la Cueva de Velas diseñado en un itinerario íntimo para compartir en pareja. Incluye envolturas de lodos y contraste.' },
+      { id: 'tour-relax-2', category: 'tour', title: 'Tour Relax (2p)', price: 210.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_18_TTS-REL2-P-400x533.webp', desc: 'Tour Subterráneo de la Cueva de Velas para dos personas, complementado con un reparador masaje relajante focalizado de 25 minutos con aceites esenciales templados en la cueva.' },
+      { id: 'tour-purificacion-2', category: 'tour', title: 'Tour Purificación (2p)', price: 250.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_19_TTS-PUR2-P-400x533.webp', desc: 'Máxima purificación subterránea para dos. Recorrido del Tour Termal, dos masajes premium de 50 minutos con aceites y mascarilla facial termal, y copa de cortesía.' },
+
+      /* Roca Dorada */
+      { id: 'roca-dorada', category: 'roca', title: 'Roca Dorada', price: 70.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_90_TiendaRoca-2.webp', desc: 'Acceso a la lujosa terma subterránea exclusiva Roca Dorada: piscina de lodo cenizo volcánico, baño de vapor termal de cristal, pozos fríos de contraste y exfoliación de sales minerales.' },
+      { id: 'roca-hammam', category: 'roca', title: 'Roca Dorada + Hammam', price: 110.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_23_RD-P-400x533.webp', desc: 'Acceso completo al circuito Roca Dorada subterráneo potenciado con el místico ritual Hammam: exfoliación corporal con guante de crin y baño de micro-espuma sobre losa de piedra.' },
+
+      /* Terapias Especiales */
+      { id: 'terapia-flotarium', category: 'terapias', title: 'Flotarium (Gravedad Cero)', price: 50.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_26_TE-FLOT1-P-400x533.webp', desc: 'Tina de flotación con agua a temperatura termal y alta saturación de sales de Epsom. Aislamiento sensorial total para soltura muscular y descanso mental profundo.' },
+      { id: 'terapia-flores-1', category: 'terapias', title: 'Terapia de Flores (1p)', price: 45.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_29_TE-FLO1-P-400x533.webp', desc: 'Baño de hidromasaje termal colmado de pétalos frescos de flores locales y aceites esenciales. Suaviza la piel, estimula los sentidos y alivia la ansiedad.' },
+      { id: 'terapia-hierbas-1', category: 'terapias', title: 'Terapia de Hierbas (1p)', price: 45.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_31_TE-HMED1-P-400x533.webp', desc: 'Baño termal tradicional andino con infusión concentrada de manzanilla, eucalipto, menta y plantas nativas. Calma dolores de articulaciones y despeja vías respiratorias.' },
+      { id: 'terapia-vino-1', category: 'terapias', title: 'Terapia de Vino (1p)', price: 55.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_33_TE-VIN1-P-400x533.webp', desc: 'Tina termal enriquecida con polifenoles de extracto de uva y vino tinto. Potente antioxidante que previene el envejecimiento dérmico y estimula el colágeno.' },
+      { id: 'terapia-hielo', category: 'terapias', title: 'Terapia de Hielo (Crio)', price: 35.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_25_TE-HIE1-P-400x533.webp', desc: 'Crioinmersión en agua helada mineralizada. Ideal para la recuperación de deportistas, desinflamación y estimulación metabólica y circulatoria.' },
+
+      /* Masajes */
+      { id: 'masaje-relax-25', category: 'masajes', title: 'Masaje de Relajación (25 min)', price: 35.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_39_MAS-REL25-P-400x533.webp', desc: 'Masaje suave y fluido enfocado en aliviar el cansancio y la fatiga muscular acumulada diaria de la espalda, hombros y cuello.' },
+      { id: 'masaje-relax-50', category: 'masajes', title: 'Masaje de Relajación (50 min)', price: 60.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_40_MAS-REL50-P-400x533.webp', desc: 'Masaje corporal completo relajante (piernas, espalda, hombros, brazos y cuello) para soltar contracturas medias y calmar el estrés.' },
+      { id: 'masaje-geotermal', category: 'masajes', title: 'Masaje Geotermal (50 min)', price: 75.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_41_MAS-GEO-P-400x533.webp', desc: 'Realizado en cueva natural aplicando la técnica de piedras volcánicas calientes lisas sobre la columna y extremidades para desinflamar e inducir soltura.' },
+      { id: 'masaje-velas', category: 'masajes', title: 'Masaje con Velas (50 min)', price: 70.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_42_MAS-VEL-P-400x533.webp', desc: 'Masaje empleando la cera tibia y fundida de velas especiales de manteca de soja y karité con aceites aromáticos para una nutrición dérmica superior.' },
+      { id: 'masaje-4manos-50', category: 'masajes', title: 'Masaje a 4 Manos (50 min)', price: 110.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_37_MAS-4MAN50-P-400x533.webp', desc: 'Exclusiva experiencia rítmica coordinada en perfecta sincronía por dos terapeutas, logrando desconectar el cerebro de forma instantánea.' },
+
+      /* Experiencias termales */
+      { id: 'piscina-adulto', category: 'piscinas', title: 'Experiencia Termal – Adulto', price: 20.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_107_TiendaPiscinasItem.webp', desc: 'Pase de un día completo para disfrutar de nuestro conjunto de piscinas termales exteriores, tinas de contraste y baños de vapor de eucalipto.' },
+      { id: 'piscina-nino', category: 'piscinas', title: 'Experiencia Termal – Niño', price: 10.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_107_TiendaPiscinasMovil.webp', desc: 'Entrada de un día completo para niños de 3 a 12 años a nuestras piscinas termales y áreas familiares bajo supervisión de un adulto.' },
+
+      /* Gift Cards */
+      { id: 'gift-20', category: 'giftcard', title: 'Gift Card $20', price: 20.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_51_GiftCard20.webp', desc: 'Regale bienestar. Tarjeta de regalo digital por un valor de $20 aplicable en cualquiera de nuestros servicios, masajes o restaurante.' },
+      { id: 'gift-50', category: 'giftcard', title: 'Gift Card $50', price: 50.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_48_GiftCard50.webp', desc: 'Tarjeta de regalo digital por un valor de $50 aplicable a circuitos de spa, tratamientos o consumo en Libélula Restaurante.' },
+      { id: 'gift-100', category: 'giftcard', title: 'Gift Card $100', price: 100.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_50_GiftCard100.webp', desc: 'La mejor tarjeta de regalo de bienestar por valor de $100, ideal para sorprender con un pack premium subterráneo completo.' },
+
+      /* Membresias */
+      { id: 'mem-salud-3', category: 'membresias', title: 'Membresía SALUD – 3 Meses', price: 150.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_56_MEM.SALUD03@2x-100-400x533.webp', desc: 'Pase exclusivo trimestral. Incluye accesos ilimitados a piscinas termales y vapor, y 15% de descuento en circuitos de spa y masajes.' },
+      { id: 'mem-vip-6', category: 'membresias', title: 'Membresía VIP – 6 Meses', price: 450.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_52_MEM.VIP06@2x-100-400x533.webp', desc: 'Pase VIP semestral. Accesos ilimitados a piscinas termales y baños de vapor, 3 circuitos de spa de cortesía y 20% de descuento en masajes y restaurante.' },
+
+      /* Skincare */
+      { id: 'prod-agua-100', category: 'skincare', title: 'Agua Termal 100ml', price: 9.50, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_61_Agua-Termal-100-100-400x533.jpg', desc: 'Agua termal volcánica en spray de 100ml. Hidrata, tonifica y refresca la piel de rostro y cuerpo en cualquier momento del día.' },
+      { id: 'prod-lodo-rojo', category: 'skincare', title: 'Lodo Rojo Tradicional', price: 12.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_65_Lodo-Rojo-Tradicional-100-400x533.jpg', desc: 'Arcilla termal volcánica roja para aplicación facial y corporal en envase de vidrio. Limpia profundamente, elimina toxinas y reafirma los tejidos.' },
+      { id: 'prod-lodo-azul', category: 'skincare', title: 'Lodo Azul Tradicional', price: 12.00, img: './Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_66_Lodo-Azul-Tradicional-100-400x533.jpg', desc: 'Arcilla termal volcánica azul en envase de vidrio. Altamente hidratante y reparadora, perfecta para pieles secas y combatir líneas de expresión.' }
+    ];
+
+    let cart = [];
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    // RENDER PRODUCTS GRID
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '';
+
+      const filtered = PRODUCTS.filter(p => {
+        const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+        const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                              p.desc.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--text-muted);">
+          No se encontraron productos o tratamientos.
+        </div>`;
+        return;
+      }
+
+      filtered.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'glass-card product-shop-card';
+        card.setAttribute('data-cursor-text', 'Ver Detalle');
+        card.onclick = () => openDetails(p.id);
+
+        card.innerHTML = `
+          <div class="prod-img-wrap">
+            <img src="${p.img}" alt="${p.title}">
+          </div>
+          <h3 style="font-size: 1.15rem; font-family: var(--font-sans); font-weight: 500; margin-bottom: 0.5rem;">${p.title}</h3>
+          <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-muted); margin-bottom: 1.5rem;">
+            ${p.desc.substring(0, 75)}...
+          </p>
+          <div class="prod-meta">
+            <span class="prod-price">$${p.price.toFixed(2)}</span>
+            <button class="btn-lux" style="font-size: 0.65rem; padding: 0.45rem 1rem;" onclick="event.stopPropagation(); addToCart('${p.id}')">Añadir</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Re-trigger custom cursor listener registration
+      if (typeof initCursor === 'function') {
+        // Clear old list items and add again
+      }
+    }
+
+    // FILTER CATEGORY
+    function filterShop(category, btn) {
+      activeCategory = category;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts();
+    }
+
+    // HANDLE SEARCH INPUT
+    function handleSearch(val) {
+      searchQuery = val;
+      renderProducts();
+    }
+
+    // OPEN DETAILED MODAL
+    function openDetails(id) {
+      const p = PRODUCTS.find(prod => prod.id === id);
+      if (!p) return;
+
+      const modalBody = document.getElementById('modal-body');
+      modalBody.innerHTML = `
+        <div class="split-image-panel" style="height: 380px;">
+          <img src="${p.img}" alt="${p.title}">
+        </div>
+        <div style="display: flex; flex-direction: column; height: 100%;">
+          <span class="accent-title" style="margin-bottom: 0.5rem;">${p.category.toUpperCase()}</span>
+          <h2 style="font-family: var(--font-sans); font-size: 1.85rem; font-weight: 600; margin-bottom: 1rem;">${p.title}</h2>
+          <p style="font-size: 0.95rem; margin-bottom: 2rem; flex-grow: 1;">${p.desc}</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05);">
+            <span class="prod-price" style="font-size: 1.85rem;">$${p.price.toFixed(2)}</span>
+            <button class="btn-lux" onclick="addToCart('${p.id}'); toggleModal(false);">Añadir al Carrito</button>
+          </div>
+        </div>
+      `;
+      toggleModal(true);
+    }
+
+    function toggleModal(show) {
+      const modal = document.getElementById('product-detail-modal');
+      if (show) modal.classList.add('active');
+      else modal.classList.remove('active');
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'product-detail-modal') {
+        toggleModal(false);
+      }
+    }
+
+    /* --- CART FUNCTIONALITY --- */
+    function toggleCart(show) {
+      const drawer = document.getElementById('cart-drawer-panel');
+      const overlay = document.querySelector('.cart-overlay');
+      if (show) {
+        drawer.classList.add('active');
+        overlay.classList.add('active');
+      } else {
+        drawer.classList.remove('active');
+        overlay.classList.remove('active');
+      }
+    }
+
+    function addToCart(id) {
+      const p = PRODUCTS.find(prod => prod.id === id);
+      if (!p) return;
+
+      const cartItem = cart.find(item => item.id === id);
+      if (cartItem) {
+        cartItem.qty += 1;
+      } else {
+        cart.push({ ...p, qty: 1 });
+      }
+
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    function changeQty(id, delta) {
+      const cartItem = cart.find(item => item.id === id);
+      if (!cartItem) return;
+
+      cartItem.qty += delta;
+      if (cartItem.qty <= 0) {
+        cart = cart.filter(item => item.id !== id);
+      }
+
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const countEl = document.getElementById('cart-count');
+      const badgeHeader = document.querySelector('.cart-badge');
+      const list = document.getElementById('cart-items-list');
+      const emptyMsg = document.getElementById('cart-empty-msg');
+      const totalVal = document.getElementById('cart-total-value');
+
+      const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
+      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+
+      countEl.innerText = totalCount;
+      if (badgeHeader) badgeHeader.innerText = totalCount;
+
+      list.innerHTML = '';
+      if (cart.length === 0) {
+        list.appendChild(emptyMsg);
+        totalVal.innerText = '$0.00';
+        return;
+      }
+
+      cart.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'cart-item-row';
+        row.innerHTML = `
+          <img src="${item.img}" alt="${item.title}" class="cart-item-img">
+          <div class="cart-item-info">
+            <h4>${item.title}</h4>
+            <span>$${(item.price * item.qty).toFixed(2)}</span>
+          </div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
+            <span style="font-size: 0.9rem; font-weight: 600; min-width: 15px; text-align: center;">${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+          </div>
+        `;
+        list.appendChild(row);
+      });
+
+      totalVal.innerText = `$${totalPrice.toFixed(2)}`;
+    }
+
+    // CHECKOUT REDIRECT TO WHATSAPP
+    function checkoutWhatsApp() {
+      if (cart.length === 0) {
+        alert('Su carrito está vacío. Agregue algún servicio antes de reservar.');
+        return;
+      }
+
+      let text = 'Hola Piedra de Agua. Quisiera realizar una reserva para los siguientes servicios:\n\n';
+      cart.forEach(item => {
+        text += `- ${item.qty}x ${item.title} ($${(item.price * item.qty).toFixed(2)})\n`;
+      });
+
+      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      text += `\nTotal estimado: $${totalPrice.toFixed(2)}\n\n¿Tienen disponibilidad para agendar esta semana?`;
+
+      const encodedText = encodeURIComponent(text);
+      const waUrl = `https://wa.me/593999417574?text=${encodedText}`;
+      
+      window.open(waUrl, '_blank');
+    }
+
+    // Parse URL queries on load (e.g. category or open cart)
+    window.addEventListener('load', () => {
+      const params = new URLSearchParams(window.location.search);
+      const catParam = params.get('category');
+      const cartParam = params.get('cart');
+
+      if (catParam) {
+        const filterButton = Array.from(document.querySelectorAll('.filter-btn')).find(b => 
+          b.getAttribute('onclick').includes(`'${catParam}'`)
+        );
+        if (filterButton) filterButton.click();
+      } else {
+        renderProducts();
+      }
+
+      if (cartParam === 'open') {
+        setTimeout(() => toggleCart(true), 500);
+      }
+    });
+  </script>
+</body>
+</html>

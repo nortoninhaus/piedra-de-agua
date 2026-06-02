@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libélula Restaurante | Piedra de Agua Fuente Termal & Spa</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Visite Libélula Restaurante en Piedra de Agua. Gastronomía nacional e internacional, coctelería de autor y cafetería de especialidad en Cuenca.">
+  
+  <!-- Libraries (CDNs) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="index.css">
+  
+  <style>
+    /* Menu widget styling */
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .menu-tab-btn {
+      padding: 0.65rem 1.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px solid var(--border-glass-simple);
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .menu-tab-btn:hover, .menu-tab-btn.active {
+      border-color: var(--primary-gold);
+      color: var(--primary-gold);
+      background: rgba(var(--primary-gold-rgb), 0.05);
+    }
+
+    .menu-items-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .menu-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .menu-item-info {
+      flex-grow: 1;
+    }
+
+    .menu-item-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .menu-item-title::after {
+      content: '';
+      flex-grow: 1;
+      border-bottom: 1px dashed var(--border-glass-simple);
+      margin: 0 0.5rem;
+    }
+
+    .menu-item-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .menu-item-price {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary-gold);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGPU Canvas -->
+  <div class="background-canvas-container"></div>
+  <div class="volcanic-noise"></div>
+
+  <!-- FIXED LUXURY HEADER -->
+  <header class="header-nav">
+    <a href="index.html" class="nav-logo" aria-label="Piedra de Agua Logo">
+      <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo">
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="sobre-nosotros.html" class="nav-item">Nosotros</a>
+      
+      <!-- Experiences Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#" class="nav-item active flex-center" style="gap: 0.25rem;">
+          Experiencias <i class="ph-bold ph-caret-down" style="font-size: 0.75rem;"></i>
+        </a>
+        <div class="nav-dropdown-content">
+          <a href="circuito-de-spa.html">Circuito de Spa</a>
+          <a href="roca-dorada.html">Roca Dorada</a>
+          <a href="tour-termal-subterraneo.html">Tour Subterráneo</a>
+          <a href="terapias-especiales.html">Terapias Especiales</a>
+          <a href="masajes-de-relajacion.html">Masajes de Relajación</a>
+          <a href="piscina-termal.html">Piscina Termal</a>
+          <a href="libelula-restaurante.html">Libélula Restaurante</a>
+        </div>
+      </div>
+      
+      <a href="tienda.html" class="nav-item">Tienda</a>
+      <a href="contactos.html" class="nav-item">Contactos</a>
+    </nav>
+
+    <!-- Header Actions (Search, Dark/Light Toggle, Cart) -->
+    <div class="header-utils">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
+        <i class="ph-bold ph-sun"></i>
+      </button>
+
+      <!-- Cart Drawer Trigger -->
+      <a href="tienda.html?cart=open" class="icon-btn" aria-label="Ver carrito">
+        <i class="ph-bold ph-shopping-bag-open"></i>
+        <span class="cart-badge">0</span>
+      </a>
+
+      <!-- Mobile Menu Trigger -->
+      <button class="menu-toggle icon-btn" aria-label="Abrir menú">
+        <i class="ph-bold ph-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main style="padding-top: 120px;">
+    
+    <!-- HERO SECTION -->
+    <section class="section-lux" style="padding-bottom: 2rem;">
+      <div class="container-lux text-center">
+        <span class="accent-title">Gastronomía & Coctelería</span>
+        <h1>Libélula Restaurante</h1>
+        <p style="max-width: 700px; margin: 1.5rem auto 0 auto;">
+          Deleite su paladar con nuevas sensaciones. Una fusión de ingredientes locales andinos y técnicas culinarias de vanguardia.
+        </p>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS CARDS -->
+    <section class="section-lux" style="padding-top: 2rem; padding-bottom: 4rem;">
+      <div class="container-lux grid-4" style="gap: 1.5rem;">
+        
+        <!-- Feature 1 -->
+        <div class="glass-card" style="padding: 2rem; text-align: center;">
+          <i class="ph-bold ph-fork-knife" style="font-size: 2.25rem; color: var(--primary-gold); margin-bottom: 1rem; display: inline-block;"></i>
+          <h3 style="font-family: var(--font-sans); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">Restaurante</h3>
+          <p style="font-size: 0.9rem;">Platos gourmet a la carta fusionando gastronomía nacional e internacional fina.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-card" style="padding: 2rem; text-align: center;">
+          <i class="ph-bold ph-brandy" style="font-size: 2.25rem; color: var(--primary-gold); margin-bottom: 1rem; display: inline-block;"></i>
+          <h3 style="font-family: var(--font-sans); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">Bar de Autor</h3>
+          <p style="font-size: 0.9rem;">Exquisita coctelería clásica y bebidas exclusivas creadas por nuestro mixólogo.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-card" style="padding: 2rem; text-align: center;">
+          <i class="ph-bold ph-coffee" style="font-size: 2.25rem; color: var(--primary-gold); margin-bottom: 1rem; display: inline-block;"></i>
+          <h3 style="font-family: var(--font-sans); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">Cafetería</h3>
+          <p style="font-size: 0.9rem;">Café de especialidad filtrado al instante y repostería fina para acompañar.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="glass-card" style="padding: 2rem; text-align: center;">
+          <i class="ph-bold ph-calendar-star" style="font-size: 2.25rem; color: var(--primary-gold); margin-bottom: 1rem; display: inline-block;"></i>
+          <h3 style="font-family: var(--font-sans); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">Eventos</h3>
+          <p style="font-size: 0.9rem;">Espacio e instalaciones exclusivas preparadas para eventos y cenas corporativas.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE MENU WIDGET -->
+    <section id="menu" class="section-lux" style="background: rgba(var(--bg-base-rgb), 0.35);">
+      <div class="container-lux">
+        <div class="text-center">
+          <span class="accent-title">Nuestra Carta</span>
+          <h2>Menú Digital Libélula</h2>
+          <p style="max-width: 550px; margin: 1rem auto 0 auto;">
+            Explore una muestra de nuestra propuesta gastronómica. Opciones diseñadas para complementar su relajación termal.
+          </p>
+        </div>
+
+        <!-- Menu Tabs -->
+        <div class="menu-tabs">
+          <button class="menu-tab-btn active" onclick="switchMenu('entradas', this)">Entradas</button>
+          <button class="menu-tab-btn" onclick="switchMenu('platos', this)">Platos Fuertes</button>
+          <button class="menu-tab-btn" onclick="switchMenu('cocteles', this)">Coctelería</button>
+          <button class="menu-tab-btn" onclick="switchMenu('postres', this)">Postres & Café</button>
+        </div>
+
+        <!-- Menu List -->
+        <div class="glass-panel" style="border-radius: 20px; padding: 3rem 2rem;">
+          
+          <!-- ENTRADAS -->
+          <div id="menu-entradas" class="menu-items-list">
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Ceviche de Trucha Termal</div>
+                <div class="menu-item-desc">Cortes de trucha fresca de los ríos azuayos curada en limón sutil, cebolla morada, cilantro y trozos de aguacate.</div>
+              </div>
+              <div class="menu-item-price">$12.50</div>
+            </div>
+
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Carpaccio de Lomo al Cuarzo</div>
+                <div class="menu-item-desc">Finas láminas de lomo de res selladas, aderezadas con aceite de oliva de trufa, alcaparras y lascas de queso parmesano.</div>
+              </div>
+              <div class="menu-item-price">$14.00</div>
+            </div>
+
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Empanaditas de Queso Ancestrales</div>
+                <div class="menu-item-desc">Tres empanadas fritas rellenas de queso tierno andino, espolvoreadas con azúcar y servidas con salsa de ají de tomate de árbol.</div>
+              </div>
+              <div class="menu-item-price">$8.00</div>
+            </div>
+          </div>
+
+          <!-- PLATOS FUERTES -->
+          <div id="menu-platos" class="menu-items-list" style="display: none;">
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Lomo en Costra de Café Andino</div>
+                <div class="menu-item-desc">Lomo de res a la parrilla con costra crujiente de café de especialidad molido, servido con puré rústico y espárragos salteados.</div>
+              </div>
+              <div class="menu-item-price">$24.00</div>
+            </div>
+
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Trucha Asada a la Teja Termal</div>
+                <div class="menu-item-desc">Trucha fresca asada sobre tejas calientes, acompañada de papas rústicas al romero y ensalada orgánica de brotes andinos.</div>
+              </div>
+              <div class="menu-item-price">$18.50</div>
+            </div>
+
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Risotto de Hongos Silvestres</div>
+                <div class="menu-item-desc">Cremoso arroz arborio cocinado con caldo mineralizado y mix de hongos locales salteados con mantequilla de ajo.</div>
+              </div>
+              <div class="menu-item-price">$16.50</div>
+            </div>
+          </div>
+
+          <!-- COCTELES -->
+          <div id="menu-cocteles" class="menu-items-list" style="display: none;">
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Libélula Sour (Coctel de Autor)</div>
+                <div class="menu-item-desc">Bebida mística a base de Pisco infusionado con flores de lavanda, jarabe de goma, limón sutil y clara de huevo.</div>
+              </div>
+              <div class="menu-item-price">$9.50</div>
+            </div>
+
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Ancestral Gin Tonic</div>
+                <div class="menu-item-desc">Ginebra ecuatoriana de alta gama premium destilada con botánicos locales, agua tónica, bayas de enebro y romero quemado.</div>
+              </div>
+              <div class="menu-item-price">$11.00</div>
+            </div>
+
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Volcanic Mule</div>
+                <div class="menu-item-desc">Vodka premium, extracto fresco de jengibre caliente, jugo de limón sutil y agua mineral volcánica con gas.</div>
+              </div>
+              <div class="menu-item-price">$8.50</div>
+            </div>
+          </div>
+
+          <!-- POSTRES & CAFE -->
+          <div id="menu-postres" class="menu-items-list" style="display: none;">
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Mousse de Chocolate "El Volcán"</div>
+                <div class="menu-item-desc">Mousse sedoso de chocolate orgánico ecuatoriano al 70% con núcleo fluido de frutos rojos y tierra de cacao.</div>
+              </div>
+              <div class="menu-item-price">$7.50</div>
+            </div>
+
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Cheesecake de Tomate de Árbol</div>
+                <div class="menu-item-desc">Suave tarta fría de queso tierno andino coronada con mermelada espesa casera de tomate de árbol.</div>
+              </div>
+              <div class="menu-item-price">$6.50</div>
+            </div>
+
+            <div class="menu-item-row">
+              <div class="menu-item-info">
+                <div class="menu-item-title">Café Chemex Filtrado (Especialidad)</div>
+                <div class="menu-item-desc">Café de especialidad origen Loja filtrado lentamente en mesa. Notas cítricas y cuerpo balanceado.</div>
+              </div>
+              <div class="menu-item-price">$4.50</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT RESERVATIONS -->
+    <section class="section-lux">
+      <div class="container-lux">
+        <div class="glass-card text-center" style="padding: 5rem 2rem; border: 1px solid var(--border-glass-simple);">
+          <span class="accent-title">Cenas & Reservaciones Especiales</span>
+          <h2 style="font-size: 2.25rem; max-width: 650px; margin: 0 auto 1.5rem auto;">¿Planea un Evento o una Reserva de Mesa?</h2>
+          <p style="max-width: 550px; margin: 0 auto 3rem auto;">
+            Asegure su mesa para disfrutar después de su circuito de spa, o coordine con nosotros un menú exclusivo para eventos corporativos y celebraciones familiares.
+          </p>
+          <div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=restaurante-reserva" target="_blank" class="btn-lux" data-cursor-text="Reservar">Reservar Mesa vía WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="footer-lux">
+    <div class="container-lux footer-grid">
+      <div class="footer-col">
+        <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo" style="height: 55px; margin-bottom: 1.5rem;">
+        <p style="max-width: 320px;">
+          Piedra de Agua reúne y concentra servicios basados en agua, vapor y lodo termal de origen volcánico en un ambiente de relajación inigualable.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="tienda.html">Tienda de Spa</a></li>
+          <li><a href="contactos.html">Contactos & Reservas</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="circuito-de-spa.html">Circuito de Spa</a></li>
+          <li><a href="roca-dorada.html">Roca Dorada</a></li>
+          <li><a href="tour-termal-subterraneo.html">Tour Subterráneo</a></li>
+          <li><a href="libelula-restaurante.html">Libélula Restaurante</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Atendemos los 365 días del año (incluido feriados).</p>
+        <p style="font-weight: 500; color: var(--primary-gold); margin-bottom: 0.5rem;">
+          Lunes a Sábado: 07:00 - 22:00
+        </p>
+        <p style="font-weight: 500; color: var(--primary-gold);">
+          Domingos: 07:00 - 21:00
+        </p>
+      </div>
+    </div>
+    
+    <div class="container-lux footer-bottom">
+      <p>&copy; 2026 Piedra de Agua Fuente Termal & Spa. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="ph-bold ph-tiktok-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://piedradeagua.com.ec/whatsappreservas" target="_blank" aria-label="WhatsApp"><i class="ph-bold ph-whatsapp-logo" style="font-size: 1.25rem;"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Utilities -->
+  <script src="main.js"></script>
+  
+  <script>
+    // Tab switching logic for digital menu
+    function switchMenu(menuId, btn) {
+      // Deactivate all buttons
+      document.querySelectorAll('.menu-tab-btn').forEach(b => {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+
+      // Hide all list containers
+      document.querySelectorAll('.menu-items-list').forEach(list => {
+        list.style.display = 'none';
+      });
+
+      // Show target list container
+      const target = document.getElementById(`menu-${menuId}`);
+      if (target) {
+        target.style.display = 'flex';
+        // GSAP entry logic or standard display
+      }
+    }
+  </script>
+</body>
+</html>

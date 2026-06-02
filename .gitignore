@@ -1,0 +1,16 @@
+.DS_Store
+*.log
+__pycache__/
+.tempmediaStorage/
+report.json
+report.html
+index_screenshot.png
+contactos_screenshot.png
+contactos_lightmode_screenshot.png
+contactos_mobile_screenshot.png
+contactos_mobile_responsive_screenshot.png
+contactos_real_mobile.png
+contactos_fullpage.png
+map_screenshot.png
+dist/Sobre Nosotros *
+dist/Tienda Online *

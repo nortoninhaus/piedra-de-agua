@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circuito de Spa | Piedra de Agua Fuente Termal & Spa</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Experimente el Circuito de Spa de Piedra de Agua. Lodoterapia, baños de cajón, piscinas de contraste y relajación termal en Cuenca.">
+  
+  <!-- Libraries (CDNs) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="index.css">
+  
+  <style>
+    /* Step Cards styling */
+    .step-timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .step-row {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 6rem;
+    }
+
+    .step-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-visual {
+      flex: 1;
+      height: 380px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lux);
+      position: relative;
+    }
+
+    .step-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .step-num {
+      font-size: 5rem;
+      font-family: var(--font-serif);
+      color: rgba(var(--primary-gold-rgb), 0.15);
+      line-height: 1;
+      margin-bottom: -1rem;
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .price-card {
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      text-align: center;
+    }
+
+    .price-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-sans);
+      font-weight: 600;
+    }
+
+    .price-value {
+      font-size: 2.5rem;
+      font-family: var(--font-serif);
+      color: var(--primary-gold);
+      margin: 1.5rem 0;
+    }
+
+    .price-value span {
+      font-size: 0.9rem;
+      font-family: var(--font-sans);
+      color: var(--text-muted);
+      font-weight: 300;
+      display: block;
+    }
+
+    @media (max-width: 992px) {
+      .price-grid {
+        grid-template-columns: 1fr;
+      }
+      .step-row, .step-row:nth-child(even) {
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+      .step-visual {
+        width: 100%;
+        height: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGPU Canvas -->
+  <div class="background-canvas-container"></div>
+  <div class="volcanic-noise"></div>
+
+  <!-- FIXED LUXURY HEADER -->
+  <header class="header-nav">
+    <a href="index.html" class="nav-logo" aria-label="Piedra de Agua Logo">
+      <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo">
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="sobre-nosotros.html" class="nav-item">Nosotros</a>
+      
+      <!-- Experiences Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#" class="nav-item active flex-center" style="gap: 0.25rem;">
+          Experiencias <i class="ph-bold ph-caret-down" style="font-size: 0.75rem;"></i>
+        </a>
+        <div class="nav-dropdown-content">
+          <a href="circuito-de-spa.html">Circuito de Spa</a>
+          <a href="roca-dorada.html">Roca Dorada</a>
+          <a href="tour-termal-subterraneo.html">Tour Subterráneo</a>
+          <a href="terapias-especiales.html">Terapias Especiales</a>
+          <a href="masajes-de-relajacion.html">Masajes de Relajación</a>
+          <a href="piscina-termal.html">Piscina Termal</a>
+          <a href="libelula-restaurante.html">Libélula Restaurante</a>
+        </div>
+      </div>
+      
+      <a href="tienda.html" class="nav-item">Tienda</a>
+      <a href="contactos.html" class="nav-item">Contactos</a>
+    </nav>
+
+    <!-- Header Actions (Search, Dark/Light Toggle, Cart) -->
+    <div class="header-utils">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
+        <i class="ph-bold ph-sun"></i>
+      </button>
+
+      <!-- Cart Drawer Trigger -->
+      <a href="tienda.html?cart=open" class="icon-btn" aria-label="Ver carrito">
+        <i class="ph-bold ph-shopping-bag-open"></i>
+        <span class="cart-badge">0</span>
+      </a>
+
+      <!-- Mobile Menu Trigger -->
+      <button class="menu-toggle icon-btn" aria-label="Abrir menú">
+        <i class="ph-bold ph-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main style="padding-top: 120px;">
+    
+    <!-- HERO SECTION -->
+    <section class="section-lux" style="padding-bottom: 2rem;">
+      <div class="container-lux text-center">
+        <span class="accent-title">El Club Termal & Spa Exterior</span>
+        <h1>Circuito de Spa</h1>
+        <p style="max-width: 700px; margin: 1.5rem auto 0 auto;">
+          Una experiencia de relajación única donde su piel y su cuerpo se beneficiarán de las propiedades minerales de nuestras aguas termales y lodos de origen volcánico.
+        </p>
+      </div>
+    </section>
+
+    <!-- STEP TIMELINE SHOWCASE -->
+    <section class="section-lux" style="padding-top: 2rem;">
+      <div class="container-lux">
+        <div class="step-timeline">
+          
+          <!-- Step 1 -->
+          <div class="step-row">
+            <div class="step-content">
+              <span class="step-num">01</span>
+              <h2 style="margin-bottom: 1rem;">Piscina Termal Interior</h2>
+              <p>
+                Iniciamos el circuito sumergiéndonos en nuestra piscina termal techada. Acondicionada a una temperatura ideal, prepara sus poros para abrirse, activa la circulación cardiovascular y permite absorber los primeros minerales volcánicos esenciales como silicio y azufre.
+              </p>
+            </div>
+            <div class="step-visual">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_14_SPA-BIE1-P-400x533.webp" alt="Piscina Termal Interior">
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-row">
+            <div class="step-content">
+              <span class="step-num">02</span>
+              <h2 style="margin-bottom: 1rem;">Lodos Volcánicos Activos</h2>
+              <p>
+                Aplicación corporal de nuestros dos lodos termales icónicos extraídos de minas subterráneas propias:
+              </p>
+              <ul style="margin-top: 1rem; list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 0.5rem; font-weight: 400;"><i class="ph-bold ph-check" style="color: var(--clay-red); margin-right: 0.5rem;"></i><strong style="color: var(--clay-red);">Lodo Rojo:</strong> Limpia profundamente, exfolia células muertas y afirma el tejido.</li>
+                <li style="margin-bottom: 0.5rem; font-weight: 400;"><i class="ph-bold ph-check" style="color: var(--mineral-blue); margin-right: 0.5rem;"></i><strong style="color: var(--mineral-blue);">Lodo Azul:</strong> Hidrata, humecta intensamente y rejuvenece la barrera celular de la piel.</li>
+              </ul>
+            </div>
+            <div class="step-visual">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_12_SPA-ARM2-P-400x533.webp" alt="Lodoterapia Rojo y Azul">
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-row">
+            <div class="step-content">
+              <span class="step-num">03</span>
+              <h2 style="margin-bottom: 1rem;">Baños de Cajón</h2>
+              <p>
+                Terapia tradicional andina donde el cuerpo se expone a vapor termal caliente dentro de una cabina de madera, manteniendo la cabeza afuera en aire fresco. Ideal para desintoxicar el organismo, combatir problemas respiratorios y ayudar a acelerar el metabolismo.
+              </p>
+            </div>
+            <div class="step-visual">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_13_SPA-P-400x533.webp" alt="Baños de Cajón">
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-row">
+            <div class="step-content">
+              <span class="step-num">04</span>
+              <h2 style="margin-bottom: 1rem;">Cabina de Vapor Termal</h2>
+              <p>
+                Cámara de cristal de vapor de origen volcánico enriquecido, seguida de una inmersión en nuestro pozo de agua fría. Esta terapia de choque térmico tonifica los tejidos, fortalece el sistema inmunológico y proporciona una descarga vigorizante de energía.
+              </p>
+            </div>
+            <div class="step-visual">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_11_SPA-DES2-P-400x533.webp" alt="Vapor Termal & Pozo Frío">
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="step-row">
+            <div class="step-content">
+              <span class="step-num">05</span>
+              <h2 style="margin-bottom: 1rem;">Terapia de Micro Lluvia</h2>
+              <p>
+                Ducha de fina aspersión mineral fría que recrea la sensación de una bruma de lluvia de bosque nublado. Calma el sistema nervioso, cierra los poros dilatados por el vapor y fija los minerales absorbidos en la piel.
+              </p>
+            </div>
+            <div class="step-visual">
+              <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_15_SPA-DES1-P-400x533.webp" alt="Micro Lluvia Aspersión">
+            </div>
+          </div>
+
+          <!-- Step 6 -->
+          <div id="exterior" class="step-row">
+            <div class="step-content">
+              <span class="step-num">06</span>
+              <h2 style="margin-bottom: 1rem;">Piscinas Exteriores & Termas</h2>
+              <p>
+                Termine el recorrido a cielo abierto en nuestras piscinas termales exteriores, termas de contraste (caliente/frío) y baños de vapor de eucalipto. Un espacio rodeado de jardines andinos para relajarse libremente a su propio ritmo.
+              </p>
+            </div>
+            <div class="step-visual">
+              <img src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_48_Banner-0-Panoramica-Tablet-992x920-HomePage.jpg" alt="Piscinas Exteriores">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING & BOOKING CARDS -->
+    <section class="section-lux" style="background: rgba(var(--bg-base-rgb), 0.35);">
+      <div class="container-lux">
+        <div class="text-center">
+          <span class="accent-title">Pases y Paquetes</span>
+          <h2>Tarifas del Circuito de Spa</h2>
+          <p style="max-width: 550px; margin: 1rem auto 0 auto;">
+            Reserve el pase al circuito básico individual o eleve su experiencia con nuestros packs combinados de bienestar y masajes.
+          </p>
+        </div>
+
+        <div class="price-grid">
+          <!-- Card 1: Básico -->
+          <div class="glass-card price-card">
+            <h3>Circuito de Spa</h3>
+            <p style="font-size: 0.85rem; font-weight: 500; text-transform: uppercase; color: var(--primary-gold);">Pase Básico Individual</p>
+            <div class="price-value">
+              $50.00
+              <span>Precio por Persona</span>
+            </div>
+            <p style="flex-grow: 1; font-size: 0.9rem; margin-bottom: 2rem;">
+              Incluye las 6 estaciones del circuito (piscina interna, lodoterapia roja y azul, baño de cajón, vapor de cristal, micro lluvia y acceso libre a termas exteriores).
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=circuito-spa-basico" target="_blank" class="btn-lux" data-cursor-text="Reservar">Reservar Pase</a>
+          </div>
+
+          <!-- Card 2: Pack Bienestar -->
+          <div class="glass-card price-card" style="border: 1px solid var(--primary-gold);">
+            <h3>Pack Bienestar</h3>
+            <p style="font-size: 0.85rem; font-weight: 500; text-transform: uppercase; color: var(--primary-gold);">Circuito + Masaje Especial</p>
+            <div class="price-value">
+              $85.00 / $160.00
+              <span>1 Persona / 2 Personas</span>
+            </div>
+            <p style="flex-grow: 1; font-size: 0.9rem; margin-bottom: 2rem;">
+              El circuito de spa termal completo de 6 estaciones combinado con un masaje de relajación de 25 minutos para lograr una soltura muscular profunda.
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=pack-bienestar" target="_blank" class="btn-lux" data-cursor-text="Reservar">Reservar Pack</a>
+          </div>
+
+          <!-- Card 3: Pack Armonía -->
+          <div class="glass-card price-card">
+            <h3>Pack Armonía</h3>
+            <p style="font-size: 0.85rem; font-weight: 500; text-transform: uppercase; color: var(--primary-gold);">Circuito + Masaje Premium</p>
+            <div class="price-value">
+              $130.00 / $250.00
+              <span>1 Persona / 2 Personas</span>
+            </div>
+            <p style="flex-grow: 1; font-size: 0.9rem; margin-bottom: 2rem;">
+              Circuito completo de spa de 6 estaciones potenciado con un masaje premium de relajación profunda de 50 minutos con aceites y mascarilla facial termal de arcilla.
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=pack-armonia" target="_blank" class="btn-lux" data-cursor-text="Reservar">Reservar Pack</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="footer-lux">
+    <div class="container-lux footer-grid">
+      <div class="footer-col">
+        <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo" style="height: 55px; margin-bottom: 1.5rem;">
+        <p style="max-width: 320px;">
+          Piedra de Agua reúne y concentra servicios basados en agua, vapor y lodo termal de origen volcánico en un ambiente de relajación inigualable.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="tienda.html">Tienda de Spa</a></li>
+          <li><a href="contactos.html">Contactos & Reservas</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="circuito-de-spa.html">Circuito de Spa</a></li>
+          <li><a href="roca-dorada.html">Roca Dorada</a></li>
+          <li><a href="tour-termal-subterraneo.html">Tour Subterráneo</a></li>
+          <li><a href="libelula-restaurante.html">Libélula Restaurante</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Atendemos los 365 días del año (incluido feriados).</p>
+        <p style="font-weight: 500; color: var(--primary-gold); margin-bottom: 0.5rem;">
+          Lunes a Sábado: 07:00 - 22:00
+        </p>
+        <p style="font-weight: 500; color: var(--primary-gold);">
+          Domingos: 07:00 - 21:00
+        </p>
+      </div>
+    </div>
+    
+    <div class="container-lux footer-bottom">
+      <p>&copy; 2026 Piedra de Agua Fuente Termal & Spa. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="ph-bold ph-tiktok-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://piedradeagua.com.ec/whatsappreservas" target="_blank" aria-label="WhatsApp"><i class="ph-bold ph-whatsapp-logo" style="font-size: 1.25rem;"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Utilities -->
+  <script src="main.js"></script>
+</body>
+</html>

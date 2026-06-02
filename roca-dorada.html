@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roca Dorada | Piedra de Agua Fuente Termal & Spa</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore Roca Dorada en Piedra de Agua. Experiencia Hammam, lodo cenizo volcánico y exfoliaciones en una cueva subterránea de lujo.">
+  
+  <!-- Libraries (CDNs) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="index.css">
+  
+  <style>
+    /* Hero Cover Style */
+    .hero-experience {
+      position: relative;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero-experience .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.4) saturate(0.9);
+    }
+
+    .hero-experience::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(to top, var(--bg-base) 0%, transparent 100%);
+      z-index: 0;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3.5rem;
+      margin-top: 4rem;
+    }
+
+    .experience-detail-card {
+      padding: 3rem;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+
+    .features-list li {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .features-list li i {
+      color: var(--primary-gold);
+      margin-top: 0.25rem;
+    }
+
+    @media (max-width: 992px) {
+      .experience-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGPU Canvas -->
+  <div class="background-canvas-container"></div>
+  <div class="volcanic-noise"></div>
+
+  <!-- FIXED LUXURY HEADER -->
+  <header class="header-nav">
+    <a href="index.html" class="nav-logo" aria-label="Piedra de Agua Logo">
+      <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo">
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="sobre-nosotros.html" class="nav-item">Nosotros</a>
+      
+      <!-- Experiences Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#" class="nav-item active flex-center" style="gap: 0.25rem;">
+          Experiencias <i class="ph-bold ph-caret-down" style="font-size: 0.75rem;"></i>
+        </a>
+        <div class="nav-dropdown-content">
+          <a href="circuito-de-spa.html">Circuito de Spa</a>
+          <a href="roca-dorada.html">Roca Dorada</a>
+          <a href="tour-termal-subterraneo.html">Tour Subterráneo</a>
+          <a href="terapias-especiales.html">Terapias Especiales</a>
+          <a href="masajes-de-relajacion.html">Masajes de Relajación</a>
+          <a href="piscina-termal.html">Piscina Termal</a>
+          <a href="libelula-restaurante.html">Libélula Restaurante</a>
+        </div>
+      </div>
+      
+      <a href="tienda.html" class="nav-item">Tienda</a>
+      <a href="contactos.html" class="nav-item">Contactos</a>
+    </nav>
+
+    <!-- Header Actions (Search, Dark/Light Toggle, Cart) -->
+    <div class="header-utils">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
+        <i class="ph-bold ph-sun"></i>
+      </button>
+
+      <!-- Cart Drawer Trigger -->
+      <a href="tienda.html?cart=open" class="icon-btn" aria-label="Ver carrito">
+        <i class="ph-bold ph-shopping-bag-open"></i>
+        <span class="cart-badge">0</span>
+      </a>
+
+      <!-- Mobile Menu Trigger -->
+      <button class="menu-toggle icon-btn" aria-label="Abrir menú">
+        <i class="ph-bold ph-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main>
+    
+    <!-- EXPERIENCE HERO COVER -->
+    <section class="hero-experience">
+      <img class="hero-bg" src="./Sobre%20Nosotros%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_52_Banner-1-Roca-Dorada-1200x920-1.jpg" alt="Roca Dorada Caverna">
+      <div class="container-lux" style="z-index: 1;">
+        <span class="accent-title" style="color: #fff;">Santuario Subterráneo</span>
+        <h1 style="color: #fff; text-shadow: 0 4px 12px rgba(0,0,0,0.5);">Roca Dorada</h1>
+        <p style="color: rgba(255,255,255,0.85); max-width: 600px; margin: 1.5rem auto 0 auto;">
+          Un conjunto de terapias de relajación y bienestar provenientes de diferentes partes del mundo, desarrolladas en un lujoso y misterioso espacio subterráneo.
+        </p>
+      </div>
+    </section>
+
+    <!-- MAIN CORE INFO -->
+    <section class="section-lux" style="padding-top: 4rem;">
+      <div class="container-lux">
+        <div class="grid-2">
+          <div style="display: flex; flex-direction: column; justify-content: center;">
+            <span class="accent-title">Rituales del Mundo</span>
+            <h2>El Arte de la Purificación</h2>
+            <p style="margin: 1.5rem 0;">
+              Roca Dorada representa el pináculo de la relajación mística en Piedra de Agua. Diseñada como una lujosa terma subterránea con acabados de piedra pulida y tonalidades cálidas de cobre y bronce, esta caverna combina terapias ancestrales del Medio Oriente con recursos minerales de nuestros propios volcanes ecuatorianos.
+            </p>
+            <p>
+              Durante el circuito, los poros se abren mediante vapores calientes y baños termales, facilitando una limpieza profunda que prepara el cuerpo para recibir la máxima estimulación sensorial y revitalizar el tejido dérmico.
+            </p>
+          </div>
+          <div class="split-image-panel" style="height: 420px;">
+            <img src="./Referencias/Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa%20_%20Cuenca%20-%20Ecuador/imgi_21_Home-RocaDorada.webp" alt="Roca Dorada Detail">
+          </div>
+        </div>
+
+        <!-- DETAILS OF THE EXPERIENCES -->
+        <div class="experience-grid">
+          
+          <!-- Experience Card 1 -->
+          <div class="glass-card experience-detail-card">
+            <span class="accent-title">Turquía en los Andes</span>
+            <h3 style="font-size: 1.65rem; margin-bottom: 1rem;">Experiencia Hammam</h3>
+            <p>
+              Inspirado en el tradicional baño turco de purificación. Nuestro terapeuta realiza una exfoliación corporal profunda con un <strong>guante de crin</strong> (fibra de caballo natural) para eliminar células muertas, seguido de un relajante y espumoso baño de micro-espuma jabonosa sobre una losa de piedra templada.
+            </p>
+            <ul class="features-list">
+              <li><i class="ph-bold ph-check-circle"></i> Exfoliación profunda con Guante de Crin</li>
+              <li><i class="ph-bold ph-check-circle"></i> Baño de micro-espuma relajante</li>
+              <li><i class="ph-bold ph-check-circle"></i> Estimulación del torrente linfático</li>
+            </ul>
+          </div>
+
+          <!-- Experience Card 2 -->
+          <div class="glass-card experience-detail-card">
+            <span class="accent-title">Lodo Volcánico Cenizo</span>
+            <h3 style="font-size: 1.65rem; margin-bottom: 1rem;">Lodoterapia Ceniza</h3>
+            <p>
+              Una inmersión única en una piscina subterránea de lodo cenizo volcánico a temperatura termal. Este lodo gris natural es extremadamente rico en azufre, sílice y zinc, elementos que proporcionan un efecto calmante, antiinflamatorio y desintoxicante superior para la piel.
+            </p>
+            <ul class="features-list">
+              <li><i class="ph-bold ph-check-circle"></i> Piscina de lodo cenizo termal caliente</li>
+              <li><i class="ph-bold ph-check-circle"></i> Envoltura mineral desintoxicante</li>
+              <li><i class="ph-bold ph-check-circle"></i> Calmante y antiinflamatorio muscular</li>
+            </ul>
+          </div>
+
+          <!-- Experience Card 3 -->
+          <div class="glass-card experience-detail-card">
+            <span class="accent-title">Sales y Exfoliación</span>
+            <h3 style="font-size: 1.65rem; margin-bottom: 1rem;">Terapia de Sales Minerales</h3>
+            <p>
+              Exfoliación suave realizada con cristales de sales de Epsom y marinas ricas en magnesio, impregnadas con aceites esenciales de plantas locales. Diseñada para pulir suavemente la piel, abrir vías respiratorias mediante aromas y nutrir el cuerpo con magnesio.
+            </p>
+            <ul class="features-list">
+              <li><i class="ph-bold ph-check-circle"></i> Cristales de sal marina y magnesio</li>
+              <li><i class="ph-bold ph-check-circle"></i> Infusión de aceites esenciales de aromaterapia</li>
+              <li><i class="ph-bold ph-check-circle"></i> Piel sedosa y remineralización</li>
+            </ul>
+          </div>
+
+          <!-- Experience Card 4 -->
+          <div class="glass-card experience-detail-card">
+            <span class="accent-title">Contraste Térmico</span>
+            <h3 style="font-size: 1.65rem; margin-bottom: 1rem;">Cámara de Vapor & Pozo Helado</h3>
+            <p>
+              Exposición al vapor termal de la cueva subterránea, seguido de una aspersión de micro-lluvia y una breve inmersión en nuestro pozo de agua fría. Restablece la temperatura corporal, tonifica las arterias y produce una inmensa sensación de vitalidad.
+            </p>
+            <ul class="features-list">
+              <li><i class="ph-bold ph-check-circle"></i> Cabina de cristal de Vapor Volcánico</li>
+              <li><i class="ph-bold ph-check-circle"></i> Pozo de Agua Helada de Contraste</li>
+              <li><i class="ph-bold ph-check-circle"></i> Ducha nebulizadora de Micro Lluvia</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING & BOOKING CARDS -->
+    <section class="section-lux" style="background: rgba(var(--bg-base-rgb), 0.35);">
+      <div class="container-lux">
+        <div class="text-center" style="margin-bottom: 4.5rem;">
+          <span class="accent-title">Pases Premium</span>
+          <h2>Reserve Roca Dorada</h2>
+          <p style="max-width: 550px; margin: 1rem auto 0 auto;">
+            Adquiera el circuito básico de Roca Dorada o complete la experiencia con el ritual tradicional del Hammam turco.
+          </p>
+        </div>
+
+        <div class="grid-2" style="max-width: 900px; margin: 0 auto;">
+          <!-- Option 1: Roca Dorada Básico -->
+          <div class="glass-card" style="padding: 3rem 2.5rem; text-align: center; display: flex; flex-direction: column;">
+            <h3>Roca Dorada Individual</h3>
+            <p style="font-size: 0.85rem; font-weight: 500; text-transform: uppercase; color: var(--primary-gold); margin-top: 0.25rem;">Circuito Subterráneo</p>
+            <div class="price-value">
+              $70.00
+              <span>Precio por Persona</span>
+            </div>
+            <p style="flex-grow: 1; font-size: 0.95rem; margin-bottom: 2.5rem;">
+              Incluye acceso al espacio subterráneo exclusivo Roca Dorada, piscina de lodo cenizo, cabina de vapor termal de cristal, pozo de agua helada, micro lluvia, exfoliación de sales minerales y acceso libre a las termas exteriores.
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=roca-dorada-individual" target="_blank" class="btn-lux" data-cursor-text="Reservar">Reservar Pase</a>
+          </div>
+
+          <!-- Option 2: Roca Dorada + Hammam -->
+          <div class="glass-card" style="padding: 3rem 2.5rem; text-align: center; display: flex; flex-direction: column; border: 1px solid var(--primary-gold);">
+            <h3>Roca Dorada + Hammam</h3>
+            <p style="font-size: 0.85rem; font-weight: 500; text-transform: uppercase; color: var(--primary-gold); margin-top: 0.25rem;">La Experiencia Completa</p>
+            <div class="price-value">
+              $110.00
+              <span>Precio por Persona</span>
+            </div>
+            <p style="flex-grow: 1; font-size: 0.95rem; margin-bottom: 2.5rem;">
+              Incluye todo el circuito Roca Dorada individual MÁS el baño de micro-espuma y exfoliación con guante de crin sobre la losa caliente de piedra. Máxima relajación y renovación de la piel.
+            </p>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=roca-dorada-hammam" target="_blank" class="btn-lux" data-cursor-text="Reservar">Reservar Pack</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="footer-lux">
+    <div class="container-lux footer-grid">
+      <div class="footer-col">
+        <img src="./Tienda%20Online%20%E2%80%93%20Piedra%20de%20Agua%20_%20Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo" style="height: 55px; margin-bottom: 1.5rem;">
+        <p style="max-width: 320px;">
+          Piedra de Agua reúne y concentra servicios basados en agua, vapor y lodo termal de origen volcánico en un ambiente de relajación inigualable.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="tienda.html">Tienda de Spa</a></li>
+          <li><a href="contactos.html">Contactos & Reservas</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="circuito-de-spa.html">Circuito de Spa</a></li>
+          <li><a href="roca-dorada.html">Roca Dorada</a></li>
+          <li><a href="tour-termal-subterraneo.html">Tour Subterráneo</a></li>
+          <li><a href="libelula-restaurante.html">Libélula Restaurante</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Atendemos los 365 días del año (incluido feriados).</p>
+        <p style="font-weight: 500; color: var(--primary-gold); margin-bottom: 0.5rem;">
+          Lunes a Sábado: 07:00 - 22:00
+        </p>
+        <p style="font-weight: 500; color: var(--primary-gold);">
+          Domingos: 07:00 - 21:00
+        </p>
+      </div>
+    </div>
+    
+    <div class="container-lux footer-bottom">
+      <p>&copy; 2026 Piedra de Agua Fuente Termal & Spa. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="ph-bold ph-tiktok-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://piedradeagua.com.ec/whatsappreservas" target="_blank" aria-label="WhatsApp"><i class="ph-bold ph-whatsapp-logo" style="font-size: 1.25rem;"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Utilities -->
+  <script src="main.js"></script>
+</body>
+</html>

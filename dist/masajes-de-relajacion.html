@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masajes de Relajación | Piedra de Agua Fuente Termal & Spa</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Déjese consentir con los Masajes de Relajación de Piedra de Agua. Piedras calientes, masajes a 4 manos y mascarillas en cuevas naturales en Cuenca.">
+  
+  <!-- Libraries (CDNs) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Core Design System -->
+  <style>
+/* CORE DESIGN SYSTEM STYLES */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================
+   CSS CUSTOM VARIABLES & PALETTES
+   ========================================== */
+:root {
+  /* Fonts */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Theme: Dark Volcanic Obsidian (Default) */
+  --bg-base: hsl(20, 10%, 4%);
+  --bg-base-rgb: 10, 9, 8;
+  --bg-elevated: hsla(20, 10%, 8%, 0.45);
+  --bg-elevated-solid: hsl(20, 10%, 8%);
+  --text-main: hsl(0, 0%, 95%);
+  --text-muted: hsl(20, 10%, 75%);
+  --primary-gold: hsl(43, 65%, 53%);
+  --primary-gold-rgb: 212, 175, 55;
+  --secondary-bronze: hsl(35, 55%, 45%);
+  --mineral-blue: hsl(196, 38%, 63%);
+  --mineral-blue-rgb: 132, 176, 192;
+  --clay-red: hsl(14, 52%, 50%);
+  --clay-red-rgb: 193, 92, 61;
+  --border-glass: linear-gradient(135deg, hsla(43, 65%, 53%, 0.35), transparent);
+  --border-glass-simple: hsla(43, 65%, 53%, 0.2);
+  --glow-glass: linear-gradient(220deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+  --shadow-lux: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --blur-glass: 25px;
+  
+  /* Utilities */
+  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.25s ease;
+  --cursor-blend: difference;
+}
+
+[data-theme="light"] {
+  /* Theme: Light Mineral Clay */
+  --bg-base: hsl(35, 30%, 94%);
+  --bg-base-rgb: 246, 242, 236;
+  --bg-elevated: hsla(35, 30%, 100%, 0.55);
+  --bg-elevated-solid: hsl(35, 30%, 100%);
+  --text-main: hsl(20, 10%, 15%);
+  --text-muted: hsl(20, 10%, 40%);
+  --primary-gold: hsl(35, 60%, 40%);
+  --primary-gold-rgb: 162, 117, 45;
+  --secondary-bronze: hsl(35, 55%, 45%);
+  --mineral-blue: hsl(196, 50%, 35%);
+  --mineral-blue-rgb: 44, 93, 114;
+  --clay-red: hsl(14, 60%, 40%);
+  --clay-red-rgb: 154, 61, 34;
+  --border-glass: linear-gradient(135deg, hsla(35, 60%, 40%, 0.25), transparent);
+  --border-glass-simple: hsla(35, 60%, 40%, 0.15);
+  --glow-glass: linear-gradient(220deg, rgba(255, 255, 255, 0.65) 0%, transparent 60%);
+  --shadow-lux: 0 30px 60px rgba(100, 80, 70, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --blur-glass: 25px;
+  --cursor-blend: normal;
+}
+
+/* ==========================================
+   RESET & SYSTEM BASICS
+   ========================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.5s ease;
+  line-height: 1.6;
+}
+
+/* Background Canvas Overlay */
+.background-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.background-canvas-container canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Volcanic Texture Noise Overlay */
+.volcanic-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+[data-theme="light"] .volcanic-noise {
+  opacity: 0.025;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elevated-solid);
+  border: 2px solid var(--bg-base);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-gold);
+}
+
+/* ==========================================
+   TYPOGRAPHY
+   ========================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+p {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+/* Accent text */
+.accent-title {
+  color: var(--primary-gold);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* ==========================================
+   LUXURY UI & GLASSMORPHISM ELEMENTS
+   ========================================== */
+.glass-panel {
+  background: var(--bg-elevated);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  border: 1px solid var(--border-glass-simple);
+  border-image: var(--border-glass) 1;
+  box-shadow: var(--shadow-lux);
+  transition: var(--transition-smooth);
+}
+
+/* Rounded Cards */
+.glass-card {
+  background: var(--bg-elevated);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-lux);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="light"] .glass-card {
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: var(--glow-glass);
+  pointer-events: none;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-gold);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .glass-card:hover {
+  box-shadow: 0 40px 80px rgba(100, 80, 70, 0.18);
+}
+
+/* Luxury Glow Hover Border */
+.glow-border {
+  position: relative;
+}
+
+/* ==========================================
+   BUTTONS (Liquid & Morphing Hover)
+   ========================================== */
+.btn-lux {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: hsl(0, 0%, 100%);
+  background: transparent;
+  border: 1px solid var(--primary-gold);
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  transition: var(--transition-smooth);
+}
+
+[data-theme="light"] .btn-lux {
+  color: var(--text-main);
+}
+
+.btn-lux::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-gold);
+  border-radius: 50px;
+  transform: scaleX(0);
+  transform-origin: right;
+  z-index: -1;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-lux:hover {
+  color: var(--bg-base);
+  box-shadow: 0 10px 25px rgba(var(--primary-gold-rgb), 0.25);
+  border-color: var(--primary-gold);
+}
+
+[data-theme="light"] .btn-lux:hover {
+  color: #fff;
+}
+
+.btn-lux:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-lux-secondary {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-main);
+}
+
+[data-theme="light"] .btn-lux-secondary {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn-lux-secondary::before {
+  background: var(--text-main);
+}
+
+.btn-lux-secondary:hover {
+  color: var(--bg-base);
+  border-color: var(--text-main);
+}
+
+/* ==========================================
+   HEADER & NAVIGATION
+   ========================================== */
+header.header-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  transition: var(--transition-smooth);
+  background: linear-gradient(180deg, rgba(10, 9, 8, 0.6) 0%, rgba(10, 9, 8, 0.15) 80%, transparent 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.0);
+}
+
+[data-theme="light"] header.header-nav {
+  background: linear-gradient(180deg, rgba(246, 242, 236, 0.7) 0%, rgba(246, 242, 236, 0.2) 80%, transparent 100%);
+}
+
+/* Shrinking header class applied via JS */
+header.header-nav.shrink {
+  height: 75px;
+  background: rgba(10, 9, 8, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-glass-simple);
+}
+
+[data-theme="light"] header.header-nav.shrink {
+  background: rgba(246, 242, 236, 0.85);
+}
+
+/* Logo brand styling */
+.nav-logo {
+  height: 70px;
+  transition: var(--transition-smooth);
+}
+
+header.header-nav.shrink .nav-logo {
+  height: 48px;
+}
+
+.nav-logo img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.nav-item {
+  position: relative;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.5rem 0;
+  color: var(--text-muted);
+}
+
+.nav-item:hover, .nav-item.active {
+  color: var(--primary-gold);
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--primary-gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-item:hover::after, .nav-item.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Dropdown Menu */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--bg-elevated-solid);
+  border: 1px solid var(--border-glass-simple);
+  min-width: 250px;
+  border-radius: 12px;
+  padding: 1rem 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-lux);
+}
+
+.nav-dropdown:hover .nav-dropdown-content {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(5px);
+}
+
+.nav-dropdown-content a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.nav-dropdown-content a:hover {
+  color: var(--primary-gold);
+  background: rgba(var(--primary-gold-rgb), 0.05);
+}
+
+/* Header Utilities (Modes & Cart & Search) */
+.header-utils {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 1.25rem;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--primary-gold);
+}
+
+[data-theme="light"] .icon-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: var(--primary-gold);
+  color: var(--bg-base);
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="light"] .cart-badge {
+  color: #fff;
+}
+
+/* Mobile Menu Button */
+.menu-toggle {
+  display: none;
+}
+
+/* ==========================================
+   CUSTOM CURSOR (Geometric Follower)
+   ========================================== */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--primary-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease-out, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-cursor-follower span {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--primary-gold);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Hover States for Cursor */
+body.cursor-hover .custom-cursor {
+  width: 4px;
+  height: 4px;
+  background-color: #fff;
+}
+
+body.cursor-hover .custom-cursor-follower {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(var(--primary-gold-rgb), 0.08);
+  border-color: #fff;
+}
+
+body.cursor-hover .custom-cursor-follower span {
+  opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  .custom-cursor, .custom-cursor-follower {
+    display: none;
+  }
+
+  /* Show mobile menu toggle button */
+  .menu-toggle {
+    display: flex;
+    z-index: 101;
+  }
+
+  .menu-toggle.active i::before {
+    content: "✕";
+    font-family: var(--font-sans);
+    font-weight: 300;
+  }
+
+  /* Slide-out mobile drawer */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background: var(--bg-elevated-solid);
+    backdrop-filter: blur(var(--blur-glass));
+    -webkit-backdrop-filter: blur(var(--blur-glass));
+    border-left: 1px solid var(--border-glass-simple);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.4);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 100px 2.5rem 3rem 2.5rem;
+    gap: 1.5rem;
+    transform: translateX(100%);
+    transition: var(--transition-smooth);
+    z-index: 99;
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
+  }
+
+  /* Dropdown changes inside mobile menu */
+  .nav-dropdown-content {
+    position: static;
+    transform: none;
+    background: rgba(0, 0, 0, 0.15);
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    min-width: 100%;
+    opacity: 1;
+    pointer-events: auto;
+    display: none;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0 0.5rem 1rem;
+    border-left: 1px solid var(--primary-gold);
+    border-radius: 0;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-content {
+    display: block;
+    transform: none;
+  }
+}
+
+/* ==========================================
+   LAYOUT GRID & SECTION STRUCTURES
+   ========================================== */
+.section-lux {
+  padding: 8rem 5% 6rem 5%;
+  position: relative;
+}
+
+.container-lux {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+  align-items: center;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 992px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer.footer-lux {
+  background: var(--bg-elevated-solid);
+  border-top: 1px solid var(--border-glass-simple);
+  padding: 5rem 5% 2rem 5%;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.footer-col h4 {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--primary-gold);
+  margin-bottom: 1.5rem;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-col ul li a {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.footer-col ul li a:hover {
+  color: var(--primary-gold);
+  padding-left: 5px;
+}
+
+.footer-col p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+[data-theme="light"] .footer-bottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+}
+
+/* ==========================================
+   THEME SWITCHING ANIMATION HOOK
+   ========================================== */
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.5s ease,
+              color 0.4s ease,
+              box-shadow 0.4s ease !important;
+}
+
+/* ==========================================
+   ACCESSIBILITY & UTILITIES
+   ========================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  .custom-cursor, .custom-cursor-follower {
+    display: none;
+  }
+}
+
+</style>
+  
+  <style>
+    /* Category Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 3rem 0;
+    }
+
+    .filter-tab {
+      padding: 0.65rem 1.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px solid var(--border-glass-simple);
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .filter-tab:hover, .filter-tab.active {
+      border-color: var(--primary-gold);
+      color: var(--primary-gold);
+      background: rgba(var(--primary-gold-rgb), 0.05);
+    }
+
+    /* Massage items grid */
+    .massage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .massage-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 1.5rem;
+      transition: var(--transition-smooth);
+    }
+
+    .massage-img-wrap {
+      width: 100%;
+      height: 240px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .massage-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-smooth);
+    }
+
+    .massage-card:hover .massage-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .massage-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-sans);
+      font-weight: 500;
+    }
+
+    .massage-info {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      flex-grow: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .massage-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    [data-theme="light"] .massage-meta {
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .massage-duration {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary-gold);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .massage-price {
+      font-size: 1.45rem;
+      font-family: var(--font-serif);
+      font-weight: 700;
+    }
+
+    @media (max-width: 992px) {
+      .massage-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .massage-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGPU Canvas -->
+  <div class="background-canvas-container"></div>
+  <div class="volcanic-noise"></div>
+
+  <!-- FIXED LUXURY HEADER -->
+  <header class="header-nav">
+    <a href="index.html" class="nav-logo" aria-label="Piedra de Agua Logo">
+      <img src="media/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo">
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="sobre-nosotros.html" class="nav-item">Nosotros</a>
+      
+      <!-- Experiences Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#" class="nav-item active flex-center" style="gap: 0.25rem;">
+          Experiencias <i class="ph-bold ph-caret-down" style="font-size: 0.75rem;"></i>
+        </a>
+        <div class="nav-dropdown-content">
+          <a href="circuito-de-spa.html">Circuito de Spa</a>
+          <a href="roca-dorada.html">Roca Dorada</a>
+          <a href="tour-termal-subterraneo.html">Tour Subterráneo</a>
+          <a href="terapias-especiales.html">Terapias Especiales</a>
+          <a href="masajes-de-relajacion.html">Masajes de Relajación</a>
+          <a href="piscina-termal.html">Piscina Termal</a>
+          <a href="libelula-restaurante.html">Libélula Restaurante</a>
+        </div>
+      </div>
+      
+      <a href="tienda.html" class="nav-item">Tienda</a>
+      <a href="contactos.html" class="nav-item">Contactos</a>
+    </nav>
+
+    <!-- Header Actions (Search, Dark/Light Toggle, Cart) -->
+    <div class="header-utils">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
+        <i class="ph-bold ph-sun"></i>
+      </button>
+
+      <!-- Cart Drawer Trigger -->
+      <a href="tienda.html?cart=open" class="icon-btn" aria-label="Ver carrito">
+        <i class="ph-bold ph-shopping-bag-open"></i>
+        <span class="cart-badge">0</span>
+      </a>
+
+      <!-- Mobile Menu Trigger -->
+      <button class="menu-toggle icon-btn" aria-label="Abrir menú">
+        <i class="ph-bold ph-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main style="padding-top: 120px;">
+    
+    <!-- HERO SECTION -->
+    <section class="section-lux" style="padding-bottom: 1rem;">
+      <div class="container-lux text-center">
+        <span class="accent-title">Bienestar Volcánico</span>
+        <h1>Masajes de Relajación</h1>
+        <p style="max-width: 700px; margin: 1.5rem auto 0 auto;">
+          Déjese consentir por las manos expertas de nuestras terapistas en una gran variedad de masajes de relajación realizados dentro de acogedoras cuevas naturales.
+        </p>
+      </div>
+    </section>
+
+    <!-- FILTER TABS & MENU -->
+    <section class="section-lux" style="padding-top: 0; padding-bottom: 8rem;">
+      <div class="container-lux">
+        
+        <!-- Interactive Category Selectors -->
+        <div class="filter-tabs">
+          <button class="filter-tab active" onclick="filterCategory('all', this)">Todos</button>
+          <button class="filter-tab" onclick="filterCategory('relax', this)">Relajación</button>
+          <button class="filter-tab" onclick="filterCategory('special', this)">Especiales</button>
+          <button class="filter-tab" onclick="filterCategory('focal', this)">Focalizados</button>
+          <button class="filter-tab" onclick="filterCategory('hands', this)">A 4 Manos</button>
+          <button class="filter-tab" onclick="filterCategory('mask', this)">Mascarillas</button>
+        </div>
+
+        <!-- Massage Menu Catalog -->
+        <div class="massage-grid">
+          
+          <!-- Relaxation 25 -->
+          <div class="glass-card massage-card" data-category="relax">
+            <div class="massage-img-wrap">
+              <img src="media/imgi_39_MAS-REL25-P-400x533.webp" alt="Masaje Relajación 25 min">
+            </div>
+            <h3>Masaje de Relajación</h3>
+            <p class="massage-info">
+              Masaje corporal suave y armónico ideal para aliviar la fatiga muscular acumulada diaria, soltar nudos leves y calmar el cansancio.
+            </p>
+            <div class="massage-meta">
+              <span class="massage-duration"><i class="ph-bold ph-clock"></i> 25 Min.</span>
+              <span class="massage-price">$35.00</span>
+            </div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=masaje-relax-25" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem; width: 100%; margin-top: 1rem;">Reservar</a>
+          </div>
+
+          <!-- Relaxation 50 -->
+          <div class="glass-card massage-card" data-category="relax">
+            <div class="massage-img-wrap">
+              <img src="media/imgi_40_MAS-REL50-P-400x533.webp" alt="Masaje Relajación 50 min">
+            </div>
+            <h3>Masaje de Relajación</h3>
+            <p class="massage-info">
+              Tratamiento corporal extendido que abarca piernas, espalda, cuello y brazos. Restablece la soltura muscular profunda y aquieta el sistema nervioso.
+            </p>
+            <div class="massage-meta">
+              <span class="massage-duration"><i class="ph-bold ph-clock"></i> 50 Min.</span>
+              <span class="massage-price">$60.00</span>
+            </div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=masaje-relax-50" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem; width: 100%; margin-top: 1rem;">Reservar</a>
+          </div>
+
+          <!-- Geothermal -->
+          <div class="glass-card massage-card" data-category="special">
+            <div class="massage-img-wrap">
+              <img src="media/imgi_41_MAS-GEO-P-400x533.webp" alt="Masaje Geotermal">
+            </div>
+            <h3>Masaje Geotermal</h3>
+            <p class="massage-info">
+              Terapia mística utilizando piedras volcánicas calientes colocadas en puntos energéticos clave. El calor de la piedra alivia la rigidez y desinflama.
+            </p>
+            <div class="massage-meta">
+              <span class="massage-duration"><i class="ph-bold ph-clock"></i> 50 Min.</span>
+              <span class="massage-price">$75.00</span>
+            </div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=masaje-geotermal" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem; width: 100%; margin-top: 1rem;">Reservar</a>
+          </div>
+
+          <!-- Candlemelt -->
+          <div class="glass-card massage-card" data-category="special">
+            <div class="massage-img-wrap">
+              <img src="media/imgi_42_MAS-VEL-P-400x533.webp" alt="Masaje con Velas">
+            </div>
+            <h3>Masaje con Velas Calientes</h3>
+            <p class="massage-info">
+              Realizado con cera derretida tibia de velas cosméticas de manteca de karité y soja. Ofrece una hidratación sublime y fragancias sumamente relajantes.
+            </p>
+            <div class="massage-meta">
+              <span class="massage-duration"><i class="ph-bold ph-clock"></i> 50 Min.</span>
+              <span class="massage-price">$70.00</span>
+            </div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=masaje-velas" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem; width: 100%; margin-top: 1rem;">Reservar</a>
+          </div>
+
+          <!-- Aromatherapy -->
+          <div class="glass-card massage-card" data-category="special">
+            <div class="massage-img-wrap">
+              <img src="media/imgi_43_MAS-ARO-P-400x533.webp" alt="Aromaterapia">
+            </div>
+            <h3>Masaje de Aromaterapia</h3>
+            <p class="massage-info">
+              Integración de pases relajantes manuales con aceites esenciales destilados de lavanda, romero o menta para reequilibrar emociones y cuerpo.
+            </p>
+            <div class="massage-meta">
+              <span class="massage-duration"><i class="ph-bold ph-clock"></i> 50 Min.</span>
+              <span class="massage-price">$65.00</span>
+            </div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=masaje-aroma" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem; width: 100%; margin-top: 1rem;">Reservar</a>
+          </div>
+
+          <!-- 4 hands 25 -->
+          <div class="glass-card massage-card" data-category="hands">
+            <div class="massage-img-wrap">
+              <img src="media/imgi_36_MAS-4MAN25-P-400x533.webp" alt="4 Manos 25 min">
+            </div>
+            <h3>Masaje a 4 Manos</h3>
+            <p class="massage-info">
+              Terapia coordinada al unísono por dos terapeutas expertas. Ofrece un estímulo rítmico doble que confunde al cerebro induciendo soltura inmediata.
+            </p>
+            <div class="massage-meta">
+              <span class="massage-duration"><i class="ph-bold ph-clock"></i> 25 Min.</span>
+              <span class="massage-price">$65.00</span>
+            </div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=masaje-4manos-25" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem; width: 100%; margin-top: 1rem;">Reservar</a>
+          </div>
+
+          <!-- 4 hands 50 -->
+          <div class="glass-card massage-card" data-category="hands">
+            <div class="massage-img-wrap">
+              <img src="media/imgi_37_MAS-4MAN50-P-400x533.webp" alt="4 Manos 50 min">
+            </div>
+            <h3>Masaje a 4 Manos</h3>
+            <p class="massage-info">
+              Itinerario completo coordinado por dos terapeutas sincronizadas. Un lujo de relajación física y neurológica para resetear cuerpo y mente.
+            </p>
+            <div class="massage-meta">
+              <span class="massage-duration"><i class="ph-bold ph-clock"></i> 50 Min.</span>
+              <span class="massage-price">$110.00</span>
+            </div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=masaje-4manos-50" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem; width: 100%; margin-top: 1rem;">Reservar</a>
+          </div>
+
+          <!-- Facial mask -->
+          <div class="glass-card massage-card" data-category="mask">
+            <div class="massage-img-wrap">
+              <img src="media/imgi_38_MAS-MASC-P-400x533.webp" alt="Mascarilla facial">
+            </div>
+            <h3>Mascarilla Facial Termal</h3>
+            <p class="massage-info">
+              Tratamiento facial con aplicación de arcilla termal roja o azul purificada. Remineraliza, exfolia suavemente, nutre y otorga brillo a la piel del rostro.
+            </p>
+            <div class="massage-meta">
+              <span class="massage-duration"><i class="ph-bold ph-clock"></i> 25 Min.</span>
+              <span class="massage-price">$25.00</span>
+            </div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=mascarilla-facial" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem; width: 100%; margin-top: 1rem;">Reservar</a>
+          </div>
+
+          <!-- Craniofacial -->
+          <div class="glass-card massage-card" data-category="focal">
+            <div class="massage-img-wrap">
+              <img src="media/imgi_35_MAS-CRA-P-400x533.webp" alt="Masaje craneofacial">
+            </div>
+            <h3>Masaje Craneofacial</h3>
+            <p class="massage-info">
+              Masaje concentrado en la cabeza, sienes, cuello y hombros. Excelente para disipar migrañas, aliviar el bruxismo y relajar tensiones por estrés.
+            </p>
+            <div class="massage-meta">
+              <span class="massage-duration"><i class="ph-bold ph-clock"></i> 25 Min.</span>
+              <span class="massage-price">$30.00</span>
+            </div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=masaje-craneo" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem; width: 100%; margin-top: 1rem;">Reservar</a>
+          </div>
+
+          <!-- Foot massage -->
+          <div class="glass-card massage-card" data-category="focal">
+            <div class="massage-img-wrap">
+              <img src="media/imgi_44_MAS-FOOT-P-400x533.webp" alt="Foot massage">
+            </div>
+            <h3>Foot Reflexology</h3>
+            <p class="massage-info">
+              Masaje focalizado en puntos de reflexología del pie empleando aceites esenciales. Alivia el cansancio de piernas y promueve una relajación general.
+            </p>
+            <div class="massage-meta">
+              <span class="massage-duration"><i class="ph-bold ph-clock"></i> 25 Min.</span>
+              <span class="massage-price">$30.00</span>
+            </div>
+            <a href="https://piedradeagua.com.ec/whatsappreservas?service=masaje-pies" target="_blank" class="btn-lux" style="font-size: 0.7rem; padding: 0.65rem; width: 100%; margin-top: 1rem;">Reservar</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="footer-lux">
+    <div class="container-lux footer-grid">
+      <div class="footer-col">
+        <img src="media/imgi_1_Piedra-de-Agua-Logo-Dorado-500.png" alt="Piedra de Agua Logo" style="height: 55px; margin-bottom: 1.5rem;">
+        <p style="max-width: 320px;">
+          Piedra de Agua reúne y concentra servicios basados en agua, vapor y lodo termal de origen volcánico en un ambiente de relajación inigualable.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="tienda.html">Tienda de Spa</a></li>
+          <li><a href="contactos.html">Contactos & Reservas</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="circuito-de-spa.html">Circuito de Spa</a></li>
+          <li><a href="roca-dorada.html">Roca Dorada</a></li>
+          <li><a href="tour-termal-subterraneo.html">Tour Subterráneo</a></li>
+          <li><a href="libelula-restaurante.html">Libélula Restaurante</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Atendemos los 365 días del año (incluido feriados).</p>
+        <p style="font-weight: 500; color: var(--primary-gold); margin-bottom: 0.5rem;">
+          Lunes a Sábado: 07:00 - 22:00
+        </p>
+        <p style="font-weight: 500; color: var(--primary-gold);">
+          Domingos: 07:00 - 21:00
+        </p>
+      </div>
+    </div>
+    
+    <div class="container-lux footer-bottom">
+      <p>&copy; 2026 Piedra de Agua Fuente Termal & Spa. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="ph-bold ph-tiktok-logo" style="font-size: 1.25rem;"></i></a>
+        <a href="https://piedradeagua.com.ec/whatsappreservas" target="_blank" aria-label="WhatsApp"><i class="ph-bold ph-whatsapp-logo" style="font-size: 1.25rem;"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Utilities -->
+  <script>
+/* CORE UTILITY SCRIPTS */
+/* ==========================================
+   PIEDRA DE AGUA - CORE UTILITIES & ANIMATIONS (2026)
+   ========================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initHeader();
+  initCursor();
+  initBackgroundCanvas();
+  initMobileMenu();
+  initScrollAnimations();
+});
+
+/* ==========================================
+   1. THEME SWITCHER (DARK / LIGHT MODE)
+   ========================================== */
+function initTheme() {
+  const toggleBtn = document.getElementById('theme-toggle');
+  if (!toggleBtn) return;
+
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  updateThemeIcon(toggleBtn, currentTheme);
+
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.add('theme-transitioning');
+    
+    let theme = document.documentElement.getAttribute('data-theme');
+    let nextTheme = theme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    localStorage.setItem('theme', nextTheme);
+    updateThemeIcon(toggleBtn, nextTheme);
+    
+    setTimeout(() => {
+      document.body.classList.remove('theme-transitioning');
+    }, 850);
+  });
+}
+
+function updateThemeIcon(btn, theme) {
+  const icon = btn.querySelector('i');
+  if (!icon) return;
+  if (theme === 'light') {
+    icon.className = 'ph-bold ph-moon'; // Moon icon to switch to dark
+    btn.setAttribute('aria-label', 'Cambiar a modo oscuro');
+  } else {
+    icon.className = 'ph-bold ph-sun'; // Sun icon to switch to light
+    btn.setAttribute('aria-label', 'Cambiar a modo claro');
+  }
+}
+
+/* ==========================================
+   2. FIXED HEADER (SHRINK ON SCROLL)
+   ========================================== */
+function initHeader() {
+  const header = document.querySelector('header.header-nav');
+  if (!header) return;
+
+  const shrinkThreshold = 50;
+
+  // Modern CSS-based Scroll timeline detection or scroll event fallback
+  if (CSS.supports('(animation-timeline: scroll()) and (animation-range: 0% 100%)')) {
+    // We let the native CSS handle the shrink animation on scrollport
+    // However, to apply classes for state tracking we can also track scroll
+  }
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > shrinkThreshold) {
+      header.classList.add('shrink');
+    } else {
+      header.classList.remove('shrink');
+    }
+  });
+
+  // Check initial state
+  if (window.scrollY > shrinkThreshold) {
+    header.classList.add('shrink');
+  }
+}
+
+/* ==========================================
+   3. GEOMETRIC CURSOR FOLLOWER & DYNAMIC TEXT
+   ========================================== */
+function initCursor() {
+  // Disable custom cursor on touch devices
+  if (window.matchMedia('(max-width: 1024px)').matches) return;
+
+  const cursor = document.createElement('div');
+  cursor.className = 'custom-cursor';
+  document.body.appendChild(cursor);
+
+  const follower = document.createElement('div');
+  follower.className = 'custom-cursor-follower';
+  const followerText = document.createElement('span');
+  followerText.innerText = '';
+  follower.appendChild(followerText);
+  document.body.appendChild(follower);
+
+  let mouseX = 0, mouseY = 0;
+  let followerX = 0, followerY = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // Direct dot positioning
+    cursor.style.left = `${mouseX}px`;
+    cursor.style.top = `${mouseY}px`;
+  });
+
+  // Smooth lerp animation for the follower circle
+  function animateFollower() {
+    // Lerp factor = 0.12 for lag effect
+    followerX += (mouseX - followerX) * 0.12;
+    followerY += (mouseY - followerY) * 0.12;
+    
+    follower.style.left = `${followerX}px`;
+    follower.style.top = `${followerY}px`;
+    
+    requestAnimationFrame(animateFollower);
+  }
+  animateFollower();
+
+  // Hover triggers
+  const hoverables = document.querySelectorAll('a, button, .btn-lux, .glass-card, .hover-target');
+  
+  hoverables.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      document.body.classList.add('cursor-hover');
+      
+      // Look for custom text attributes
+      const text = el.getAttribute('data-cursor-text');
+      if (text) {
+        followerText.innerText = text;
+      } else {
+        followerText.innerText = '';
+      }
+    });
+
+    el.addEventListener('mouseleave', () => {
+      document.body.classList.remove('cursor-hover');
+      followerText.innerText = '';
+    });
+  });
+}
+
+/* ==========================================
+   4. MOBILE NAVIGATION DRAWER
+   ========================================== */
+function initMobileMenu() {
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav-links');
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    toggle.classList.toggle('active');
+  });
+
+  // Close when clicking a link
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      toggle.classList.remove('active');
+    });
+  });
+}
+
+/* ==========================================
+   5. WEBGPU / WEBGL LIQUID GLASS SHADER
+   ========================================== */
+function initBackgroundCanvas() {
+  const container = document.querySelector('.background-canvas-container');
+  if (!container) return;
+
+  const canvas = document.createElement('canvas');
+  container.appendChild(canvas);
+
+  let width = canvas.width = container.clientWidth;
+  let height = canvas.height = container.clientHeight;
+
+  let mouse = { x: width / 2, y: height / 2, targetX: width / 2, targetY: height / 2 };
+  
+  window.addEventListener('mousemove', (e) => {
+    mouse.targetX = e.clientX;
+    mouse.targetY = e.clientY;
+  });
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = container.clientWidth;
+    height = canvas.height = container.clientHeight;
+    if (gl) gl.viewport(0, 0, width, height);
+  });
+
+  // Track visibility using IntersectionObserver to auto-throttle and save CPU/battery
+  let isVisible = true;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isVisible = entry.isIntersecting;
+    });
+  }, { threshold: 0.1 });
+  observer.observe(canvas);
+
+  // Initialize WebGPU if available
+  if (navigator.gpu) {
+    initWebGPU(canvas);
+  } else {
+    initWebGLFallback(canvas);
+  }
+
+  /* --- WebGPU Renderer --- */
+  async function initWebGPU(canvasElement) {
+    try {
+      const adapter = await navigator.gpu.requestAdapter();
+      if (!adapter) {
+        throw new Error('No WebGPU adapter found');
+      }
+      const device = await adapter.requestDevice();
+      
+      const context = canvasElement.getContext('webgpu');
+      const format = navigator.gpu.getPreferredCanvasFormat();
+      
+      context.configure({
+        device: device,
+        format: format,
+        alphaMode: 'opaque'
+      });
+
+      // WGSL Shader code for smooth geothermal fluid waving
+      const wgslCode = `
+        struct Uniforms {
+          resolution: vec2<f32>,
+          mouse: vec2<f32>,
+          time: f32,
+          is_light_mode: f32,
+        }
+
+        @group(0) @binding(0) var<uniform> uniforms : Uniforms;
+
+        struct VertexOutput {
+          @builtin(position) position: vec4<f32>,
+          @location(0) uv: vec2<f32>,
+        }
+
+        @vertex
+        fn vs_main(@builtin(vertex_index) vertexIndex: u32) -> VertexOutput {
+          var pos = array<vec2<f32>, 4>(
+            vec2<f32>(-1.0, -1.0),
+            vec2<f32>(1.0, -1.0),
+            vec2<f32>(-1.0, 1.0),
+            vec2<f32>(1.0, 1.0)
+          );
+          
+          var uv = array<vec2<f32>, 4>(
+            vec2<f32>(0.0, 1.0),
+            vec2<f32>(1.0, 1.0),
+            vec2<f32>(0.0, 0.0),
+            vec2<f32>(1.0, 0.0)
+          );
+          
+          var out: VertexOutput;
+          out.position = vec4<f32>(pos[vertexIndex], 0.0, 1.0);
+          out.uv = uv[vertexIndex];
+          return out;
+        }
+
+        @fragment
+        fn fs_main(@location(0) uv: vec2<f32>) -> @location(0) vec4<f32> {
+          let time = uniforms.time * 0.15;
+          let p = (uv * 2.0 - 1.0) * vec2<f32>(uniforms.resolution.x / uniforms.resolution.y, 1.0);
+          
+          // Geothermal fluid waving
+          var coord = p;
+          for (var i = 1; i < 5; i = i + 1) {
+            let f = f32(i);
+            coord.x += 0.3 / f * sin(f * coord.y + time + uniforms.mouse.x * 0.002) + 0.5;
+            coord.y += 0.3 / f * cos(f * coord.x + time + uniforms.mouse.y * 0.002) - 0.5;
+          }
+          
+          let pattern = sin(coord.x + coord.y);
+          
+          // Map to volcanic gold and mineral blues
+          var dark_color = mix(
+            vec3<f32>(0.039, 0.035, 0.031), // Deep Volcanic Obsidian
+            vec3<f32>(0.08, 0.14, 0.18),    // Geothermal Mineral Blue
+            clamp(pattern * 0.5 + 0.5, 0.0, 1.0)
+          );
+          
+          // Add a warm gold accent glow matching time and coordinate
+          let gold_accent = vec3<f32>(0.83, 0.68, 0.21) * 0.18 * max(0.0, sin(p.x * 1.5 + time) * cos(p.y * 2.0 - time));
+          dark_color += gold_accent;
+          
+          // Light Mode Colors (Soft sand/clay and shallow pool water)
+          var light_color = mix(
+            vec3<f32>(0.96, 0.95, 0.925),   // Soft Sand
+            vec3<f32>(0.85, 0.90, 0.92),    // Shallow Mineral Blue
+            clamp(pattern * 0.4 + 0.6, 0.0, 1.0)
+          );
+          let light_gold_accent = vec3<f32>(0.63, 0.45, 0.17) * 0.06 * max(0.0, sin(p.x * 1.5 - time));
+          light_color += light_gold_accent;
+          
+          var final_color = mix(dark_color, light_color, uniforms.is_light_mode);
+          return vec4<f32>(final_color, 1.0);
+        }
+      `;
+
+      const shaderModule = device.createShaderModule({ code: wgslCode });
+
+      // Uniform buffer setup
+      const uniformBufferSize = 6 * 4; // 6 floats
+      const uniformBuffer = device.createBuffer({
+        size: uniformBufferSize,
+        usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
+      });
+
+      const bindGroupLayout = device.createBindGroupLayout({
+        entries: [{
+          binding: 0,
+          visibility: GPUShaderStage.FRAGMENT,
+          buffer: { type: 'uniform' }
+        }]
+      });
+
+      const bindGroup = device.createBindGroup({
+        layout: bindGroupLayout,
+        entries: [{
+          binding: 0,
+          resource: { buffer: uniformBuffer }
+        }]
+      });
+
+      const pipelineLayout = device.createPipelineLayout({
+        bindGroupLayouts: [bindGroupLayout]
+      });
+
+      const pipeline = device.createRenderPipeline({
+        layout: pipelineLayout,
+        vertex: {
+          module: shaderModule,
+          entryPoint: 'vs_main'
+        },
+        fragment: {
+          module: shaderModule,
+          entryPoint: 'fs_main',
+          targets: [{ format: format }]
+        },
+        primitive: {
+          topology: 'triangle-strip',
+          stripIndexFormat: undefined
+        }
+      });
+
+      // Data array representation
+      const uniformData = new Float32Array(6);
+
+      function renderFrame(now) {
+        if (!isVisible) {
+          requestAnimationFrame(renderFrame);
+          return;
+        }
+
+        // Interpolate mouse
+        mouse.x += (mouse.targetX - mouse.x) * 0.05;
+        mouse.y += (mouse.targetY - mouse.y) * 0.05;
+
+        // Is light mode check
+        const isLightMode = document.documentElement.getAttribute('data-theme') === 'light' ? 1.0 : 0.0;
+
+        uniformData[0] = width;
+        uniformData[1] = height;
+        uniformData[2] = mouse.x;
+        uniformData[3] = mouse.y;
+        uniformData[4] = now * 0.001; // seconds
+        uniformData[5] = isLightMode;
+
+        device.queue.writeBuffer(uniformBuffer, 0, uniformData.buffer);
+
+        const commandEncoder = device.createCommandEncoder();
+        const textureView = context.getCurrentTexture().createView();
+
+        const renderPassDescriptor = {
+          colorAttachments: [{
+            view: textureView,
+            clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
+            loadOp: 'clear',
+            storeOp: 'store'
+          }]
+        };
+
+        const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor);
+        passEncoder.setPipeline(pipeline);
+        passEncoder.setBindGroup(0, bindGroup);
+        passEncoder.draw(4, 1, 0, 0);
+        passEncoder.end();
+
+        device.queue.submit([commandEncoder.finish()]);
+
+        requestAnimationFrame(renderFrame);
+      }
+
+      requestAnimationFrame(renderFrame);
+      console.log('WebGPU Background Shader Initialized');
+
+    } catch (e) {
+      console.warn('WebGPU failed, falling back to WebGL:', e);
+      initWebGLFallback(canvasElement);
+    }
+  }
+
+  /* --- WebGL Fallback Renderer --- */
+  let gl;
+  function initWebGLFallback(canvasElement) {
+    gl = canvasElement.getContext('webgl') || canvasElement.getContext('experimental-webgl');
+    if (!gl) {
+      console.warn('WebGL not supported, using simple CSS fallback');
+      canvasElement.style.display = 'none';
+      return;
+    }
+
+    const vsSource = `
+      attribute vec2 position;
+      varying vec2 vUv;
+      void main() {
+        vUv = position * 0.5 + 0.5;
+        gl_Position = vec4(position, 0.0, 1.0);
+      }
+    `;
+
+    const fsSource = `
+      precision highp float;
+      varying vec2 vUv;
+      uniform vec2 uResolution;
+      uniform vec2 uMouse;
+      uniform float uTime;
+      uniform float uIsLightMode;
+
+      void main() {
+        float time = uTime * 0.15;
+        vec2 p = (vUv * 2.0 - 1.0) * vec2(uResolution.x / uResolution.y, 1.0);
+        
+        vec2 coord = p;
+        for (int i = 1; i < 5; i++) {
+          float f = float(i);
+          coord.x += 0.3 / f * sin(f * coord.y + time + uMouse.x * 0.002) + 0.5;
+          coord.y += 0.3 / f * cos(f * coord.x + time + uMouse.y * 0.002) - 0.5;
+        }
+        
+        float pattern = sin(coord.x + coord.y);
+        
+        // Dark Mode
+        vec3 dark_color = mix(
+          vec3(0.039, 0.035, 0.031),
+          vec3(0.08, 0.14, 0.18),
+          clamp(pattern * 0.5 + 0.5, 0.0, 1.0)
+        );
+        vec3 gold_accent = vec3(0.83, 0.68, 0.21) * 0.18 * max(0.0, sin(p.x * 1.5 + time) * cos(p.y * 2.0 - time));
+        dark_color += gold_accent;
+        
+        // Light Mode
+        vec3 light_color = mix(
+          vec3(0.96, 0.95, 0.925),
+          vec3(0.85, 0.90, 0.92),
+          clamp(pattern * 0.4 + 0.6, 0.0, 1.0)
+        );
+        vec3 light_gold_accent = vec3(0.63, 0.45, 0.17) * 0.06 * max(0.0, sin(p.x * 1.5 - time));
+        light_color += light_gold_accent;
+        
+        vec3 final_color = mix(dark_color, light_color, uIsLightMode);
+        gl_FragColor = vec4(final_color, 1.0);
+      }
+    `;
+
+    function compileShader(source, type) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error('Shader compilation error:', gl.getShaderInfoLog(shader));
+        gl.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+
+    const vertexShader = compileShader(vsSource, gl.VERTEX_SHADER);
+    const fragmentShader = compileShader(fsSource, gl.FRAGMENT_SHADER);
+    if (!vertexShader || !fragmentShader) return;
+
+    const program = gl.createProgram();
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      console.error('Shader program linking error:', gl.getProgramInfoLog(program));
+      return;
+    }
+
+    const vertices = new Float32Array([
+      -1, -1,
+       1, -1,
+      -1,  1,
+      -1,  1,
+       1, -1,
+       1,  1
+    ]);
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+    const positionLocation = gl.getAttribLocation(program, 'position');
+    gl.enableVertexAttribArray(positionLocation);
+    gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+    const resolutionLocation = gl.getUniformLocation(program, 'uResolution');
+    const mouseLocation = gl.getUniformLocation(program, 'uMouse');
+    const timeLocation = gl.getUniformLocation(program, 'uTime');
+    const isLightModeLocation = gl.getUniformLocation(program, 'uIsLightMode');
+
+    gl.useProgram(program);
+
+    function renderWebGL(now) {
+      if (!isVisible) {
+        requestAnimationFrame(renderWebGL);
+        return;
+      }
+
+      mouse.x += (mouse.targetX - mouse.x) * 0.05;
+      mouse.y += (mouse.targetY - mouse.y) * 0.05;
+
+      const isLightMode = document.documentElement.getAttribute('data-theme') === 'light' ? 1.0 : 0.0;
+
+      gl.uniform2f(resolutionLocation, width, height);
+      gl.uniform2f(mouseLocation, mouse.x, mouse.y);
+      gl.uniform1f(timeLocation, now * 0.001);
+      gl.uniform1f(isLightModeLocation, isLightMode);
+
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      requestAnimationFrame(renderWebGL);
+    }
+
+    gl.viewport(0, 0, width, height);
+    requestAnimationFrame(renderWebGL);
+    console.log('WebGL Fallback Shader Initialized');
+  }
+}
+
+/* ==========================================
+   6. GSAP PREMIUM SCROLL-TRIGGERED ANIMATIONS
+   ========================================== */
+function initScrollAnimations() {
+  if (typeof gsap === 'undefined') return;
+
+  // Register ScrollTrigger plugin if available
+  if (typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+
+  // Hero content animation
+  gsap.from('.hero-content-wrap', {
+    opacity: 0,
+    y: 50,
+    duration: 1.4,
+    ease: 'power4.out',
+    delay: 0.1
+  });
+
+  // Animated elements on scroll
+  const animateOnScroll = (elements, yOffset = 40, duration = 1.0) => {
+    gsap.utils.toArray(elements).forEach(el => {
+      // Basic check to ensure the element exists
+      if (!el) return;
+
+      const animationParams = {
+        opacity: 0,
+        y: yOffset,
+        duration: duration,
+        ease: 'power3.out'
+      };
+
+      // If ScrollTrigger is loaded, attach it, otherwise run on load
+      if (typeof ScrollTrigger !== 'undefined') {
+        animationParams.scrollTrigger = {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none reverse'
+        };
+      }
+
+      gsap.from(el, animationParams);
+    });
+  };
+
+  // Animate sections and cards on scroll
+  animateOnScroll('.glass-card', 30, 0.85);
+  animateOnScroll('.circuit-card', 40, 1.0);
+  animateOnScroll('.step-row', 50, 1.0);
+  animateOnScroll('.split-image-panel', 45, 1.1);
+  animateOnScroll('.award-card', 30, 0.9);
+  animateOnScroll('.grid-3 > div, .grid-4 > div', 35, 0.9);
+  animateOnScroll('section h2, section .accent-title', 25, 0.8);
+
+  // Parallax scroll effects for hero and stats background images
+  if (typeof ScrollTrigger !== 'undefined') {
+    const heroBg = document.querySelector('.hero-bg-image');
+    if (heroBg) {
+      gsap.to(heroBg, {
+        yPercent: 18,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero-home',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    }
+
+    const statsBg = document.querySelector('.stats-bg-image');
+    if (statsBg) {
+      gsap.fromTo(statsBg, 
+        { yPercent: -10 },
+        {
+          yPercent: 10,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.stats-section',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        }
+      );
+    }
+  }
+}
+
+</script>
+  
+  <script>
+    // Live filter function
+    function filterCategory(category, tabBtn) {
+      // Manage active tab class
+      document.querySelectorAll('.filter-tab').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      tabBtn.classList.add('active');
+
+      // Manage visible cards
+      document.querySelectorAll('.massage-card').forEach(card => {
+        const itemCat = card.getAttribute('data-category');
+        if (category === 'all' || itemCat === category) {
+          card.style.display = 'flex';
+          // trigger layout entry transitions
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1)';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
