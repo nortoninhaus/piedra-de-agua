@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Piedra de Agua | Fuente Termal & Spa | Cuenca Ecuador</title>
+  <title>Sobre Nosotros | Piedra de Agua Fuente Termal & Spa</title>
   
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Piedra de Agua reúne y concentra servicios basados en agua, vapor y lodo termal de origen volcánico en un ambiente de relajación único en Cuenca, Ecuador.">
+  <meta name="description" content="Descubra la historia, valores y prestigiosos premios mundiales de Piedra de Agua, el Spa Termal volcánico pionero en Cuenca, Ecuador.">
   
   <!-- Libraries (CDNs) -->
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
@@ -815,303 +815,83 @@ footer.footer-lux {
 </style>
   
   <style>
-    /* Hero Section Specifics */
-    .hero-home {
-      min-height: 100vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding-top: 120px;
-      overflow: hidden;
-    }
-
-    .hero-bg-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-      filter: brightness(0.55) saturate(1.1);
-      transition: transform 12s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .hero-home:hover .hero-bg-image {
-      transform: scale(1.04);
-    }
-
-    [data-theme="light"] .hero-bg-image {
-      filter: brightness(0.6) saturate(1.15);
-    }
-
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-      background: linear-gradient(
-        180deg,
-        rgba(10, 9, 8, 0.35) 0%,
-        rgba(10, 9, 8, 0.15) 40%,
-        rgba(10, 9, 8, 0.55) 100%
-      );
-      pointer-events: none;
-    }
-
-    [data-theme="light"] .hero-overlay {
-      background: linear-gradient(
-        180deg,
-        rgba(246, 242, 236, 0.25) 0%,
-        rgba(246, 242, 236, 0.05) 40%,
-        rgba(246, 242, 236, 0.45) 100%
-      );
-    }
-
-    .hero-content-wrap {
-      max-width: 800px;
-      z-index: 10;
-    }
-
-    .hero-home .hero-content-wrap {
-      color: #fff;
-    }
-
-    .hero-home .hero-content-wrap h1 {
-      color: #fff;
-      text-shadow: 0 2px 30px rgba(0,0,0,0.3);
-    }
-
-    .hero-home .hero-content-wrap p {
-      color: rgba(255,255,255,0.85);
-    }
-
-    .hero-home .hero-content-wrap .accent-title {
-      color: var(--primary-gold);
-      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
-    }
-
-    /* Stats Section with Background */
-    .stats-section {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stats-bg-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-      filter: brightness(0.3) saturate(0.9);
-    }
-
-    [data-theme="light"] .stats-bg-image {
-      filter: brightness(0.35) saturate(1.0);
-    }
-
-    .stats-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      background: linear-gradient(
-        180deg,
-        rgba(10, 9, 8, 0.5) 0%,
-        rgba(10, 9, 8, 0.35) 50%,
-        rgba(10, 9, 8, 0.6) 100%
-      );
-      pointer-events: none;
-    }
-
-    [data-theme="light"] .stats-overlay {
-      background: linear-gradient(
-        180deg,
-        rgba(246, 242, 236, 0.35) 0%,
-        rgba(246, 242, 236, 0.2) 50%,
-        rgba(246, 242, 236, 0.4) 100%
-      );
-    }
-
-    .stats-section .container-lux {
-      position: relative;
-      z-index: 2;
-    }
-
-    .stats-section .glass-card {
-      background: rgba(10, 9, 8, 0.55);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .stats-section .glass-card h3,
-    .stats-section .glass-card p {
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .stats-section .glass-card p {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    [data-theme="light"] .stats-section .glass-card {
-      background: rgba(255, 255, 255, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    [data-theme="light"] .stats-section .glass-card h3 {
-      color: var(--text-main);
-    }
-
-    [data-theme="light"] .stats-section .glass-card p {
-      color: var(--text-muted);
-    }
-
-    /* Circuito Teasers */
-    .circuit-card {
-      position: relative;
-      height: 480px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+    /* Award Item Styles */
+    .award-card {
       padding: 2rem;
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: pointer;
-      background: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    .circuit-card .card-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
       transition: var(--transition-smooth);
-      filter: saturate(0.85) brightness(0.6);
-    }
-
-    .circuit-card:hover .card-bg {
-      transform: scale(1.08);
-      filter: saturate(1.1) brightness(0.7);
-    }
-
-    .circuit-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 60%;
-      background: linear-gradient(to top, rgba(10,9,8,0.9) 0%, transparent 100%);
-      z-index: -1;
-    }
-
-    .circuit-card h3 {
-      font-size: 1.85rem;
-      margin-bottom: 0.5rem;
-      color: #fff;
     }
     
-    .circuit-card p {
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.75);
-      margin-bottom: 1.5rem;
+    .award-card img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      transition: var(--transition-smooth);
     }
-
-    /* Special features icons list */
-    .feature-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
+    
+    .award-card:hover img {
+      transform: scale(1.1) rotate(5deg);
     }
-
-    .feature-tag {
+    
+    .award-card h3 {
+      font-size: 1.35rem;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .award-card span.year {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      background: var(--primary-gold);
+      color: var(--bg-base);
+      font-weight: 700;
       font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.35rem 0.75rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 30px;
-      color: #fff;
-      backdrop-filter: blur(5px);
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
     }
 
-    /* Floating Image Block */
-    .split-image-panel {
-      position: relative;
-      border-radius: 24px;
+    [data-theme="light"] .award-card span.year {
+      color: #fff;
+    }
+
+    /* Collage style grid for heritage gallery */
+    .collage-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(12, 1fr);
+      gap: 1rem;
+      height: 600px;
+    }
+    
+    .collage-item {
+      border-radius: 16px;
       overflow: hidden;
       box-shadow: var(--shadow-lux);
     }
-
-    .split-image-panel img {
+    
+    .collage-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
+    
+    .item-1 { grid-column: 1 / 8; grid-row: 1 / 8; }
+    .item-2 { grid-column: 8 / 13; grid-row: 1 / 6; }
+    .item-3 { grid-column: 1 / 6; grid-row: 8 / 13; }
+    .item-4 { grid-column: 6 / 13; grid-row: 6 / 13; }
 
-    .split-image-panel::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      pointer-events: none;
-    }
-
-    /* Product Horizontal Scroller */
-    .scroller-wrapper {
-      position: relative;
-      overflow-x: auto;
-      display: flex;
-      gap: 2rem;
-      padding: 1.5rem 0;
-      scroll-snap-type: x mandatory;
-    }
-
-    .scroller-wrapper::-webkit-scrollbar {
-      height: 6px;
-    }
-
-    .scroller-wrapper::-webkit-scrollbar-thumb {
-      background: var(--border-glass-simple);
-      border-radius: 10px;
-    }
-
-    .product-scroller-card {
-      min-width: 320px;
-      flex: 0 0 320px;
-      scroll-snap-align: start;
-    }
-
-    /* Section highlight block */
-    .banner-cta-block {
-      background: linear-gradient(135deg, rgba(var(--primary-gold-rgb), 0.08) 0%, rgba(var(--mineral-blue-rgb), 0.05) 100%);
-      border-radius: 32px;
-      padding: 4rem;
-      border: 1px solid var(--border-glass-simple);
-      margin-top: 4rem;
-    }
-
-    @media(max-width:768px) {
-      .banner-cta-block {
-        padding: 2rem;
+    @media (max-width: 768px) {
+      .collage-grid {
+        height: 350px;
+        gap: 0.5rem;
+      }
+      .award-card {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -1130,8 +910,8 @@ footer.footer-lux {
 
     <!-- Desktop Navigation Links -->
     <nav class="nav-links">
-      <a href="index.html" class="nav-item active">Home</a>
-      <a href="sobre-nosotros.html" class="nav-item">Nosotros</a>
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="sobre-nosotros.html" class="nav-item active">Nosotros</a>
       
       <!-- Experiences Dropdown -->
       <div class="nav-dropdown">
@@ -1174,248 +954,165 @@ footer.footer-lux {
   </header>
 
   <!-- MAIN LAYOUT -->
-  <main>
+  <main style="padding-top: 120px;">
     
     <!-- HERO SECTION -->
-    <section class="hero-home section-lux">
-      <img class="hero-bg-image" src="https://assets.cdn.filesafe.space/vKgJmIGrNvX9v3gNSYZc/media/6a20f5e3da24932f12014c9a.webp" alt="Piedra de Agua Spa Termal Hero" loading="eager" fetchpriority="high">
-      <div class="hero-overlay"></div>
-      <div class="container-lux" style="position: relative; z-index: 5;">
-        <div class="hero-content-wrap glass-card" style="padding: 3.5rem; max-width: 680px; background: rgba(10,9,8,0.45); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.1);">
-          <span class="accent-title">Piedra de Agua Fuente Termal & Spa</span>
-          <h1>Relájese, respire y renueve su energía</h1>
-          <p style="margin: 1.5rem 0 2.5rem 0;">
-            El único Spa Termal en Cuenca desarrollado sobre una vertiente de agua caliente e impresionantes cuevas subterráneas de origen volcánico. Un regalo para el cuerpo y los sentidos.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 1.25rem;">
-            <a href="tienda.html" class="btn-lux" data-cursor-text="Ver Tienda" style="border-color: var(--primary-gold); color: #fff;">Reservar Cita</a>
-            <a href="#experiencias" class="btn-lux btn-lux-secondary" data-cursor-text="Explorar" style="border-color: rgba(255,255,255,0.25); color: #fff;">Ver Circuitos</a>
-          </div>
-        </div>
+    <section class="section-lux" style="padding-bottom: 2rem;">
+      <div class="container-lux text-center">
+        <span class="accent-title">Un santuario volcánico</span>
+        <h1>Nuestra Historia</h1>
+        <p style="max-width: 700px; margin: 1.5rem auto 0 auto;">
+          Conozca la historia detrás del único spa subterráneo tallado en roca volcánica activa de Cuenca, galardonado a nivel internacional.
+        </p>
       </div>
     </section>
 
-    <!-- STATS / UNIQUE VALUES -->
-    <section class="section-lux" style="padding-top: 2rem; padding-bottom: 2rem;">
-      <div class="container-lux">
-        <div class="grid-3" style="text-align: center;">
-          <div class="glass-card" style="padding: 2.5rem 1.5rem;">
-            <i class="ph-bold ph-thermometer" style="font-size: 2.5rem; color: var(--clay-red); margin-bottom: 1rem;"></i>
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-sans); font-weight: 500;">Vertiente Volcánica</h3>
-            <p>Aguas termales ricas en minerales a temperaturas ideales para la salud y relajación corporal.</p>
-          </div>
-          <div class="glass-card" style="padding: 2.5rem 1.5rem;">
-            <i class="ph-bold ph-sparkles" style="font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 1rem;"></i>
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-sans); font-weight: 500;">Lodoterapia Activa</h3>
-            <p>Tratamientos purificantes a base de lodo rojo, azul y cenizo de origen natural volcánico.</p>
-          </div>
-          <div class="glass-card" style="padding: 2.5rem 1.5rem;">
-            <i class="ph-bold ph-mountains" style="font-size: 2.5rem; color: var(--mineral-blue); margin-bottom: 1rem;"></i>
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-sans); font-weight: 500;">Cuevas Subterráneas</h3>
-            <p>Terapias místicas realizadas en cámaras de piedra y roca talladas bajo tierra en un clima mágico.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CORE EXPERIENCES / CIRCUITS -->
-    <section id="experiencias" class="section-lux">
-      <div class="container-lux">
-        <div class="text-center" style="margin-bottom: 4rem;">
-          <span class="accent-title">Experiencias de Relajación</span>
-          <h2>Nuestros Cuatro Circuitos Principales</h2>
-          <p style="max-width: 600px; margin: 1rem auto 0 auto;">
-            Cuatro formas de experimentar el poder sanador del agua termal y los lodos volcánicos, diseñadas para brindarle una renovación completa.
-          </p>
-        </div>
-
-        <div class="grid-2">
-          <!-- Circuito 1: El Club Termal -->
-          <div class="circuit-card glass-card" onclick="location.href='circuito-de-spa.html'" data-cursor-text="El Club">
-            <img class="card-bg" src="media/imgi_20_Home-Club-Termal.webp" alt="El Club Termal">
-            <h3>El Club Termal</h3>
-            <p>Un espacio de diseño impecable donde tratamientos termales y minerales de origen volcánico revitalizan cuerpo y alma.</p>
-            <div class="feature-tags">
-              <span class="feature-tag">Lodos Rojo & Azul</span>
-              <span class="feature-tag">Piscina Interior</span>
-              <span class="feature-tag">Baños de Cajón</span>
-              <span class="feature-tag">Vapor</span>
-            </div>
-            <a href="circuito-de-spa.html" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
-          </div>
-
-          <!-- Circuito 2: Roca Dorada -->
-          <div class="circuit-card glass-card" onclick="location.href='roca-dorada.html'" data-cursor-text="Roca Dorada">
-            <img class="card-bg" src="media/imgi_21_Home-RocaDorada.webp" alt="Roca Dorada">
-            <h3>Roca Dorada</h3>
-            <p>Terapias de relajación y bienestar de diferentes partes del mundo, desarrolladas en un lujoso espacio subterráneo.</p>
-            <div class="feature-tags">
-              <span class="feature-tag">Hammam</span>
-              <span class="feature-tag">Lodo Cenizo</span>
-              <span class="feature-tag">Micro Lluvia</span>
-              <span class="feature-tag">Sales Minerales</span>
-            </div>
-            <a href="roca-dorada.html" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
-          </div>
-
-          <!-- Circuito 3: Tour Termal Subterráneo -->
-          <div class="circuit-card glass-card" onclick="location.href='tour-termal-subterraneo.html'" data-cursor-text="Tour Cueva">
-            <img class="card-bg" src="media/imgi_33_Home-TourTermal.webp" alt="Tour Termal Subterráneo">
-            <h3>Tour Termal Subterráneo</h3>
-            <p>Una experiencia mágica e inolvidable desarrollada en una cueva natural subterránea ambientada con velas y esencias.</p>
-            <div class="feature-tags">
-              <span class="feature-tag">Cueva de Velas</span>
-              <span class="feature-tag">Contraste Térmico</span>
-              <span class="feature-tag">Sales & Café</span>
-              <span class="feature-tag">Mudpacks</span>
-            </div>
-            <a href="tour-termal-subterraneo.html" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
-          </div>
-
-          <!-- Circuito 4: Circuito de Spa Exterior -->
-          <div class="circuit-card glass-card" onclick="location.href='circuito-de-spa.html#exterior'" data-cursor-text="Circuito Ext">
-            <img class="card-bg" src="media/imgi_35_Home-Spa.webp" alt="Circuito de Spa Exterior">
-            <h3>Circuito de Spa Exterior</h3>
-            <p>Relajación única al aire libre donde su piel y cuerpo se beneficiarán de las propiedades de nuestros lodos termales.</p>
-            <div class="feature-tags">
-              <span class="feature-tag">Piscinas Exteriores</span>
-              <span class="feature-tag">Termas Contraste</span>
-              <span class="feature-tag">Vapor Eucalipto</span>
-            </div>
-            <a href="circuito-de-spa.html#exterior" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HERITAGE & WORLD AWARDS -->
-    <section class="section-lux" style="background: rgba(var(--bg-base-rgb), 0.3);">
+    <!-- COMPANY PROFILE & COLLAGE -->
+    <section class="section-lux" style="padding-top: 2rem; padding-bottom: 6rem;">
       <div class="container-lux grid-2">
-        <div class="split-image-panel" style="height: 550px;">
-          <img src="media/imgi_47_Banner-2-Tour-Termal-Subterraneo-1920x920-1.jpg" alt="Thermal Spa Experience">
-        </div>
-        <div>
-          <span class="accent-title">Nuestro Origen</span>
-          <h2>Spa del Año en Norte y Sudamérica</h2>
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <span class="accent-title">Establecido en 2008</span>
+          <h2>Un regalo para el cuerpo y los sentidos</h2>
           <p style="margin: 1.5rem 0;">
-            Ganadores del prestigioso premio <strong>World Spa & Wellness Awards</strong>, reconocidos mundialmente por nuestro aprovechamiento sostenible y de lujo de aguas volcánicas subterráneas.
+            Piedra de Agua, Fuente Termal & Spa, es una empresa ecuatoriana que desde el año 2008 se especializa en ofrecer tratamientos de salud, bienestar y descanso utilizando agua, lodos y vapores termales obtenidos de sus propias fuentes naturales ricas en minerales, brindando innumerables beneficios para el cuerpo, la mente y el espíritu.
           </p>
-          <p style="margin-bottom: 2.5rem;">
-            Piedra de Agua ofrece una fusión única entre la sabiduría ancestral andina de relajación y los estándares internacionales de hospitalidad termal y bienestar de primer nivel.
+          <p style="margin-bottom: 2rem;">
+            Nuestro Spa Termal está desarrollado directamente sobre una vertiente termal subterránea y espectaculares minas de lodos de origen volcánico y cuarzos, localizado en la parroquia Baños, en la histórica ciudad de Cuenca, Ecuador.
           </p>
-          <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
-            <img src="media/imgi_5_WSW-Awards.png" alt="World Spa Awards Medal" style="height: 100px; width: auto; object-fit: contain;">
-            <img src="media/imgi_6_winner-badge-2.png" alt="Winner Badge" style="height: 100px; width: auto; object-fit: contain;">
-            <img src="media/imgi_7_TA2014.png" alt="TripAdvisor Award" style="height: 60px; width: auto; object-fit: contain;">
+          <div class="glass-panel" style="border-radius: 16px; padding: 1.5rem; border-left: 4px solid var(--primary-gold);">
+            <p style="font-style: italic; font-size: 1.05rem; color: var(--text-main);">
+              "Nuestra misión es fusionar la ciencia de la hidroterapia moderna con la mística y los beneficios de los lodos y minerales de la Cordillera de los Andes."
+            </p>
           </div>
-          <div style="margin-top: 2.5rem;">
-            <a href="sobre-nosotros.html" class="btn-lux" data-cursor-text="Nosotros">Nuestra Historia</a>
+        </div>
+        
+        <div class="collage-grid">
+          <div class="collage-item item-1">
+            <img src="media/imgi_48_Banner-0-Panoramica-Tablet-992x920-HomePage.jpg" alt="Piedra de Agua Exterior">
+          </div>
+          <div class="collage-item item-2">
+            <img src="media/imgi_52_Banner-1-Roca-Dorada-1200x920-1.jpg" alt="Roca Dorada Hammam">
+          </div>
+          <div class="collage-item item-3">
+            <img src="media/imgi_89_TiendaTourHome.webp" alt="Tour Subterráneo">
+          </div>
+          <div class="collage-item item-4">
+            <img src="media/imgi_47_Banner-2-Tour-Termal-Subterraneo-1920x920-1.jpg" alt="Cuevas Termales">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TERAPIAS ESPECIALES & MASAJES -->
-    <section class="section-lux">
-      <div class="container-lux">
-        <div class="text-center" style="margin-bottom: 4rem;">
-          <span class="accent-title">Tratamientos Adicionales</span>
-          <h2>Terapias y Masajes en Cuevas</h2>
-          <p style="max-width: 600px; margin: 1rem auto 0 auto;">
-            Descubra rituales sensoriales diseñados para relajar profundamente y restaurar la armonía corporal en cámaras rocosas talladas.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <!-- Card 1: Terapias -->
-          <div class="glass-card" style="padding: 2.5rem; display: flex; flex-direction: column; height: 100%;">
-            <img src="media/imgi_37_Home-TerapiasEspeciales.webp" alt="Terapias Especiales" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 1.5rem;">
-            <h3 style="font-size: 1.6rem; margin-bottom: 0.75rem; font-family: var(--font-sans); font-weight: 500;">Terapias Especiales</h3>
-            <p style="flex-grow: 1; font-size: 0.95rem; margin-bottom: 1.5rem;">
-              Flote sin gravedad en nuestro Flotarium de sal mineral, o estimule la circulación con vinoterapia y baños de hierbas andinas ancestrales.
-            </p>
-            <a href="terapias-especiales.html" class="btn-lux" style="font-size: 0.75rem; padding: 0.75rem 1.5rem; align-self: flex-start;">Ver Terapias</a>
-          </div>
-
-          <!-- Card 2: Masajes -->
-          <div class="glass-card" style="padding: 2.5rem; display: flex; flex-direction: column; height: 100%;">
-            <img src="media/imgi_43_Home-Masajes.webp" alt="Masajes de Relajación" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 1.5rem;">
-            <h3 style="font-size: 1.6rem; margin-bottom: 0.75rem; font-family: var(--font-sans); font-weight: 500;">Masajes Relajantes</h3>
-            <p style="flex-grow: 1; font-size: 0.95rem; margin-bottom: 1.5rem;">
-              Masajes de relajación, masajes geotermales con piedras calientes, aromaterapia y masajes a 4 manos realizados por terapistas expertas en cuevas naturales.
-            </p>
-            <a href="masajes-de-relajacion.html" class="btn-lux" style="font-size: 0.75rem; padding: 0.75rem 1.5rem; align-self: flex-start;">Ver Masajes</a>
-          </div>
-
-          <!-- Card 3: Piscinas -->
-          <div class="glass-card" style="padding: 2.5rem; display: flex; flex-direction: column; height: 100%;">
-            <img src="media/imgi_49_Home-Piscina.webp" alt="Piscinas Termales" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 1.5rem;">
-            <h3 style="font-size: 1.6rem; margin-bottom: 0.75rem; font-family: var(--font-sans); font-weight: 500;">Experiencia Termal</h3>
-            <p style="flex-grow: 1; font-size: 0.95rem; margin-bottom: 1.5rem;">
-              Acceso a nuestro conjunto de piscinas de aguas termales a cielo abierto, baño de vapor con eucalipto y tinas de contraste caliente-frío.
-            </p>
-            <a href="piscina-termal.html" class="btn-lux" style="font-size: 0.75rem; padding: 0.75rem 1.5rem; align-self: flex-start;">Ver Piscinas</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LIBÉLULA RESTAURANTE TEASER -->
+    <!-- AWARDS SECTION -->
     <section class="section-lux" style="background: rgba(var(--bg-base-rgb), 0.35);">
-      <div class="container-lux grid-2">
-        <div>
-          <span class="accent-title">Experiencia Gastronómica</span>
-          <h2>Libélula Restaurante</h2>
-          <p style="margin: 1.5rem 0;">
-            Deleite su paladar con nuevas sensaciones en nuestro restaurante gourmet. Ofrecemos una carta variada de comida nacional e internacional, coctelería clásica y de autor, así como café de especialidad y postres finos.
+      <div class="container-lux">
+        <div class="text-center" style="margin-bottom: 5rem;">
+          <span class="accent-title">Premios Mundiales</span>
+          <h2>Reconocimientos y Excelencia Turística</h2>
+          <p style="max-width: 600px; margin: 1rem auto 0 auto;">
+            Nuestra constancia en brindar servicios de relajación premium nos ha hecho merecedores de múltiples galardones mundiales y locales.
           </p>
-          <p style="margin-bottom: 2.5rem;">
-            El complemento perfecto para un día de relajación termal absoluta. Ideal también para eventos corporativos y celebraciones íntimas.
-          </p>
-          <div style="display: flex; gap: 1.25rem;">
-            <a href="libelula-restaurante.html" class="btn-lux" data-cursor-text="Ver Menú">Ver Restaurante</a>
-            <a href="libelula-restaurante.html#menu" class="btn-lux btn-lux-secondary">Ver Carta Digital</a>
-          </div>
         </div>
-        <div class="split-image-panel" style="height: 480px;">
-          <img src="media/imgi_51_Home-Restaurante.webp" alt="Libelula Restaurante Ambient">
+
+        <div class="grid-2" style="row-gap: 2.5rem; column-gap: 3rem;">
+          <!-- Award 1 -->
+          <div class="glass-card award-card">
+            <img src="media/imgi_5_WSW-Awards.png" alt="WSW Award">
+            <div>
+              <span class="year">2022</span>
+              <h3>Winner Spa of the Year: North & South America</h3>
+              <p>Otorgado por los prestigiosos World Spa & Wellness Awards en Londres, considerados los premios Óscar de la industria de bienestar mundial.</p>
+            </div>
+          </div>
+
+          <!-- Award 2 -->
+          <div class="glass-card award-card">
+            <img src="media/imgi_6_winner-badge-2.png" alt="Beauty Award">
+            <div>
+              <span class="year">2022</span>
+              <h3>International Spa & Beauty Awards</h3>
+              <p>Reconocimiento global centrado en premiar a los mejores proveedores de servicios estéticos y de spa según la votación del público general.</p>
+            </div>
+          </div>
+
+          <!-- Award 3 -->
+          <div class="glass-card award-card">
+            <img src="media/imgi_7_TA2014.png" alt="TripAdvisor 2014">
+            <div>
+              <span class="year">2014</span>
+              <h3>Certificado de Excelencia TripAdvisor</h3>
+              <p>Insignia oficial codiciada que galardona de forma continua la calidad y las opiniones positivas sobresalientes de los huéspedes turísticos.</p>
+            </div>
+          </div>
+
+          <!-- Award 4 -->
+          <div class="glass-card award-card">
+            <img src="media/imgi_8_GP2014-2-1.png" alt="GringoPost Award">
+            <div>
+              <span class="year">2014</span>
+              <h3>Best Swimming Pool in Cuenca</h3>
+              <p>Galardón otorgado por GringoPost tras votaciones masivas de la activa Comunidad de Expatriados extranjeros en la ciudad de Cuenca.</p>
+            </div>
+          </div>
+
+          <!-- Award 5 -->
+          <div class="glass-card award-card">
+            <img src="media/imgi_9_TA2013.png" alt="TripAdvisor 2013">
+            <div>
+              <span class="year">2013</span>
+              <h3>Certificado de Excelencia TripAdvisor</h3>
+              <p>Reconocimiento otorgado consecutivamente a los mejores atractivos mundiales calificados con puntuaciones de 5/5 por viajeros.</p>
+            </div>
+          </div>
+
+          <!-- Award 6 -->
+          <div class="glass-card award-card">
+            <img src="media/imgi_10_MT.png" alt="Mérito Turístico">
+            <div>
+              <span class="year">2011 / 2012</span>
+              <h3>Mérito Turístico Cantonal</h3>
+              <p>Otorgado por el Ilustre Municipio de Cuenca a Piedra de Agua por su valioso aporte innovador y emprendimiento en el desarrollo turístico local.</p>
+            </div>
+          </div>
+
+          <!-- Award 7 -->
+          <div class="glass-card award-card">
+            <img src="media/imgi_11_C.png" alt="Cantón Cuenca">
+            <div>
+              <span class="year">2011</span>
+              <h3>Mérito Turístico del Cantón Cuenca</h3>
+              <p>Distinción por ser el primer y principal pionero en impulsar el turismo internacional de salud termal en la provincia del Azuay.</p>
+            </div>
+          </div>
+
+          <!-- Award 8 -->
+          <div class="glass-card award-card">
+            <img src="media/imgi_12_IA.png" alt="Innovación">
+            <div>
+              <span class="year">2011</span>
+              <h3>Reconocimiento de Innovación Turística</h3>
+              <p>Premio especial de la industria por el óptimo aprovechamiento termal, tecnológico y ecológico de recursos volcánicos nativos.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SKINCARE VOLCANIC LINE -->
+    <!-- CALL TO ACTION BANNER -->
     <section class="section-lux">
       <div class="container-lux">
-        <div class="grid-2">
-          <div class="split-image-panel" style="height: 450px;">
-          <img src="media/imgi_56_Home-Productos.webp" alt="Productos Termales Skincare">
-        </div>
-          <div style="display: flex; flex-direction: column; justify-content: center;">
-            <span class="accent-title">Cuidado de la Piel</span>
-            <h2>Nuestra Línea Cosmética Volcánica</h2>
-            <p style="margin: 1.5rem 0;">
-              Lleve los beneficios minerales del spa volcánico a su hogar. Lodos rojos y azules tradicionales, y agua termal embotellada para limpiar, hidratar y rejuvenecer la piel.
-            </p>
-            <p style="margin-bottom: 2.5rem;">
-              Nuestros productos son 100% naturales, envasados directamente en la fuente y libres de aditivos químicos. Conservan todas las propiedades volcánicas activas para el cuidado facial y corporal.
-            </p>
-            <div>
-              <a href="tienda.html?category=skincare" class="btn-lux" data-cursor-text="Comprar">Comprar Productos</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Dynamic CTA Newsletter Section -->
-        <div class="banner-cta-block text-center">
-          <span class="accent-title" style="margin-bottom: 0.5rem;">Club de Suscriptores</span>
-          <h2 style="font-size: 2.25rem; margin-bottom: 1rem;">Reciba Beneficios Exclusivos</h2>
-          <p style="max-width: 600px; margin: 0 auto 2.5rem auto;">
-            Suscríbase a nuestro boletín de noticias y sea el primero en conocer nuestras promociones 2x1, descuentos especiales y eventos de bienestar exclusivos.
+        <div class="glass-card text-center" style="padding: 5rem 2rem; border: 1px solid var(--primary-gold);">
+          <span class="accent-title">Viva la experiencia</span>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 3rem); max-width: 750px; margin: 0 auto 1.5rem auto;">
+            Un lugar mágico espera por usted...
+          </h2>
+          <p style="max-width: 600px; margin: 0 auto 3rem auto; font-size: 1.1rem;">
+            Lo invitamos a disfrutar de una experiencia única e inolvidable. Reserve su cita hoy y deje que nosotros nos encarguemos del resto. ¡Le garantizamos que se sentirá renovado!
           </p>
-          <form class="glass-panel flex-center" style="border-radius: 50px; padding: 0.35rem 0.35rem 0.35rem 1.5rem; max-width: 550px; margin: 0 auto; overflow: hidden;" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirse a Piedra de Agua!');">
-            <input type="email" placeholder="Su correo electrónico" required style="flex-grow: 1; background: transparent; border: none; outline: none; font-family: var(--font-sans); color: var(--text-main); font-size: 0.95rem; width: 100%;">
-            <button type="submit" class="btn-lux" style="padding: 0.75rem 1.75rem; border: none; font-size: 0.75rem;">Suscribirse</button>
-          </form>
+          <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="contactos.html" class="btn-lux" data-cursor-text="Reservar">Agendar Reserva</a>
+            <a href="tienda.html" class="btn-lux btn-lux-secondary" data-cursor-text="Comprar">Comprar un Pase</a>
+          </div>
         </div>
       </div>
     </section>
