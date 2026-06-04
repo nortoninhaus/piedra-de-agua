@@ -325,25 +325,28 @@ header.header-nav {
   justify-content: space-between;
   padding: 0 5%;
   transition: var(--transition-smooth);
-  background: linear-gradient(180deg, rgba(10, 9, 8, 0.6) 0%, rgba(10, 9, 8, 0.15) 80%, transparent 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.0);
+  background: rgba(10, 9, 8, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 [data-theme="light"] header.header-nav {
-  background: linear-gradient(180deg, rgba(246, 242, 236, 0.7) 0%, rgba(246, 242, 236, 0.2) 80%, transparent 100%);
+  background: rgba(246, 242, 236, 0.75);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 /* Shrinking header class applied via JS */
 header.header-nav.shrink {
   height: 75px;
-  background: rgba(10, 9, 8, 0.8);
+  background: rgba(10, 9, 8, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-glass-simple);
 }
 
 [data-theme="light"] header.header-nav.shrink {
-  background: rgba(246, 242, 236, 0.85);
+  background: rgba(246, 242, 236, 0.92);
 }
 
 /* Logo brand styling */

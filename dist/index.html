@@ -343,25 +343,28 @@ header.header-nav {
   justify-content: space-between;
   padding: 0 5%;
   transition: var(--transition-smooth);
-  background: linear-gradient(180deg, rgba(10, 9, 8, 0.6) 0%, rgba(10, 9, 8, 0.15) 80%, transparent 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.0);
+  background: rgba(10, 9, 8, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 [data-theme="light"] header.header-nav {
-  background: linear-gradient(180deg, rgba(246, 242, 236, 0.7) 0%, rgba(246, 242, 236, 0.2) 80%, transparent 100%);
+  background: rgba(246, 242, 236, 0.75);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 /* Shrinking header class applied via JS */
 header.header-nav.shrink {
   height: 75px;
-  background: rgba(10, 9, 8, 0.8);
+  background: rgba(10, 9, 8, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-glass-simple);
 }
 
 [data-theme="light"] header.header-nav.shrink {
-  background: rgba(246, 242, 236, 0.85);
+  background: rgba(246, 242, 236, 0.92);
 }
 
 /* Logo brand styling */
@@ -1181,7 +1184,7 @@ footer.footer-lux {
       <img class="hero-bg-image" src="https://assets.cdn.filesafe.space/vKgJmIGrNvX9v3gNSYZc/media/6a20f5e3da24932f12014c9a.webp" alt="Piedra de Agua Spa Termal Hero" loading="eager" fetchpriority="high">
       <div class="hero-overlay"></div>
       <div class="container-lux" style="position: relative; z-index: 5;">
-        <div class="hero-content-wrap glass-card" style="padding: 3.5rem; max-width: 680px; background: rgba(10,9,8,0.45); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.1);">
+        <div class="hero-content-wrap glass-card" style="padding: 3.5rem; max-width: 680px; background: rgba(10, 9, 8, 0.22); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);">
           <span class="accent-title">Piedra de Agua Fuente Termal & Spa</span>
           <h1>Relájese, respire y renueve su energía</h1>
           <p style="margin: 1.5rem 0 2.5rem 0;">
