@@ -139,13 +139,13 @@ def build_project():
         # 1. Inline CSS
         content = re.sub(
             r'<link\s+rel=["\']stylesheet["\']\s+href=["\']index\.css["\']\s*/?>',
-            style_block, content
+            lambda m: style_block, content
         )
 
         # 2. Inline JS
         content = re.sub(
             r'<script\s+src=["\']main\.js["\']\s*></script>',
-            script_block, content
+            lambda m: script_block, content
         )
 
         # 3. Rewrite image src paths to media/ folder

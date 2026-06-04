@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
   
   <!-- Core Design System -->
   <link rel="stylesheet" href="index.css">
@@ -421,71 +422,89 @@
     </section>
 
     <!-- CORE EXPERIENCES / CIRCUITS -->
-    <section id="experiencias" class="section-lux">
-      <div class="container-lux">
-        <div class="text-center" style="margin-bottom: 4rem;">
-          <span class="accent-title">Experiencias de Relajación</span>
-          <h2>Nuestros Cuatro Circuitos Principales</h2>
-          <p style="max-width: 600px; margin: 1rem auto 0 auto;">
-            Cuatro formas de experimentar el poder sanador del agua termal y los lodos volcánicos, diseñadas para brindarle una renovación completa.
-          </p>
+    <section id="experiencias" class="places-split-section">
+      <div class="places-visual-side">
+        <!-- Pinned sticky gallery of images -->
+        <div class="places-sticky-gallery">
+          <figure class="place-fig active" data-index="1">
+            <img src="./Referencias/Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa%20_%20Cuenca%20-%20Ecuador/imgi_20_Home-Club-Termal.webp" alt="El Club Termal">
+          </figure>
+          <figure class="place-fig" data-index="2">
+            <img src="./Referencias/Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa%20_%20Cuenca%20-%20Ecuador/imgi_21_Home-RocaDorada.webp" alt="Roca Dorada">
+          </figure>
+          <figure class="place-fig" data-index="3">
+            <img src="./Referencias/Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa%20_%20Cuenca%20-%20Ecuador/imgi_33_Home-TourTermal.webp" alt="Tour Termal Subterráneo">
+          </figure>
+          <figure class="place-fig" data-index="4">
+            <img src="./Referencias/Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa%20_%20Cuenca%20-%20Ecuador/imgi_35_Home-Spa.webp" alt="Circuito de Spa Exterior">
+          </figure>
+          <div class="places-overlay-glow"></div>
+        </div>
+      </div>
+      
+      <div class="places-content-side">
+        <!-- Scrolling content blocks -->
+        <div class="place-content-block" data-index="1">
+          <div class="place-meta">
+            <span class="place-number">01</span>
+            <span class="place-status active-status">OPERACIONAL</span>
+          </div>
+          <h3 class="split-reveal-text">El Club Termal</h3>
+          <p>Un espacio de diseño impecable donde tratamientos termales y minerales de origen volcánico revitalizan cuerpo y alma.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">Lodos Rojo & Azul</span>
+            <span class="feature-tag">Piscina Interior</span>
+            <span class="feature-tag">Baños de Cajón</span>
+            <span class="feature-tag">Vapor</span>
+          </div>
+          <a href="circuito-de-spa.html" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
         </div>
 
-        <div class="grid-2">
-          <!-- Circuito 1: El Club Termal -->
-          <div class="circuit-card glass-card" onclick="location.href='circuito-de-spa.html'" data-cursor-text="El Club">
-            <img class="card-bg" src="./Referencias/Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa%20_%20Cuenca%20-%20Ecuador/imgi_20_Home-Club-Termal.webp" alt="El Club Termal">
-            <h3>El Club Termal</h3>
-            <p>Un espacio de diseño impecable donde tratamientos termales y minerales de origen volcánico revitalizan cuerpo y alma.</p>
-            <div class="feature-tags">
-              <span class="feature-tag">Lodos Rojo & Azul</span>
-              <span class="feature-tag">Piscina Interior</span>
-              <span class="feature-tag">Baños de Cajón</span>
-              <span class="feature-tag">Vapor</span>
-            </div>
-            <a href="circuito-de-spa.html" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
+        <div class="place-content-block" data-index="2">
+          <div class="place-meta">
+            <span class="place-number">02</span>
+            <span class="place-status active-status">OPERACIONAL</span>
           </div>
+          <h3 class="split-reveal-text">Roca Dorada</h3>
+          <p>Terapias de relajación y bienestar de diferentes partes del mundo, desarrolladas en un lujoso espacio subterráneo.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">Hammam</span>
+            <span class="feature-tag">Lodo Cenizo</span>
+            <span class="feature-tag">Micro Lluvia</span>
+            <span class="feature-tag">Sales Minerales</span>
+          </div>
+          <a href="roca-dorada.html" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
+        </div>
 
-          <!-- Circuito 2: Roca Dorada -->
-          <div class="circuit-card glass-card" onclick="location.href='roca-dorada.html'" data-cursor-text="Roca Dorada">
-            <img class="card-bg" src="./Referencias/Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa%20_%20Cuenca%20-%20Ecuador/imgi_21_Home-RocaDorada.webp" alt="Roca Dorada">
-            <h3>Roca Dorada</h3>
-            <p>Terapias de relajación y bienestar de diferentes partes del mundo, desarrolladas en un lujoso espacio subterráneo.</p>
-            <div class="feature-tags">
-              <span class="feature-tag">Hammam</span>
-              <span class="feature-tag">Lodo Cenizo</span>
-              <span class="feature-tag">Micro Lluvia</span>
-              <span class="feature-tag">Sales Minerales</span>
-            </div>
-            <a href="roca-dorada.html" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
+        <div class="place-content-block" data-index="3">
+          <div class="place-meta">
+            <span class="place-number">03</span>
+            <span class="place-status active-status">OPERACIONAL</span>
           </div>
+          <h3 class="split-reveal-text">Tour Termal Subterráneo</h3>
+          <p>Una experiencia mágica e inolvidable desarrollada en una cueva natural subterránea ambientada con velas y esencias.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">Cueva de Velas</span>
+            <span class="feature-tag">Contraste Térmico</span>
+            <span class="feature-tag">Sales & Café</span>
+            <span class="feature-tag">Mudpacks</span>
+          </div>
+          <a href="tour-termal-subterraneo.html" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
+        </div>
 
-          <!-- Circuito 3: Tour Termal Subterráneo -->
-          <div class="circuit-card glass-card" onclick="location.href='tour-termal-subterraneo.html'" data-cursor-text="Tour Cueva">
-            <img class="card-bg" src="./Referencias/Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa%20_%20Cuenca%20-%20Ecuador/imgi_33_Home-TourTermal.webp" alt="Tour Termal Subterráneo">
-            <h3>Tour Termal Subterráneo</h3>
-            <p>Una experiencia mágica e inolvidable desarrollada en una cueva natural subterránea ambientada con velas y esencias.</p>
-            <div class="feature-tags">
-              <span class="feature-tag">Cueva de Velas</span>
-              <span class="feature-tag">Contraste Térmico</span>
-              <span class="feature-tag">Sales & Café</span>
-              <span class="feature-tag">Mudpacks</span>
-            </div>
-            <a href="tour-termal-subterraneo.html" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
+        <div class="place-content-block" data-index="4">
+          <div class="place-meta">
+            <span class="place-number">04</span>
+            <span class="place-status active-status">OPERACIONAL</span>
           </div>
-
-          <!-- Circuito 4: Circuito de Spa Exterior -->
-          <div class="circuit-card glass-card" onclick="location.href='circuito-de-spa.html#exterior'" data-cursor-text="Circuito Ext">
-            <img class="card-bg" src="./Referencias/Piedra%20de%20Agua%20Fuente%20Termal%20%26%20Spa%20_%20Cuenca%20-%20Ecuador/imgi_35_Home-Spa.webp" alt="Circuito de Spa Exterior">
-            <h3>Circuito de Spa Exterior</h3>
-            <p>Relajación única al aire libre donde su piel y cuerpo se beneficiarán de las propiedades de nuestros lodos termales.</p>
-            <div class="feature-tags">
-              <span class="feature-tag">Piscinas Exteriores</span>
-              <span class="feature-tag">Termas Contraste</span>
-              <span class="feature-tag">Vapor Eucalipto</span>
-            </div>
-            <a href="circuito-de-spa.html#exterior" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
+          <h3 class="split-reveal-text">Circuito de Spa Exterior</h3>
+          <p>Relajación única al aire libre donde su piel y cuerpo se beneficiarán de las propiedades de nuestros lodos termales.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">Piscinas Exteriores</span>
+            <span class="feature-tag">Termas Contraste</span>
+            <span class="feature-tag">Vapor Eucalipto</span>
           </div>
+          <a href="circuito-de-spa.html#exterior" class="btn-lux" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">Ver Circuito</a>
         </div>
       </div>
     </section>
