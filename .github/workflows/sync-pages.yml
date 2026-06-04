@@ -1,0 +1,32 @@
+name: Sync to Pages Repo
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Pages Repository
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SYNC_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          
+          # Configurar datos básicos de Git
+          git config --global user.name "GitHub Actions Sync"
+          git config --global user.email "actions@github.com"
+          
+          # Agregar el destino como remoto y hacer push forzado
+          git remote add target git@github.com:david98ppINH/piedra_de_agua.git
+          git push -f target master:main
