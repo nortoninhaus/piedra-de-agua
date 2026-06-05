@@ -9,7 +9,7 @@
   <meta name="description" content="Póngase en contacto con Piedra de Agua en Cuenca, Ecuador. Planifique su visita, reserve su circuito de spa, masajes relajantes o terapias especiales.">
   
   <!-- Libraries (CDNs) -->
-  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
@@ -403,6 +403,10 @@ header.header-nav.shrink .nav-logo {
   color: var(--primary-gold);
 }
 
+[data-theme="light"] .nav-item:hover, [data-theme="light"] .nav-item.active {
+  color: var(--text-main);
+}
+
 .nav-item::after {
   content: '';
   position: absolute;
@@ -511,7 +515,8 @@ header.header-nav.shrink .nav-logo {
 }
 
 [data-theme="light"] .cart-badge {
-  color: #fff;
+  background: var(--text-main);
+  color: var(--bg-elevated-solid);
 }
 
 /* Mobile Menu Button */
@@ -967,6 +972,24 @@ footer.footer-lux {
   [data-theme="light"] .places-overlay-glow {
     background: linear-gradient(180deg, rgba(246, 242, 236, 0) 70%, rgba(246, 242, 236, 1) 100%);
   }
+}
+
+/* Global responsive feature tags */
+.feature-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.75rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  color: #fff;
+  backdrop-filter: blur(5px);
+  transition: var(--transition-fast);
+}
+
+[data-theme="light"] .feature-tag {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text-main);
 }
 
 </style>
