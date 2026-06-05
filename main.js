@@ -627,7 +627,7 @@ function initScrollAnimations() {
   };
 
   // Animate sections and cards on scroll
-  animateOnScroll('.grid-2 > div, .grid-3 > div, .grid-4 > div', 35, 0.9);
+  animateOnScroll('.grid-2 > div:not(.split-image-panel), .grid-3 > div:not(.split-image-panel), .grid-4 > div:not(.split-image-panel)', 35, 0.9);
   animateOnScroll('.step-row', 50, 1.0);
   animateOnScroll('.split-image-panel', 45, 1.1);
   animateOnScroll('.award-card', 30, 0.9);
@@ -675,7 +675,6 @@ function initScrollAnimations() {
           const wordInner = document.createElement('span');
           wordInner.className = 'split-word-inner';
           wordInner.style.display = 'inline-block';
-          wordInner.style.transform = 'translateY(100%)';
           wordInner.textContent = word + ' ';
           
           wordWrapper.appendChild(wordInner);
@@ -687,16 +686,19 @@ function initScrollAnimations() {
     // Apply Split-Word Reveal to places headings
     splitTextIntoSpans('.split-reveal-text');
     blocks.forEach(block => {
-      gsap.to(block.querySelectorAll('.split-word-inner'), {
-        yPercent: 0,
-        stagger: 0.03,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: block,
-          start: 'top 75%'
+      gsap.fromTo(block.querySelectorAll('.split-word-inner'), 
+        { yPercent: 100 },
+        {
+          yPercent: 0,
+          stagger: 0.03,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: block,
+            start: 'top 75%'
+          }
         }
-      });
+      );
     });
   }
 
