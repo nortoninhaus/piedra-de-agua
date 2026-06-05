@@ -558,14 +558,21 @@ body.cursor-hover .custom-cursor {
 }
 
 body.cursor-hover .custom-cursor-follower {
-  width: 80px;
-  height: 80px;
-  background-color: rgba(var(--primary-gold-rgb), 0.08);
-  border-color: #fff;
+  width: 85px;
+  height: 85px;
+  background-color: rgba(26, 24, 22, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 body.cursor-hover .custom-cursor-follower span {
   opacity: 1;
+  color: #ffffff !important;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 1024px) {

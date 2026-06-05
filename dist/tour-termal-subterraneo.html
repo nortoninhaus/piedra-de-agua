@@ -576,14 +576,21 @@ body.cursor-hover .custom-cursor {
 }
 
 body.cursor-hover .custom-cursor-follower {
-  width: 80px;
-  height: 80px;
-  background-color: rgba(var(--primary-gold-rgb), 0.08);
-  border-color: #fff;
+  width: 85px;
+  height: 85px;
+  background-color: rgba(26, 24, 22, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 body.cursor-hover .custom-cursor-follower span {
   opacity: 1;
+  color: #ffffff !important;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 1024px) {
@@ -2009,7 +2016,7 @@ function initScrollAnimations() {
   };
 
   // Animate sections and cards on scroll
-  animateOnScroll('.grid-2 > div, .grid-3 > div, .grid-4 > div', 35, 0.9);
+  animateOnScroll('.grid-2 > div:not(.split-image-panel), .grid-3 > div:not(.split-image-panel), .grid-4 > div:not(.split-image-panel)', 35, 0.9);
   animateOnScroll('.step-row', 50, 1.0);
   animateOnScroll('.split-image-panel', 45, 1.1);
   animateOnScroll('.award-card', 30, 0.9);
@@ -2057,7 +2064,6 @@ function initScrollAnimations() {
           const wordInner = document.createElement('span');
           wordInner.className = 'split-word-inner';
           wordInner.style.display = 'inline-block';
-          wordInner.style.transform = 'translateY(100%)';
           wordInner.textContent = word + ' ';
           
           wordWrapper.appendChild(wordInner);
@@ -2069,16 +2075,19 @@ function initScrollAnimations() {
     // Apply Split-Word Reveal to places headings
     splitTextIntoSpans('.split-reveal-text');
     blocks.forEach(block => {
-      gsap.to(block.querySelectorAll('.split-word-inner'), {
-        yPercent: 0,
-        stagger: 0.03,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: block,
-          start: 'top 75%'
+      gsap.fromTo(block.querySelectorAll('.split-word-inner'), 
+        { yPercent: 100 },
+        {
+          yPercent: 0,
+          stagger: 0.03,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: block,
+            start: 'top 75%'
+          }
         }
-      });
+      );
     });
   }
 
