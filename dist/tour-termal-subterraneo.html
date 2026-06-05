@@ -9,7 +9,7 @@
   <meta name="description" content="Viva el místico Tour Termal Subterráneo de Piedra de Agua. Baños termales, lodo volcánico y exfoliaciones de café bajo la luz de las velas.">
   
   <!-- Libraries (CDNs) -->
-  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
@@ -85,7 +85,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
@@ -403,6 +403,10 @@ header.header-nav.shrink .nav-logo {
   color: var(--primary-gold);
 }
 
+[data-theme="light"] .nav-item:hover, [data-theme="light"] .nav-item.active {
+  color: var(--text-main);
+}
+
 .nav-item::after {
   content: '';
   position: absolute;
@@ -511,7 +515,8 @@ header.header-nav.shrink .nav-logo {
 }
 
 [data-theme="light"] .cart-badge {
-  color: #fff;
+  background: var(--text-main);
+  color: var(--bg-elevated-solid);
 }
 
 /* Mobile Menu Button */
@@ -813,6 +818,178 @@ footer.footer-lux {
   .custom-cursor, .custom-cursor-follower {
     display: none;
   }
+}
+
+/* ==========================================
+   PLACES SPLIT SECTION & ANIMATION CLASSES
+   ========================================== */
+.places-split-section {
+  display: flex;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.places-visual-side {
+  flex: 0 0 50%;
+  width: 50%;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.places-sticky-gallery {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.place-fig {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1.05);
+}
+
+.place-fig.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+.place-fig img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4) saturate(0.9);
+}
+
+.places-overlay-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(10, 9, 8, 0) 70%, rgba(10, 9, 8, 1) 100%);
+}
+
+[data-theme="light"] .places-overlay-glow {
+  background: linear-gradient(90deg, rgba(246, 242, 236, 0) 70%, rgba(246, 242, 236, 1) 100%);
+}
+
+.places-content-side {
+  flex: 0 0 50%;
+  width: 50%;
+  position: relative;
+  z-index: 5;
+  padding-left: 5%;
+}
+
+.place-content-block {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 10% 4rem 5%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.place-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.place-number {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--primary-gold);
+}
+
+.place-status {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+}
+
+.place-status.active-status {
+  color: var(--primary-gold);
+  border: 1px solid rgba(var(--primary-gold-rgb), 0.3);
+  background: rgba(var(--primary-gold-rgb), 0.05);
+}
+
+.place-content-block h3 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+}
+
+.place-content-block p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+@media (max-width: 992px) {
+  .places-split-section {
+    flex-direction: column;
+  }
+  .places-visual-side {
+    position: sticky;
+    top: 75px;
+    width: 100%;
+    height: 42vh;
+    flex: none;
+    z-index: 20;
+  }
+  .places-content-side {
+    width: 100%;
+    flex: none;
+    padding-left: 0;
+    z-index: 25;
+  }
+  .place-content-block {
+    min-height: 80vh;
+    padding: 6rem 5%;
+  }
+  .places-overlay-glow {
+    background: linear-gradient(180deg, rgba(10, 9, 8, 0) 70%, rgba(10, 9, 8, 1) 100%);
+  }
+  [data-theme="light"] .places-overlay-glow {
+    background: linear-gradient(180deg, rgba(246, 242, 236, 0) 70%, rgba(246, 242, 236, 1) 100%);
+  }
+}
+
+/* Global responsive feature tags */
+.feature-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.75rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  color: #fff;
+  backdrop-filter: blur(5px);
+  transition: var(--transition-fast);
+}
+
+[data-theme="light"] .feature-tag {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text-main);
 }
 
 </style>
@@ -1213,6 +1390,27 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursor();
   initBackgroundCanvas();
   initMobileMenu();
+  
+  // Initialize Lenis smooth scroll
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.5
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    if (typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+    }
+  }
+
   initScrollAnimations();
 });
 
@@ -1382,21 +1580,33 @@ function initBackgroundCanvas() {
   const canvas = document.createElement('canvas');
   container.appendChild(canvas);
 
-  let width = canvas.width = container.clientWidth;
-  let height = canvas.height = container.clientHeight;
+  const scaleFactor = 0.5; // Downscale rendering resolution for performance
+  let width = canvas.width = Math.floor(container.clientWidth * scaleFactor);
+  let height = canvas.height = Math.floor(container.clientHeight * scaleFactor);
 
   let mouse = { x: width / 2, y: height / 2, targetX: width / 2, targetY: height / 2 };
   
   window.addEventListener('mousemove', (e) => {
-    mouse.targetX = e.clientX;
-    mouse.targetY = e.clientY;
+    mouse.targetX = e.clientX * scaleFactor;
+    mouse.targetY = e.clientY * scaleFactor;
   });
 
   window.addEventListener('resize', () => {
-    width = canvas.width = container.clientWidth;
-    height = canvas.height = container.clientHeight;
+    width = canvas.width = Math.floor(container.clientWidth * scaleFactor);
+    height = canvas.height = Math.floor(container.clientHeight * scaleFactor);
     if (gl) gl.viewport(0, 0, width, height);
   });
+
+  // Track scrolling to pause render loop during scroll for solid 60 FPS
+  let isScrolling = false;
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    isScrolling = true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      isScrolling = false;
+    }, 120);
+  }, { passive: true });
 
   // Track visibility using IntersectionObserver to auto-throttle and save CPU/battery
   let isVisible = true;
@@ -1560,7 +1770,7 @@ function initBackgroundCanvas() {
       const uniformData = new Float32Array(6);
 
       function renderFrame(now) {
-        if (!isVisible) {
+        if (!isVisible || isScrolling) {
           requestAnimationFrame(renderFrame);
           return;
         }
@@ -1727,7 +1937,7 @@ function initBackgroundCanvas() {
     gl.useProgram(program);
 
     function renderWebGL(now) {
-      if (!isVisible) {
+      if (!isVisible || isScrolling) {
         requestAnimationFrame(renderWebGL);
         return;
       }
@@ -1804,6 +2014,73 @@ function initScrollAnimations() {
   animateOnScroll('.split-image-panel', 45, 1.1);
   animateOnScroll('.award-card', 30, 0.9);
   animateOnScroll('section h2, section .accent-title', 25, 0.8);
+
+  // Places split-screen scroll transitions
+  if (typeof ScrollTrigger !== 'undefined') {
+    const blocks = document.querySelectorAll('.place-content-block');
+    const figures = document.querySelectorAll('.place-fig');
+    
+    blocks.forEach(block => {
+      const index = block.getAttribute('data-index');
+      ScrollTrigger.create({
+        trigger: block,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => activatePlace(index),
+        onEnterBack: () => activatePlace(index)
+      });
+    });
+
+    function activatePlace(index) {
+      figures.forEach(fig => {
+        if (fig.getAttribute('data-index') === index) {
+          fig.classList.add('active');
+        } else {
+          fig.classList.remove('active');
+        }
+      });
+    }
+
+    // Custom Split-Word Reveal animation helper
+    function splitTextIntoSpans(selector) {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        const text = el.textContent.trim();
+        const words = text.split(/\s+/);
+        el.innerHTML = '';
+        words.forEach(word => {
+          const wordWrapper = document.createElement('span');
+          wordWrapper.style.display = 'inline-block';
+          wordWrapper.style.overflow = 'hidden';
+          wordWrapper.style.verticalAlign = 'bottom';
+          
+          const wordInner = document.createElement('span');
+          wordInner.className = 'split-word-inner';
+          wordInner.style.display = 'inline-block';
+          wordInner.style.transform = 'translateY(100%)';
+          wordInner.textContent = word + ' ';
+          
+          wordWrapper.appendChild(wordInner);
+          el.appendChild(wordWrapper);
+        });
+      });
+    }
+
+    // Apply Split-Word Reveal to places headings
+    splitTextIntoSpans('.split-reveal-text');
+    blocks.forEach(block => {
+      gsap.to(block.querySelectorAll('.split-word-inner'), {
+        yPercent: 0,
+        stagger: 0.03,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: block,
+          start: 'top 75%'
+        }
+      });
+    });
+  }
 
   // Parallax scroll effects for hero and stats background images
   if (typeof ScrollTrigger !== 'undefined') {

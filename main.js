@@ -8,6 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursor();
   initBackgroundCanvas();
   initMobileMenu();
+  
+  // Initialize Lenis smooth scroll
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.5
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    if (typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+    }
+  }
+
   initScrollAnimations();
 });
 
@@ -177,21 +198,33 @@ function initBackgroundCanvas() {
   const canvas = document.createElement('canvas');
   container.appendChild(canvas);
 
-  let width = canvas.width = container.clientWidth;
-  let height = canvas.height = container.clientHeight;
+  const scaleFactor = 0.5; // Downscale rendering resolution for performance
+  let width = canvas.width = Math.floor(container.clientWidth * scaleFactor);
+  let height = canvas.height = Math.floor(container.clientHeight * scaleFactor);
 
   let mouse = { x: width / 2, y: height / 2, targetX: width / 2, targetY: height / 2 };
   
   window.addEventListener('mousemove', (e) => {
-    mouse.targetX = e.clientX;
-    mouse.targetY = e.clientY;
+    mouse.targetX = e.clientX * scaleFactor;
+    mouse.targetY = e.clientY * scaleFactor;
   });
 
   window.addEventListener('resize', () => {
-    width = canvas.width = container.clientWidth;
-    height = canvas.height = container.clientHeight;
+    width = canvas.width = Math.floor(container.clientWidth * scaleFactor);
+    height = canvas.height = Math.floor(container.clientHeight * scaleFactor);
     if (gl) gl.viewport(0, 0, width, height);
   });
+
+  // Track scrolling to pause render loop during scroll for solid 60 FPS
+  let isScrolling = false;
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    isScrolling = true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      isScrolling = false;
+    }, 120);
+  }, { passive: true });
 
   // Track visibility using IntersectionObserver to auto-throttle and save CPU/battery
   let isVisible = true;
@@ -355,7 +388,7 @@ function initBackgroundCanvas() {
       const uniformData = new Float32Array(6);
 
       function renderFrame(now) {
-        if (!isVisible) {
+        if (!isVisible || isScrolling) {
           requestAnimationFrame(renderFrame);
           return;
         }
@@ -522,7 +555,7 @@ function initBackgroundCanvas() {
     gl.useProgram(program);
 
     function renderWebGL(now) {
-      if (!isVisible) {
+      if (!isVisible || isScrolling) {
         requestAnimationFrame(renderWebGL);
         return;
       }
@@ -599,6 +632,73 @@ function initScrollAnimations() {
   animateOnScroll('.split-image-panel', 45, 1.1);
   animateOnScroll('.award-card', 30, 0.9);
   animateOnScroll('section h2, section .accent-title', 25, 0.8);
+
+  // Places split-screen scroll transitions
+  if (typeof ScrollTrigger !== 'undefined') {
+    const blocks = document.querySelectorAll('.place-content-block');
+    const figures = document.querySelectorAll('.place-fig');
+    
+    blocks.forEach(block => {
+      const index = block.getAttribute('data-index');
+      ScrollTrigger.create({
+        trigger: block,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => activatePlace(index),
+        onEnterBack: () => activatePlace(index)
+      });
+    });
+
+    function activatePlace(index) {
+      figures.forEach(fig => {
+        if (fig.getAttribute('data-index') === index) {
+          fig.classList.add('active');
+        } else {
+          fig.classList.remove('active');
+        }
+      });
+    }
+
+    // Custom Split-Word Reveal animation helper
+    function splitTextIntoSpans(selector) {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        const text = el.textContent.trim();
+        const words = text.split(/\s+/);
+        el.innerHTML = '';
+        words.forEach(word => {
+          const wordWrapper = document.createElement('span');
+          wordWrapper.style.display = 'inline-block';
+          wordWrapper.style.overflow = 'hidden';
+          wordWrapper.style.verticalAlign = 'bottom';
+          
+          const wordInner = document.createElement('span');
+          wordInner.className = 'split-word-inner';
+          wordInner.style.display = 'inline-block';
+          wordInner.style.transform = 'translateY(100%)';
+          wordInner.textContent = word + ' ';
+          
+          wordWrapper.appendChild(wordInner);
+          el.appendChild(wordWrapper);
+        });
+      });
+    }
+
+    // Apply Split-Word Reveal to places headings
+    splitTextIntoSpans('.split-reveal-text');
+    blocks.forEach(block => {
+      gsap.to(block.querySelectorAll('.split-word-inner'), {
+        yPercent: 0,
+        stagger: 0.03,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: block,
+          start: 'top 75%'
+        }
+      });
+    });
+  }
 
   // Parallax scroll effects for hero and stats background images
   if (typeof ScrollTrigger !== 'undefined') {
