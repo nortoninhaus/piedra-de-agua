@@ -888,11 +888,11 @@ footer.footer-lux {
   height: 100%;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(10, 9, 8, 0) 70%, rgba(10, 9, 8, 1) 100%);
+  background: linear-gradient(90deg, rgba(10, 9, 8, 0) 0%, rgba(10, 9, 8, 0.12) 50%, rgba(10, 9, 8, 0.65) 85%, rgba(10, 9, 8, 1) 100%);
 }
 
 [data-theme="light"] .places-overlay-glow {
-  background: linear-gradient(90deg, rgba(246, 242, 236, 0) 70%, rgba(246, 242, 236, 1) 100%);
+  background: linear-gradient(90deg, rgba(246, 242, 236, 0) 0%, rgba(246, 242, 236, 0.12) 50%, rgba(246, 242, 236, 0.65) 85%, rgba(246, 242, 236, 1) 100%);
 }
 
 .places-content-side {
@@ -975,10 +975,10 @@ footer.footer-lux {
     padding: 6rem 5%;
   }
   .places-overlay-glow {
-    background: linear-gradient(180deg, rgba(10, 9, 8, 0) 70%, rgba(10, 9, 8, 1) 100%);
+    background: linear-gradient(180deg, rgba(10, 9, 8, 0) 0%, rgba(10, 9, 8, 0.12) 50%, rgba(10, 9, 8, 0.65) 85%, rgba(10, 9, 8, 1) 100%);
   }
   [data-theme="light"] .places-overlay-glow {
-    background: linear-gradient(180deg, rgba(246, 242, 236, 0) 70%, rgba(246, 242, 236, 1) 100%);
+    background: linear-gradient(180deg, rgba(246, 242, 236, 0) 0%, rgba(246, 242, 236, 0.12) 50%, rgba(246, 242, 236, 0.65) 85%, rgba(246, 242, 236, 1) 100%);
   }
 }
 
@@ -998,6 +998,21 @@ footer.footer-lux {
 [data-theme="light"] .feature-tag {
   background: rgba(0, 0, 0, 0.06);
   color: var(--text-main);
+}
+
+/* Hero Content Readability overrides (Hero banner is always dark volcanic spa image) */
+.hero-content-wrap {
+  color: #ffffff !important;
+}
+.hero-content-wrap h1 {
+  color: #ffffff !important;
+}
+.hero-content-wrap p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+.hero-content-wrap .accent-title {
+  color: #ffd700 !important; /* always bright luxury gold */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45) !important;
 }
 
 </style>
@@ -1438,7 +1453,6 @@ footer.footer-lux {
         <div class="place-content-block" data-index="1">
           <div class="place-meta">
             <span class="place-number">01</span>
-            <span class="place-status active-status">OPERACIONAL</span>
           </div>
           <h3 class="split-reveal-text">El Club Termal</h3>
           <p>Un espacio de diseño impecable donde tratamientos termales y minerales de origen volcánico revitalizan cuerpo y alma.</p>
@@ -1454,7 +1468,6 @@ footer.footer-lux {
         <div class="place-content-block" data-index="2">
           <div class="place-meta">
             <span class="place-number">02</span>
-            <span class="place-status active-status">OPERACIONAL</span>
           </div>
           <h3 class="split-reveal-text">Roca Dorada</h3>
           <p>Terapias de relajación y bienestar de diferentes partes del mundo, desarrolladas en un lujoso espacio subterráneo.</p>
@@ -1470,7 +1483,6 @@ footer.footer-lux {
         <div class="place-content-block" data-index="3">
           <div class="place-meta">
             <span class="place-number">03</span>
-            <span class="place-status active-status">OPERACIONAL</span>
           </div>
           <h3 class="split-reveal-text">Tour Termal Subterráneo</h3>
           <p>Una experiencia mágica e inolvidable desarrollada en una cueva natural subterránea ambientada con velas y esencias.</p>
@@ -1486,7 +1498,6 @@ footer.footer-lux {
         <div class="place-content-block" data-index="4">
           <div class="place-meta">
             <span class="place-number">04</span>
-            <span class="place-status active-status">OPERACIONAL</span>
           </div>
           <h3 class="split-reveal-text">Circuito de Spa Exterior</h3>
           <p>Relajación única al aire libre donde su piel y cuerpo se beneficiarán de las propiedades de nuestros lodos termales.</p>
@@ -1836,7 +1847,7 @@ function initCursor() {
   animateFollower();
 
   // Hover triggers
-  const hoverables = document.querySelectorAll('a, button, .btn-lux, .glass-card, .hover-target');
+  const hoverables = document.querySelectorAll('button, .btn-lux, [data-cursor-text]');
   
   hoverables.forEach(el => {
     el.addEventListener('mouseenter', () => {
