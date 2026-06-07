@@ -144,7 +144,7 @@ function initCursor() {
   animateFollower();
 
   // Hover triggers
-  const hoverables = document.querySelectorAll('a, button, .btn-lux, .glass-card, .hover-target');
+  const hoverables = document.querySelectorAll('button, .btn-lux, [data-cursor-text]');
   
   hoverables.forEach(el => {
     el.addEventListener('mouseenter', () => {

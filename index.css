@@ -869,11 +869,11 @@ footer.footer-lux {
   height: 100%;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(10, 9, 8, 0) 70%, rgba(10, 9, 8, 1) 100%);
+  background: linear-gradient(90deg, rgba(10, 9, 8, 0) 0%, rgba(10, 9, 8, 0.12) 50%, rgba(10, 9, 8, 0.65) 85%, rgba(10, 9, 8, 1) 100%);
 }
 
 [data-theme="light"] .places-overlay-glow {
-  background: linear-gradient(90deg, rgba(246, 242, 236, 0) 70%, rgba(246, 242, 236, 1) 100%);
+  background: linear-gradient(90deg, rgba(246, 242, 236, 0) 0%, rgba(246, 242, 236, 0.12) 50%, rgba(246, 242, 236, 0.65) 85%, rgba(246, 242, 236, 1) 100%);
 }
 
 .places-content-side {
@@ -956,10 +956,10 @@ footer.footer-lux {
     padding: 6rem 5%;
   }
   .places-overlay-glow {
-    background: linear-gradient(180deg, rgba(10, 9, 8, 0) 70%, rgba(10, 9, 8, 1) 100%);
+    background: linear-gradient(180deg, rgba(10, 9, 8, 0) 0%, rgba(10, 9, 8, 0.12) 50%, rgba(10, 9, 8, 0.65) 85%, rgba(10, 9, 8, 1) 100%);
   }
   [data-theme="light"] .places-overlay-glow {
-    background: linear-gradient(180deg, rgba(246, 242, 236, 0) 70%, rgba(246, 242, 236, 1) 100%);
+    background: linear-gradient(180deg, rgba(246, 242, 236, 0) 0%, rgba(246, 242, 236, 0.12) 50%, rgba(246, 242, 236, 0.65) 85%, rgba(246, 242, 236, 1) 100%);
   }
 }
 
@@ -979,4 +979,19 @@ footer.footer-lux {
 [data-theme="light"] .feature-tag {
   background: rgba(0, 0, 0, 0.06);
   color: var(--text-main);
+}
+
+/* Hero Content Readability overrides (Hero banner is always dark volcanic spa image) */
+.hero-content-wrap {
+  color: #ffffff !important;
+}
+.hero-content-wrap h1 {
+  color: #ffffff !important;
+}
+.hero-content-wrap p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+.hero-content-wrap .accent-title {
+  color: #ffd700 !important; /* always bright luxury gold */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45) !important;
 }
