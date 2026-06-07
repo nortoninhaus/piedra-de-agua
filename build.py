@@ -74,10 +74,10 @@ def copy_to_media(abs_path, seen_files):
 
 
 def rewrite_image_paths(content, html_dir, seen_files):
-    """Rewrite all local src= paths to media/ folder paths."""
+    """Rewrite all local src= paths and JS/JSON image references to media/ folder paths."""
     img_extensions = (".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".ico")
 
-    def replace_src(match):
+    def replace_path(match):
         prefix = match.group(1)
         src_val = match.group(2)
         suffix = match.group(3)
@@ -91,8 +91,15 @@ def rewrite_image_paths(content, html_dir, seen_files):
             return f"{prefix}{new_src}{suffix}"
         return match.group(0)
 
-    pattern = r'''(src\s*=\s*["'])((?:(?!["']).)+)(["'])'''
-    return re.sub(pattern, replace_src, content)
+    # 1. Match src="..." attributes
+    pattern_src = r'''(src\s*=\s*["'])((?:(?!["']).)+)(["'])'''
+    content = re.sub(pattern_src, replace_path, content)
+
+    # 2. Match JS/JSON local image path references (e.g. img: './Tienda%20Online...')
+    pattern_js = r'''(["'])((?:\./)?(?:Tienda%20Online|Sobre%20Nosotros|Referencias|Tienda Online|Sobre Nosotros)[^"'\n]+\.(?:png|jpg|jpeg|gif|webp|svg|ico))(["'])'''
+    content = re.sub(pattern_js, replace_path, content)
+
+    return content
 
 
 def build_project():
